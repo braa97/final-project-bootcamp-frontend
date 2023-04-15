@@ -1,0 +1,7 @@
+.card {
+    max-width: 350px !important ;
+}
+
+.card__image {
+    background-color: #000000de;
+}
