@@ -1,8 +1,9 @@
 import React from 'react'
+import './css/Apartments.css'
 
 const Apartments = () => {
   return (
-    <div>Apartments</div>
+    <h2>Apartments</h2>
   )
 }
 
