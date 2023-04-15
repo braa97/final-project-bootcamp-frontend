@@ -1,3 +1,4 @@
+import './Resident.css'
 import React from 'react'
 
 const Resident = () => {
