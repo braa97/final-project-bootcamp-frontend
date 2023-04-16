@@ -1,7 +1,7 @@
 import './App.css'
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
-import Apartments from './components/Apartments/Apartments'
+import Apartments from './components/ApartmentsPage/Apartments'
 import Residents from './components/Residents/Residents'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 

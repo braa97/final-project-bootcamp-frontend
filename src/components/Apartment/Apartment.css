@@ -1,18 +1,21 @@
 .card {
-    max-width: 75% !important ;
-    margin-bottom: 8%;
+  max-width: 75% !important ;
+  margin-bottom: 8%;
+  box-shadow: 0 0px 12px black ;
+  background-color: #001e3c;
+  border-radius: 8px;
 }
 
-@media(max-width: 1530px) {
-    .card {
-        max-width: 300px !important ;
-        transition: all .5s linear;
-    }
-}
-
-@media(max-width: 750px) {
-    .apartments-container {
-        max-width: 750px !important ;
-      transition: all 1s ease-in-out;
-    }
+@media (max-width: 1530px) {
+  .card {
+    max-width: 300px !important ;
+    transition: all 0.5s linear;
   }
+}
+
+@media (max-width: 750px) {
+  .apartments-container {
+    max-width: 750px !important ;
+    transition: all 1s ease-in-out;
+  }
+}
