@@ -10,7 +10,7 @@ const Residents = () => {
   useEffect(() => {
     const apiManger = new ApiManager()
     const getResidents = async() => {
-      let tempResidents = await apiManger.getResidents(apartmentName)
+      let tempResidents = await apiManger.getResidentsByApartmentName(apartmentName)
       setResidents(tempResidents)
     }
     getResidents()
