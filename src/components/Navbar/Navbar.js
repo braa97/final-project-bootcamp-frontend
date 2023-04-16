@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="header-brand">
         <div className="nav-item no-hover">
           <a>
-            <h6 className="title">Logo</h6>
+            <h6 className="title">AptLife</h6>
           </a>
         </div>
         <div className="nav-item nav-btn" id="header-btn">
