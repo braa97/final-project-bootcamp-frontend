@@ -14,7 +14,7 @@ const Resident = ({resident}) => {
   return (
     <div className="card">
     <div className="card__container">
-    <Link to={`/residents/${resident.residentId}`}>
+    <Link to={`/resident/${resident.residentId}`}>
       <div className="card__image" style={{backgroundColor: `${generateColor()}`}}></div>
       <div className="card__title-container">
         <p className="title">{resident.firstName} {resident.lastName}</p>

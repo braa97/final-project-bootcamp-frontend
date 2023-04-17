@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from './components/Navbar/Navbar'
 import Apartments from './components/ApartmentsPage/Apartments'
 import Residents from './components/ResidentsPage/Residents'
+import ResidentDetails from './components/ResidentDetails/ResidentDetails'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -13,7 +14,7 @@ const App = () => {
       <Routes>
           <Route path="/" element={<Apartments/>} />
           <Route path='/residents/:apartmentName' element={<Residents />} />
-          {/* <Route path='' */}
+          <Route path='resident/:residentId' element={<ResidentDetails />} />
         </Routes>
       </Router>
   )

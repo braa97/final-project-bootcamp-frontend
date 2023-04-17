@@ -25,8 +25,7 @@ const ApiManager = function () {
   };
 
   const getApartmentByName = async(apartmentName) => {
-    console.log(process.env.REACT_APP_SINGLE_APARTMENT_ROUTE);
-    const response = await ajaxCall(`http://localhost:3700/apartment` + `/${apartmentName}`)
+    const response = await ajaxCall(`${process.env.REACT_APP_SINGLE_APARTMENT_ROUTE}` + `/${apartmentName}`)
     return response
   }
 
