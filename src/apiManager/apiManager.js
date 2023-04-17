@@ -29,10 +29,16 @@ const ApiManager = function () {
     return response
   }
 
+  const getResidentById = async(residentId) => {
+    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}`)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
     getApartmentByName: getApartmentByName,
+    getResidentById: getResidentById,
   };
 };
 
