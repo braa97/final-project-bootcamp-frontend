@@ -1,17 +1,7 @@
 import '../Style/style.css'
 
 const RelativeContacts = ({familyConnections}) => {
-  /*let familyConnections = [
-    {
-        name: "Rina Levi",
-        contactNumber: "054-1234567",
-    },
-    {
-        name: "Avi Cohen",
-        contactNumber: "052-9876543",
-    }
-  ]*/
-  
+
     return (
         <div class="container">
         <div class="relative-appointment-contacts-card">
