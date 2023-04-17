@@ -1,0 +1,29 @@
+import "./ResidentDetails.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import ApiManager from "../../apiManager/apiManager";
+import ResidentDetails from '../ResidentDetails/ResidentDetails'
+import Image from '../Image/Image'
+
+
+export default function ResidentInfoPage() {
+    const { residentId } = useParams();
+    const [resident, setResident] = useState([]);
+  
+    useEffect(() => {
+      const apiManger = new ApiManager();
+  
+      const getResident = async() => {
+        let tempResident = await apiManger.getResidentsByApartmentName(residentId);
+        setResident(tempResident);
+      };
+      getResident();
+    }, []);
+
+  return (
+    <>
+        <Image imageSrc={resident.image} />
+        <ResidentDetails residentData={resident} />
+    </>
+  )
+}
