@@ -3,8 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Apartment = ({ apartment }) => {
+  
   const generateRandomNumber = () => {
-    return Math.round(Math.random() * 170)
+    return Math.round(Math.random() * 255)
   }
   const generateColor = () => {
     return `rgb(` + generateRandomNumber() + ',' + generateRandomNumber() + ',' + generateRandomNumber() + ')'

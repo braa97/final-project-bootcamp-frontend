@@ -8,6 +8,7 @@ const Apartments = () => {
 
   useEffect(() => {
     let apiManger = new ApiManager();
+
     let fetchApartments = async () => {
       let apartments = await apiManger.getApartments();
       setApartments(apartments);

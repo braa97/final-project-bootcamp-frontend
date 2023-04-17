@@ -13,4 +13,4 @@ const ResidentDetails = ({residentData}) => {
   )
 }
 
-export default ResidentDetails
+export default ResidentDetails;
