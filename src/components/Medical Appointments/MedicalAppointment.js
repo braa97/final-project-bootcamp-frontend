@@ -2,7 +2,6 @@ import "./MedicalAppointment.css";
 import { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
 
-<<<<<<< HEAD
 const MedicalAppointment = ({ residentId }) => {
   const [medicalAppointments, setMedicalAppointments] = useState([]);
 
@@ -17,9 +16,6 @@ const MedicalAppointment = ({ residentId }) => {
     };
     fetchMedicalAppointments();
   }, []);
-=======
-const MedicalAppointment = ({ medicalAppointments }) => {
->>>>>>> 98cc0d4546fbafff368a385117d5e7354cfb7429
 
   return (
     <>
