@@ -1,26 +1,21 @@
-.resident-page-container {
-    display: grid;
-    grid-template-columns: "residentImageDetails residentMedicalAppointments";
-    background-color: #0068d0;
-    align-items: center;
-    margin: 5% 3%;
-    padding: 3%;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px black;
+.resident-card-container {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin: 3% 5%;
 }
 
-.resident-image-details-container {
-    grid-area: residentImageDetails;
+.resident-card {
+  display: flex;
+  margin-top: 4%;
+  background-color: #0068d0;
+  padding: 2% 4%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px black;
+  /* box-shadow: 20px 20px 12px black; */
 }
 
-.resident-info-image-container {
-    margin: 0 5% 0 6%;
-}
-
-.resident-info-details-container {
-    margin: 0 0 0 0;
-}
-
-.medical-appointment-container {
-    
+.resident-medical-appointments-container {
+    display: flex;
+    justify-content: flex-end;
 }

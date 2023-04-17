@@ -34,11 +34,17 @@ const ApiManager = function () {
     return response
   }
 
+  const getResidentDetailsByQueryString = async(residentId, queryString) => {
+    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}?${queryString}=true`)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
     getApartmentByName: getApartmentByName,
     getResidentById: getResidentById,
+    getResidentDetailsByQueryString: getResidentDetailsByQueryString,
   };
 };
 

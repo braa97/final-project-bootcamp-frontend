@@ -5,6 +5,7 @@ import ApiManager from "../../apiManager/apiManager";
 import ResidentDetails from "../ResidentDetails/ResidentDetails";
 import MedicalAppointment from "../Medical Appointments/MedicalAppointment";
 import Image from "../Image/Image";
+import RelativeContacts from "../Relative Contacts/RelativeContacts";
 
 export default function ResidentInfoPage() {
   const { residentId } = useParams();
@@ -20,22 +21,16 @@ export default function ResidentInfoPage() {
     getResident();
   }, []);
 
-  console.log(resident);
   return (
-    <div className="resident-page-container">
-      <div className="resident-image-details-container">
-        <div className="resident-info-image-container">
-          <Image imageSrc={resident.image} />
-        </div>
-        <div className="resident-info-details-container">
-          <ResidentDetails resident={resident} />
-        </div>
-        <div className="medical-appointment-container">
-          <MedicalAppointment
-            medicalAppointments={resident.medicalAppointments}
-          />
-        </div>
+    <div className="resident-card-container">
+      <div className="resident-card">
+        <Image imageSrc={resident.image} />
+        <ResidentDetails resident={resident} />
+      </div>
+      <div className="resident-medical-appointments-container">
+        <MedicalAppointment residentId={residentId} />
+        <RelativeContacts residentId={residentId} />
       </div>
     </div>
-  );
+  )
 }
