@@ -19,7 +19,6 @@ const Residents = () => {
     
     const getApartment = async() => {
       let tempApartment = await apiManger.getApartmentByName(apartmentName)
-      console.log(tempApartment);
       setApartment(tempApartment)
     }
     getResidents();

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
 import ResidentDetails from '../ResidentDetails/ResidentDetails'
+import Image from '../Image/Image'
 
 
 export default function ResidentInfoPage() {
@@ -20,6 +21,9 @@ export default function ResidentInfoPage() {
     }, []);
 
   return (
-    <div>ResidentInfoPage</div>
+    <>
+        <Image imageSrc={resident.image} />
+        <ResidentDetails residentData={resident} />
+    </>
   )
 }
