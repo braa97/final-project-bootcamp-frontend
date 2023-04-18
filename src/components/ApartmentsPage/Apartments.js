@@ -2,24 +2,39 @@ import React, { useEffect, useState } from "react";
 import "./Apartments.css";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
+import { useNavigate } from "react-router";
 
 const Apartments = () => {
   const [apartments, setApartments] = useState([]);
+  const navigate = useNavigate()
+
+    useEffect(() => {
+    const apiManager = new ApiManager()
+    const checkServerConnection = async() => {
+      let response = await apiManager.checkServerConnection()
+      if (response.status != 200) {
+        navigate('/server-error')
+      }
+    }
+    checkServerConnection()
+  }, [])
 
   useEffect(() => {
-    let apiManger = new ApiManager();
+    const apiManager = new ApiManager();
 
     let fetchApartments = async () => {
-      let apartments = await apiManger.getApartments();
+      let apartments = await apiManager.getApartments();
       setApartments(apartments);
     };
     fetchApartments();
   }, []);
 
+
+
   return (
     <>
     <div className="apartments-header-label">
-      <label>Apartments</label>
+      <label>{apartments.length != 0 ? "Apartments" : null}</label>
     </div>
       <div className="apartments-container">
         {apartments.map((apartment) => (
