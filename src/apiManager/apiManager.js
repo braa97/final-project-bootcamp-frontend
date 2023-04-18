@@ -41,7 +41,7 @@ const ApiManager = function () {
   }
 
   const getResidentMedicalAppointments = async(residentId) => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/medicalAppointment/${residentId}`)
+    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${residentId}`)
     return response.data
   }
 
