@@ -1,4 +1,5 @@
-@import url("../../utilities/styleConstants.css");
+@import url("../../utilities/constantStyles/styleConstants.css");
+
 .server-error-card-container {
   display: flex;
   align-items: center;

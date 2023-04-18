@@ -1,4 +1,4 @@
-@import url("../../utilities/styleConstants.css");
+@import url("../../utilities/constantStyles/styleConstants.css");
 
 .appointment-relatives-card {
   display: flex;
