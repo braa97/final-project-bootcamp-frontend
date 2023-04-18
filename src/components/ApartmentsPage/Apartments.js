@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
-
 import { useNavigate } from "react-router";
 
 const Apartments = () => {

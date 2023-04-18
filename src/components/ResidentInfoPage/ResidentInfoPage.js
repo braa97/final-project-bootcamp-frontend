@@ -21,20 +21,25 @@ export default function ResidentInfoPage() {
     getResident();
   }, []);
 
-  return (
-    <div className="resident-card-container">
-      <div className="resident-card">
-        <Image imageSrc={resident.image} />
-        <ResidentDetails resident={resident} />
-      </div>
-      <div className="resident-medical-appointments-container">
-        <div className="resident-relative-inner-container">
-          <MedicalAppointment residentId={residentId} />
+  try {
+    return (
+      <div className="resident-card-container">
+        <div className="resident-card">
+          <Image imageSrc={resident.image} />
+          <ResidentDetails resident={resident} />
         </div>
-        <div className="resident-medical-inner-container">
-          <RelativeContacts residentId={residentId} />
+        <div className="resident-medical-appointments-container">
+          <div className="resident-relative-inner-container">
+            <MedicalAppointment residentId={residentId} />
+          </div>
+          <div className="resident-medical-inner-container">
+            <RelativeContacts residentId={residentId} />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  catch(error) {
+    console.log(error);
+  }
 }
