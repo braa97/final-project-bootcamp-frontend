@@ -28,8 +28,10 @@ export default function ResidentInfoPage() {
         <ResidentDetails resident={resident} />
       </div>
       <div className="resident-medical-appointments-container">
-        <div className="resident-medical-appointments-container-inner-container">
+        <div className="resident-relative-inner-container">
           <MedicalAppointment residentId={residentId} />
+        </div>
+        <div className="resident-medical-inner-container">
           <RelativeContacts residentId={residentId} />
         </div>
       </div>

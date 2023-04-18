@@ -30,7 +30,7 @@ const RelativeContacts = ({ residentId }) => {
         </ul>
       </div>
       <div className="add-relatives-appointment-button">
-        <button>Add Appointment</button>
+        <button>Add Contact</button>
       </div>
     </div>
   );
