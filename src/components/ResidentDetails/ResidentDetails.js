@@ -1,5 +1,5 @@
 import "./ResidentDetails.css";
-import Utility from "../../utilities/util";
+import Utility from "../../utilities/utility/util";
 
 const ResidentDetails = ({ resident }) => {
   const utility = Utility();
