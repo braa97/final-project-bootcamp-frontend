@@ -2,6 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import "cirrus-ui";
+import Profile from "../Profile/Profile";
 
 const Navbar = () => {
   return (
@@ -29,7 +30,7 @@ const Navbar = () => {
         </div>
         <div className="nav-right">
           <div className="nav-item">
-            <figure className="avatar avatar--sm" data-text="Jz"></figure>
+            <Profile />
           </div>
         </div>
       </div>
