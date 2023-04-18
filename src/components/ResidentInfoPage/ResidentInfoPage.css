@@ -1,3 +1,14 @@
+.resident-medical-appointments-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.resident-medical-appointments-container-inner-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .resident-card-container {
   display: flex;
   align-items: start;
@@ -15,7 +26,4 @@
   /* box-shadow: 20px 20px 12px black; */
 }
 
-.resident-medical-appointments-container {
-    display: flex;
-    justify-content: flex-end;
-}
+

@@ -1,4 +1,4 @@
-import "./MedicalAppointment.css";
+import "../Style/style.css";
 import { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
 
@@ -19,10 +19,10 @@ const MedicalAppointment = ({ residentId }) => {
 
   return (
     <>
-      <div className="appointment-card">
-        <div className="appointment-details-header-list-container">
-          <div className="appointment-details-header-container">
-            <div className="appointment-details-header">
+      <div className="appointment-relatives-card">
+        <div className="appointment-relatives-details-header-list-container">
+          <div className="appointment-relatives-details-header-container">
+            <div className="appointment-relatives-details-header">
               Medical Appointment:
             </div>
           </div>
@@ -32,7 +32,7 @@ const MedicalAppointment = ({ residentId }) => {
             })}
           </ul>
         </div>
-        <div className="add-appointment-button">
+        <div className="add-relatives-appointment-button">
           <button>Add Appointment</button>
         </div>
       </div>

@@ -18,10 +18,10 @@ const RelativeContacts = ({ residentId }) => {
   }, []);
 
   return (
-    <div className="appointment-card">
-      <div className="appointment-details-header-list-container">
-        <div className="appointment-details-header-container">
-          <div className="appointment-details-header">Medical Appointment:</div>
+    <div className="appointment-relatives-card">
+      <div className="appointment-relatives-details-header-list-container">
+        <div className="appointment-relatives-details-header-container">
+          <div className="appointment-relatives-details-header">Relative Contacts:</div>
         </div>
         <ul>
           {familyConnections.map((relative, index) => {
@@ -29,7 +29,7 @@ const RelativeContacts = ({ residentId }) => {
           })}
         </ul>
       </div>
-      <div className="add-appointment-button">
+      <div className="add-relatives-appointment-button">
         <button>Add Appointment</button>
       </div>
     </div>

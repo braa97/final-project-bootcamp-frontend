@@ -1,6 +1,6 @@
 @import url("../../utilities/styleConstants.css");
 
-.appointment-card {
+.relative-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,15 +15,15 @@
   padding: 16px;
 }
 
-.appointment-details-header-container {
+.relative-details-header-container {
     margin: 0 auto;
 }
 
-.appointment-details-header {
+.relative-details-header {
     font-size: 2.5rem;
 }
 
-.appointment-card button {
+.relative-card button {
   background-color: var(--secondary-color);
   color: #f8f9fa;
   bottom: 16px;
@@ -32,16 +32,16 @@
   box-shadow: 0 2px 8px black;
 }
 
-.add-appointment-button {
+.add-relative-button {
     display: flex;
     justify-content: center ;
 }
 
-.appointment-card button {
+.relative-card button {
     font-size: 1em;
   }
 
-.appointment-card button:hover {
+.relative-card button:hover {
   background-color: var(--primary-color);
   color: #ffffff;
     box-shadow: 0 2px 8px black;
