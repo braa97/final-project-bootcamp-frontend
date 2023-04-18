@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Apartments from "./components/ApartmentsPage/Apartments";
 import Residents from "./components/ResidentsPage/Residents";
-import ResidentInfoPage from "./components/ResidentDetails/ResidentDetails";
+import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Apartments />} />
         <Route path="/residents/:apartmentName" element={<Residents />} />
-        <Route path="resident/:residentId" element={<ResidentInfoPage />} />
+        <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
       </Routes>
     </Router>
   );

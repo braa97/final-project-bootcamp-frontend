@@ -1,18 +1,18 @@
 import "./ResidentDetails.css";
+import Utility from "../../utilities/util";
 
-const ResidentDetails = ({ residentData }) => {
+const ResidentDetails = ({ resident }) => {
+  const utility = Utility();
+
   return (
-    <div className="details-container">
-      <div> Name: {residentData.firstName + residentData.lastName}</div>
-      <div> BirthDate: {residentData.dateOfBirth}</div>
-      <div> Gender: {residentData.gender}</div>
-      <div> Personal Budget: {residentData.budget}</div>
-      <div>
-        Allergies:{" "}
-        {residentData.allergies.map((allergy) => (
-          <span>{allergy + " "}</span>
-        ))}
+    <div className="resident-info">
+      <div className="resident-name">
+        {resident.firstName} {resident.lastName} ({resident.residentId})
       </div>
+      <div className="resident-details">
+        {resident.gender}, {utility.dateFormatter(resident.dateOfBirth)}
+      </div>
+      <div className="resident-budget">Budget: {resident.budget} ₪</div>
     </div>
   );
 };

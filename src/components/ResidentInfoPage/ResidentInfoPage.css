@@ -1,0 +1,21 @@
+.resident-card-container {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin: 3% 5%;
+}
+
+.resident-card {
+  display: flex;
+  margin-top: 4%;
+  background-color: #0068d0;
+  padding: 2% 4%;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px black;
+  /* box-shadow: 20px 20px 12px black; */
+}
+
+.resident-medical-appointments-container {
+    display: flex;
+    justify-content: flex-end;
+}

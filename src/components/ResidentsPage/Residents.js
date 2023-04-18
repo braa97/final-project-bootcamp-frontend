@@ -29,7 +29,7 @@ const Residents = () => {
     <>
       <div className="residents-page-container">
         <div className="residents-header-label">
-          <label>Residents</label>
+          <label>{apartment.apartmentName}</label>
         </div>
         <div className="residents-container">
           {residents.map((resident) => (

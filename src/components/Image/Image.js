@@ -3,9 +3,9 @@ import './Image.css'
 const Image = ({imageSrc}) => {
 
   return (
-    <div className='image-container'>
-        <img src={imageSrc} />
-    </div>
+    <div className="resident-image-container">
+      <img src={imageSrc} alt="User" />
+  </div>
   )
 }
 

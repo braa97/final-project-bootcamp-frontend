@@ -1,0 +1,14 @@
+.resident-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .resident-details {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .resident-budget {
+    margin-top: 10px;
+    font-size: 18px;
+  }
