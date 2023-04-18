@@ -3,7 +3,7 @@ import axios from "axios";
 const ApiManager = function () {
   //Create try and catch
 
-  //Create get Data function that calls axios and implement it in each function
+  //make a better error handling function
   const ajaxCall = async(url) => {
     try {
       let response = await axios.get(url)
@@ -40,6 +40,11 @@ const ApiManager = function () {
     return response.data
   }
 
+  const getResidentMedicalAppointments = async(residentId) => {
+    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/medicalAppointment/${residentId}`)
+    return response.data
+  }
+
   const checkServerConnection = async() => {
     const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/status`)
     return response
@@ -52,6 +57,7 @@ const ApiManager = function () {
     getResidentById: getResidentById,
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
     checkServerConnection: checkServerConnection,
+    getResidentMedicalAppointments,
   };
 };
 
