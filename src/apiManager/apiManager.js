@@ -3,13 +3,8 @@ import axios from "axios";
 const ApiManager = function () {
   //Create try and catch
 
-<<<<<<< HEAD
-  //Create get Data function that calls axios and implement it in each function
-  const ajaxCall = async (url) => {
-=======
   //make a better error handling function
-  const ajaxCall = async(url) => {
->>>>>>> 5d2c2417761fed912ea924cf1af5f8c9fe28e23a
+  const ajaxCall = async (url) => {
     try {
       let response = await axios.get(url);
       return response;
@@ -52,24 +47,19 @@ const ApiManager = function () {
     return response.data;
   };
 
-<<<<<<< HEAD
+  const getResidentMedicalAppointments = async (residentId) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${residentId}`
+    );
+    return response.data;
+  };
+
   const checkServerConnection = async () => {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/status`
     );
     return response;
   };
-=======
-  const getResidentMedicalAppointments = async(residentId) => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${residentId}`)
-    return response.data
-  }
-
-  const checkServerConnection = async() => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/status`)
-    return response
-  }
->>>>>>> 5d2c2417761fed912ea924cf1af5f8c9fe28e23a
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
