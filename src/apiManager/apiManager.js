@@ -38,26 +38,26 @@ const ApiManager = function () {
     return response;
   };
 
-  const getResidentById = async(residentId) => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}`)
-    return response
-  }
+  const getResidentById = async (residentId) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}`
+    );
+    return response;
+  };
 
-  const getResidentDetailsByQueryString = async(residentId, queryString) => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}?${queryString}=true`)
-    return response
-  }
+  const getResidentDetailsByQueryString = async (residentId, queryString) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/${residentId}?${queryString}=true`
+    );
+    return response;
+  };
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
     getApartmentByName: getApartmentByName,
-<<<<<<< HEAD
-    getResidentDetails: getResidentDetails,
-=======
     getResidentById: getResidentById,
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
->>>>>>> 4987602444b6eda6a192b10e18a1554bd60c758c
   };
 };
 
