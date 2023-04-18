@@ -9,12 +9,14 @@ export default function ServerError() {
   const navigate = useNavigate();
 
   const apiManager = new ApiManager();
-  const { status } = useQuery('status', async () => {
+  const { status } = useQuery(['status'], async () => {
     let response = await apiManager.checkServerConnection();
     return response.status
-  })
+  }, {refetchInterval: 3000})
 
-  // if (status ==)
+  if (status === 'success') {
+    navigate(-1)
+  }
 
   return (
     <div className="server-error-card-container">
