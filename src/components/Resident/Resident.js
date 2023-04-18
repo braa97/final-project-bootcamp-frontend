@@ -3,18 +3,11 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const Resident = ({resident}) => {
-  
-  const generateRandomNumber = () => {
-    return Math.round(Math.random() * 255)
-  }
-  const generateColor = () => {
-    return `rgb(` + generateRandomNumber() + ',' + generateRandomNumber() + ',' + generateRandomNumber() + ')'
-  }
 
   return (
     <div className="card">
     <div className="card__container">
-    <Link to={`/resident/${resident.residentId}`}>
+    <Link to={`/resident/${resident._id}`}>
       <div className="card__image">
         <img src={resident.image} />
       </div>

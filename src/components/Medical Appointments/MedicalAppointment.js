@@ -27,9 +27,9 @@ const MedicalAppointment = ({ residentId }) => {
             </div>
           </div>
           <ul>
-            {medicalAppointments.map((appointment, index) => {
+            {/* {medicalAppointments.map((appointment, index) => {
               return <li key={index}>{appointment.typeOfInspection}</li>;
-            })}
+            })} */}
           </ul>
         </div>
         <div className="add-relatives-appointment-button">
