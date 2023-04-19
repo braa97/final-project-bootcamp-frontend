@@ -1,0 +1,37 @@
+
+img {
+    width: 90px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.card-single {
+    flex: 1 0 15%;
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 2px;
+    min-width: 280px;
+    height: 140px;
+    flex-wrap: wrap;
+}
+
+.card-single div:last-child span { /*icon*/
+    font-size: 3rem;
+    color: var(--main-color);
+}
+
+.card-single div:first-child span {
+    color: var(--text-grey);
+}
+
+.card-single:last-child {
+    background: var(--main-color);
+}
+
+.card-single:last-child h1,
+.card-single:last-child div:first-child span,
+.card-single:last-child div:last-child span {
+    color: #fff;
+}
