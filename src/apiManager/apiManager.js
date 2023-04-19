@@ -45,11 +45,6 @@ const ApiManager = function () {
     return response.data
   }
 
-  const checkServerConnection = async() => {
-    const response = await ajaxCall(`${process.env.REACT_APP_SERVER_ROUTE}/status`)
-    return response
-  }
-
   const addMedicalAppointment = async(residentId, newMedicalAppointment) => {
     console.log(residentId)
     const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/medicalAppointment/${residentId}`, {newAppointment: newMedicalAppointment});
@@ -63,7 +58,6 @@ const ApiManager = function () {
     getApartmentByName: getApartmentByName,
     getResidentById: getResidentById,
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
-    checkServerConnection: checkServerConnection,
     getResidentMedicalAppointments,
     addMedicalAppointment,
   };
