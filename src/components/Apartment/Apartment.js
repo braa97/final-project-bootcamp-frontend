@@ -12,7 +12,7 @@ const Apartment = ({ apartment }) => {
   }
   
   return (
-      <div className="card">
+      <div className="apartment-card">
         <div className="card__container">
         <Link to={`/residents/${apartment.apartmentName}`}>
           <div className="card__image" style={{backgroundColor: `${generateColor()}`}}></div>

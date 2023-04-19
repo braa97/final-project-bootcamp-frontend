@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Apartments from "./components/ApartmentsPage/Apartments";
 import Residents from "./components/ResidentsPage/Residents";
-import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage";
+import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage/ResidentInfoPage";
 import ServerError from "./components/ServerError/ServerError";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Dashboard from "./dashboard/Dashboard";
@@ -12,8 +12,6 @@ import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const App = () => {
   const queryClient = new QueryClient()
-  // const [isServerOnline, setIsServerOnline] = useState(false)
-  // const navigate = useNavigate()
 
   return (
     <QueryClientProvider client={queryClient}>

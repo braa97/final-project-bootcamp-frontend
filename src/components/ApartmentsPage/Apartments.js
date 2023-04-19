@@ -8,18 +8,6 @@ import { useNavigate } from "react-router";
 const Apartments = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const apiManager = new ApiManager();
-    const checkServerConnection = async () => {
-      let response = await apiManager.checkServerConnection();
-      if (response.status != 200) {
-        navigate("/server-error");
-      }
-    };
-    checkServerConnection();
-  }, []);
 
   useEffect(() => {
     const apiManager = new ApiManager();
