@@ -7,7 +7,7 @@ const ProfileCard = ({img, name, address}) => {
             <div className='personal-card-container'>
                 <div className='personal-card'>
                     <div className='image'>
-                        <img src={img} />
+                        <img src={img} alt=''/>
                     </div>
                     <div className='content'>
                         <h1>{name}</h1>
