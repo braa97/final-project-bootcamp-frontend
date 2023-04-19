@@ -2,6 +2,7 @@ import "../Style/style.css";
 import { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
 import { useNavigate } from "react-router";
+import AddMedicalAppointment from "../Add_Appointment/AddMedicalAppointment";
 
 const MedicalAppointment = ({ residentId }) => {
   const [medicalAppointments, setMedicalAppointments] = useState([]);
@@ -33,7 +34,7 @@ const MedicalAppointment = ({ residentId }) => {
             </ul>
           </div>
           <div className="add-relatives-appointment-button">
-            <button>Add Appointment</button>
+            <AddMedicalAppointment/>
           </div>
         </div>
       </>
