@@ -2,19 +2,29 @@ import "../Style/style.css";
 import { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
 import { useNavigate } from "react-router";
+import AddMedicalAppointment from "../Add_Appointment/AddMedicalAppointment";
 
 const MedicalAppointment = ({ residentId }) => {
   const [medicalAppointments, setMedicalAppointments] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     const apiManager = new ApiManager();
     const fetchMedicalAppointments = async () => {
-      let response = await apiManager.getResidentMedicalAppointments(residentId,);
+      let response = await apiManager.getResidentMedicalAppointments(residentId);
       setMedicalAppointments(response.medicalAppointments);
     };
     fetchMedicalAppointments();
   }, []);
+
+  const handleAddAppointment = (typeOfInspection, date) =>{
+    const apiManager = new ApiManager();
+    const newMedicalAppointment = {typeOfInspection : typeOfInspection, date : date, attended: false}
+    apiManager.addMedicalAppointment(residentId, newMedicalAppointment)
+    setMedicalAppointments(current => [...current, newMedicalAppointment])
+  }
 
   try {
     return (
@@ -33,14 +43,13 @@ const MedicalAppointment = ({ residentId }) => {
             </ul>
           </div>
           <div className="add-relatives-appointment-button">
-            <button>Add Appointment</button>
+            <AddMedicalAppointment onClickEvent={handleAddAppointment}/>
           </div>
         </div>
       </>
     );
-  }
-  catch(error) {
-    navigate('/server-error')
+  } catch (error) {
+    console.log(error);
   }
 };
 

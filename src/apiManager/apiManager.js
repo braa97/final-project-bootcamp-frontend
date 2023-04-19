@@ -61,6 +61,13 @@ const ApiManager = function () {
     return response;
   };
 
+  const addMedicalAppointment = async(residentId, newMedicalAppointment) => {
+    console.log(residentId)
+    const res = await axios.put(process.env.REACT_APP_RESIDENTS_ROUTE  + `/medicalAppointment/${residentId}`, newMedicalAppointment);
+    return res
+  }
+
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
@@ -69,6 +76,7 @@ const ApiManager = function () {
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
     checkServerConnection: checkServerConnection,
     getResidentMedicalAppointments,
+    addMedicalAppointment,
   };
 };
 
