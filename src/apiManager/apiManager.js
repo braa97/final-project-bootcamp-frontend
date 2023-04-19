@@ -51,6 +51,12 @@ const ApiManager = function () {
     return res
   }
 
+  const updateAttendStatus = async(residentId) => {
+    console.log(residentId)
+    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/appointment/${residentId}`);
+    return res
+  }
+
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
