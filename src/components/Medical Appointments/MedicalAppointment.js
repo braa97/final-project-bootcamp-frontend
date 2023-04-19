@@ -8,6 +8,8 @@ const MedicalAppointment = ({ residentId }) => {
   const [medicalAppointments, setMedicalAppointments] = useState([]);
   const navigate = useNavigate();
 
+  
+
   useEffect(() => {
     const apiManager = new ApiManager();
     const fetchMedicalAppointments = async () => {
@@ -16,6 +18,13 @@ const MedicalAppointment = ({ residentId }) => {
     };
     fetchMedicalAppointments();
   }, []);
+
+  const handleAddAppointment = (typeOfInspection, date) =>{
+    const apiManager = new ApiManager();
+    const newMedicalAppointment = {typeOfInspection : typeOfInspection, date : date, attended: false}
+    apiManager.addMedicalAppointment(residentId, newMedicalAppointment)
+    setMedicalAppointments(current => [...current, newMedicalAppointment])
+  }
 
   try {
     return (
@@ -34,7 +43,7 @@ const MedicalAppointment = ({ residentId }) => {
             </ul>
           </div>
           <div className="add-relatives-appointment-button">
-            <AddMedicalAppointment/>
+            <AddMedicalAppointment onClickEvent={handleAddAppointment}/>
           </div>
         </div>
       </>

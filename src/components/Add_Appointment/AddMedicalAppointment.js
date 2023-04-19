@@ -4,19 +4,18 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import Box from '@mui/material/Box';
-// import './AddMedicalAppointment.css'
 
-export default function AddMedicalAppointment() {
+
+export default function AddMedicalAppointment({onClickEvent}) {
   const [open, setOpen] = useState(false);
   const [appointmentDate, setAppointmentDate] = useState(dayjs(new Date()));
-    console.log(appointmentDate);
+  const [typeOfInspection, setTypeOfInspection] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -24,6 +23,12 @@ export default function AddMedicalAppointment() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleAdd =  () => {
+    onClickEvent(typeOfInspection, appointmentDate)
+    setTypeOfInspection("")
+    setAppointmentDate(dayjs(new Date()))
+    setOpen(false);
+  }
 
   return (
     <div>
@@ -49,7 +54,8 @@ export default function AddMedicalAppointment() {
             id="name"
             label="Type Of Inspection"
             fullWidth
-
+            value={typeOfInspection}
+            onChange={(event) => setTypeOfInspection(event.target.value)}
             variant="standard"
           />
 
@@ -63,7 +69,7 @@ export default function AddMedicalAppointment() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleAdd}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>
