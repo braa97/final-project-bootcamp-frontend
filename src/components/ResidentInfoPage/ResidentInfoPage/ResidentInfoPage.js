@@ -74,6 +74,7 @@ const ResidentInfoPage = () => {
           <div className="recent-grid">
             <MedicalAppointments
               medicalAppointments={medicalAppointments}
+              setMedicalAppointments={setMedicalAppointments}
             />
             <RelativeContacts contacts={resident.familyConnections} />
           </div>

@@ -1,19 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MedicalAppointments.css";
 import Utility from "../../../utilities/utility/util";
+import AddMedicalAppointment from '../../Add_Appointment/AddMedicalAppointment'
+import ApiManager from '../../../apiManager/apiManager'
+import { useParams } from "react-router";
 
-const MedicalAppointments = ({ medicalAppointments }) => {
+const MedicalAppointments = ({ medicalAppointments, setMedicalAppointments }) => {
     const utility = new Utility()
+    const {residentId} = useParams()
+    
+    const handleAddAppointment = (typeOfInspection, date) =>{
+      const apiManager = new ApiManager();
+      const newMedicalAppointment = {typeOfInspection : typeOfInspection, date : date, attended: false}
+      apiManager.addMedicalAppointment(residentId, newMedicalAppointment)
+      setMedicalAppointments(current => [...current, newMedicalAppointment])
+    }
     
   return (
     <>
       <div className="appointments">
         <div className="card-header">
           <h3>Medical Appointments</h3>
-          <button>
+          {/* <button>
             Schedule appointment 
             <span className="las la-arrow-right"></span>
-          </button>
+          </button> */}
+          <AddMedicalAppointment onClickEvent={handleAddAppointment} />
         </div>
         <div className="card-body">
           <div className="table-responsive">
