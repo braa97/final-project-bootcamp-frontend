@@ -27,7 +27,6 @@ const ResidentInfoPage = () => {
 
     const fetchResidentAppointment = async() => {
       let response = await apiManager.getResidentMedicalAppointments(residentId)
-      console.log(response);
       setMedicalAppointments(response.medicalAppointments)
     }
 
