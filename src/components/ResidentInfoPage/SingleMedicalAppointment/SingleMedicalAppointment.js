@@ -7,7 +7,7 @@ import TimePicker from "../TimePicker/TimePicker";
 import Box from "@mui/material/Box";
 import ApiManager from "../../../apiManager/apiManager";
 
-export default function SingleMedicalAppointment({ ma }) {
+export default function SingleMedicalAppointment({ ma,handleAttendClick }) {
   const utility = new Utility();
   const apiManager = new ApiManager()
 
@@ -115,6 +115,8 @@ export default function SingleMedicalAppointment({ ma }) {
           {editSaveButton}
         </button>
         <button className="action-btn delete">Delete</button>
+        {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>}
+
       </td>
     </tr>
   );

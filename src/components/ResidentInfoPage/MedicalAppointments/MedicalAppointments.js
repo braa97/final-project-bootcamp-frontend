@@ -22,6 +22,14 @@ const MedicalAppointments = ({
     setMedicalAppointments((current) => [...current, newMedicalAppointment]);
   };
 
+  const handleAttendClick = (ma)=>{
+    const apiManager = new ApiManager();
+    apiManager.updateAttendStatus(ma._id)
+    let newMedicalAppointment = [...medicalAppointments]
+    setMedicalAppointments( newMedicalAppointment)
+  }
+
+
   return (
     <>
       <div className="appointments">
@@ -47,7 +55,7 @@ const MedicalAppointments = ({
               </thead>
               <tbody>
                 {medicalAppointments.map((ma, i) => (
-                  <SingleMedicalAppointment key={i} ma={ma}/>
+                  <SingleMedicalAppointment key={i} ma={ma} handleAttendClick={handleAttendClick}/>
                 ))}
               </tbody>
             </table>
