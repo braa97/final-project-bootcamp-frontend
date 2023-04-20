@@ -1,70 +1,83 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MedicalAppointments.css";
 import AddMedicalAppointment from "../../Add_Appointment/AddMedicalAppointment";
 import ApiManager from "../../../apiManager/apiManager";
 import SingleMedicalAppointment from "../SingleMedicalAppointment/SingleMedicalAppointment";
-import { useParams } from "react-router";
 
-const MedicalAppointments = ({
-  medicalAppointments,
-  setMedicalAppointments,
-  handleDelete
-}) => {
-  const { residentId } = useParams();
+const MedicalAppointments = ({ residentId }) => {
+  const apiManager = new ApiManager();
+  const [medicalAppointments, setMedicalAppointments] = useState([]);
 
-  const handleAddAppointment = (typeOfInspection, date) => {
-    const apiManager = new ApiManager();
+  const fetchResidentAppointment = async () => {
+    let response = await apiManager.getResidentMedicalAppointments(residentId);
+    setMedicalAppointments(response.medicalAppointments);
+  };
+
+  useEffect(() => {
+    fetchResidentAppointment();
+  }, []);
+
+  const handleAddAppointment = async (typeOfInspection, date) => {
     const newMedicalAppointment = {
       typeOfInspection: typeOfInspection,
       date: date,
       attended: false,
     };
-    apiManager.addMedicalAppointment(residentId, newMedicalAppointment);
-    setMedicalAppointments((current) => [...current, newMedicalAppointment]);
+    await apiManager.addMedicalAppointment(residentId, newMedicalAppointment);
+    fetchResidentAppointment();
   };
 
-  const handleAttendClick = (ma)=>{
+  const handleDelete = async (appointmentId) => {
+    await apiManager.deleteAppointment(appointmentId, residentId);
+    fetchResidentAppointment();
+  };
+
+  const handleAttendClick = (ma) => {
     const apiManager = new ApiManager();
-    apiManager.updateAttendStatus(ma._id)
-    let newMedicalAppointment = [...medicalAppointments]
-    setMedicalAppointments( newMedicalAppointment)
-  }
+    apiManager.updateAttendStatus(ma._id);
+    let newMedicalAppointment = [...medicalAppointments];
+    setMedicalAppointments(newMedicalAppointment);
+  };
 
-
-  return (
-    <>
-      <div className="appointments">
-        <div className="card-header">
-          <h3>Medical Appointments</h3>
-          {/* <button>
-            Schedule appointment 
-            <span className="las la-arrow-right"></span>
-          </button> */}
-          <AddMedicalAppointment onClickEvent={handleAddAppointment} />
-        </div>
-        <div className="card-body">
-          <div className="table-responsive">
-            <table width="100%">
-              <thead>
-                <tr>
-                  <td>Title</td>
-                  <td>Date</td>
-                  <td>Time</td>
-                  <td>Attended</td>
-                  <td>Actions</td>
-                </tr>
-              </thead>
-              <tbody>
-                {medicalAppointments.map((ma, i) => (
-                  <SingleMedicalAppointment handleDelete={handleDelete} key={i} ma={ma} appointmentId={ma._id}/>
-                ))}
-              </tbody>
-            </table>
+  try {
+    return (
+      <>
+        <div className="appointments">
+          <div className="card-header">
+            <h3>Medical Appointments</h3>
+            <AddMedicalAppointment onClickEvent={handleAddAppointment} />
+          </div>
+          <div className="card-body">
+            <div className="table-responsive">
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <td>Title</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                    <td>Attended</td>
+                    <td>Actions</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {medicalAppointments.map((appointment) => (
+                    <SingleMedicalAppointment
+                      handleDelete={handleDelete}
+                      key={appointment._id}
+                      appointment={appointment}
+                      appointmentId={appointment._id}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default MedicalAppointments;

@@ -12,6 +12,7 @@ export default function TimePicker({defaultTime, handleTimeChange}) {
       <DemoContainer components={['TimeField']}>
         <TimeField
           label={utility.timeFormatter(defaultTime)}
+          value={defaultTime}
           onChange={(newValue) => handleTimeChange(newValue)}
           format="HH:mm"
         />

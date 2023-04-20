@@ -8,13 +8,11 @@ import Box from "@mui/material/Box";
 import ApiManager from "../../../apiManager/apiManager";
 import DeleteAppointmentDialog from "../DeleteAppointmentDialog/DeleteAppointmentDialog";
 
-export default function SingleMedicalAppointment({ ma, handleDelete, appointmentId }) {
+export default function SingleMedicalAppointment({ appointment, handleDelete, appointmentId }) {
   const utility = new Utility();
   const apiManager = new ApiManager()
-
-  console.log(appointmentId);
   const [isInputFieldsDisabled, setInputFieldsDisabled] = useState(true);
-  const [medicalAppointment, setMedicalAppointment] = useState(ma)
+  const [medicalAppointment, setMedicalAppointment] = useState(appointment)
   const [editSaveButton, setEditSaveButton] = useState("Edit")
   const [date, setDate] = useState(utility.dateFormatter(medicalAppointment.date));
   const [time, setTime] = useState(utility.timeFormatter(medicalAppointment.time));
@@ -72,7 +70,7 @@ export default function SingleMedicalAppointment({ ma, handleDelete, appointment
             <TextField
               disabled={isInputFieldsDisabled}
               id="outlined-basic"
-              value={ma.inspection}
+              value={medicalAppointment.inspection}
               onChange={(event) => setInspection(event.target.value)}
               variant="outlined"
             />
@@ -114,13 +112,9 @@ export default function SingleMedicalAppointment({ ma, handleDelete, appointment
           onClick={handleAppointmentEdit}>
           {editSaveButton}
         </button>
-<<<<<<< HEAD
-        <button className="action-btn delete">Delete</button>
-        {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>}
+        {/* {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>} */}
 
-=======
         <DeleteAppointmentDialog handleDelete={handleDelete} appointmentId={appointmentId} />
->>>>>>> deleteButton
       </td>
     </tr>
   );

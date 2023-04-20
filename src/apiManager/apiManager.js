@@ -100,8 +100,8 @@ const ApiManager = function () {
     return response;
   };
 
-  const deleteAppointment = async(appointmentId) => {
-    const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}`)
+  const deleteAppointment = async(appointmentId, residentId) => {
+    const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
     return response
   }
 
@@ -114,11 +114,8 @@ const ApiManager = function () {
     getResidentMedicalAppointments,
     addMedicalAppointment,
     editMedicalAppointment,
-<<<<<<< HEAD
     updateAttendStatus,
-=======
     deleteAppointment,
->>>>>>> deleteButton
   };
 };
 
