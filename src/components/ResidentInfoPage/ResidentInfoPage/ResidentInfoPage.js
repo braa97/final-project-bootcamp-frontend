@@ -33,7 +33,7 @@ const ResidentInfoPage = () => {
 
     fetchResidentData();
     fetchResidentAppointment()
-  }, []);
+  }, [residentId]);
 
   try {
     return (
