@@ -32,8 +32,8 @@ export default function AddMedicalAppointment({onClickEvent}) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+      <Button variant="outlined" sx={{"&:hover": {backgroundColor: "black"}}} onClick={handleClickOpen}>
+        Schedule appointment
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Medical Appointment</DialogTitle>
