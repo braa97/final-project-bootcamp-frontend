@@ -74,9 +74,9 @@ const ApiManager = function () {
     return res;
   };
 
-  const updateAttendStatus = async(residentId) => {
-    console.log(residentId)
-    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/appointment/${residentId}`);
+  const updateAttendStatus = async(medicalAppointmentID) => {
+    console.log(medicalAppointmentID)
+    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/medicalAppointment/status/${medicalAppointmentID}`);
     return res
   }
 
@@ -97,6 +97,7 @@ const ApiManager = function () {
     getResidentMedicalAppointments,
     addMedicalAppointment,
     editMedicalAppointment,
+    updateAttendStatus,
   };
 };
 
