@@ -4,12 +4,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Resident = ({ resident }) => {
-<<<<<<< HEAD
-  const navigate = useNavigate();
-
-=======
-  
->>>>>>> 602987551a09326ea5943f1547e342fcac2f662f
   try {
     return (
       <div className="card">

@@ -11,13 +11,7 @@ import ApiManager from "./apiManager/apiManager";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const App = () => {
-<<<<<<< HEAD
   const queryClient = new QueryClient();
-  // const [isServerOnline, setIsServerOnline] = useState(false)
-  // const navigate = useNavigate()
-=======
-  const queryClient = new QueryClient()
->>>>>>> 602987551a09326ea5943f1547e342fcac2f662f
 
   return (
     <QueryClientProvider client={queryClient}>

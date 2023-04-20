@@ -54,28 +54,23 @@ const ApiManager = function () {
     return response.data;
   };
 
-<<<<<<< HEAD
-  const checkServerConnection = async () => {
-    const response = await ajaxCall(
-      `${process.env.REACT_APP_SERVER_ROUTE}/status`
+  const addMedicalAppointment = async (residentId, newMedicalAppointment) => {
+    console.log(residentId);
+    const res = await axios.put(
+      process.env.REACT_APP_SERVER_ROUTE +
+        `/resident/medicalAppointment/${residentId}`,
+      { newAppointment: newMedicalAppointment }
     );
-    return response;
+    return res;
   };
 
-=======
->>>>>>> 602987551a09326ea5943f1547e342fcac2f662f
-  const addMedicalAppointment = async(residentId, newMedicalAppointment) => {
-    console.log(residentId)
-    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/medicalAppointment/${residentId}`, {newAppointment: newMedicalAppointment});
-    return res
-  }
-
-  const updateAttendStatus = async(residentId) => {
-    console.log(residentId)
-    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/appointment/${residentId}`);
-    return res
-  }
-
+  const updateAttendStatus = async (residentId) => {
+    console.log(residentId);
+    const res = await axios.put(
+      process.env.REACT_APP_SERVER_ROUTE + `/resident/appointment/${residentId}`
+    );
+    return res;
+  };
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
