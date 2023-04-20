@@ -50,6 +50,17 @@ td .status {
     margin-right: 1rem;
 }
 
+
+td input:disabled {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    color: #222;
+}
+
+td input {
+    font: 1em sans-serif;
+}
+
 tr td:last-child {
     display: flex;
     align-items: center;
