@@ -1,11 +1,11 @@
 import React from 'react'
 import './ApartmentPageHeader.css'
 import CDN from '../CDN'
-const FONT_AWESOME_CDN =
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'
 import { Link } from 'react-router-dom'
 import { RESIDENTS } from '../../mock-data/residents'
 import ResidentsTable from '../ResidentsTable/ResidentsTable'
+const FONT_AWESOME_CDN =
+    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css'
 
 function getAppartmentResidents(residentIds) {
     const resultedResidents = []
@@ -23,9 +23,9 @@ const ApartmenPagetHeader = ({ apartment }) => {
                 <img src={apartment.image} alt='' />
                 <h1 className='apartment-name'>
                     {apartment.apartmentName}
-                    <a href={apartment.address.wazeLink} target='_blank'>
+                    <Link to={apartment.address.wazeLink} target='_blank'>
                         <i className='fa fa-map-marker' aria-hidden='true'></i>
-                    </a>
+                    </Link>
                 </h1>
                 <div className='apartment-info'>
                     <div className='info-item'>
