@@ -4,6 +4,7 @@ import Utility from "../../../utilities/utility/util";
 import AddMedicalAppointment from '../../Add_Appointment/AddMedicalAppointment'
 import ApiManager from '../../../apiManager/apiManager'
 import { useParams } from "react-router";
+import UpdateAppointmentAttend from "../../AppointmentAttendStatus/UpdateAppointmentAttend";
 
 const MedicalAppointments = ({ medicalAppointments, setMedicalAppointments }) => {
     const utility = new Utility()
@@ -14,6 +15,13 @@ const MedicalAppointments = ({ medicalAppointments, setMedicalAppointments }) =>
       const newMedicalAppointment = {typeOfInspection : typeOfInspection, date : date, attended: false}
       apiManager.addMedicalAppointment(residentId, newMedicalAppointment)
       setMedicalAppointments(current => [...current, newMedicalAppointment])
+    }
+
+    const handleAttendClick = (ma)=>{
+      const apiManager = new ApiManager();
+      apiManager.updateAttendStatus(ma._id)
+      let newMedicalAppointment = [...medicalAppointments]
+      setMedicalAppointments( newMedicalAppointment)
     }
     
   return (
@@ -54,6 +62,8 @@ const MedicalAppointments = ({ medicalAppointments, setMedicalAppointments }) =>
                     <td>
                       <button className="action-btn edit">Edit</button>
                       <button className="action-btn delete">Delete</button>
+                      {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>}
+                     
                     </td>
                   </tr>
                 ))}
