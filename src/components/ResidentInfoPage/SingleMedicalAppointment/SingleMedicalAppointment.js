@@ -6,22 +6,23 @@ import TextField from "@mui/material/TextField";
 import TimePicker from "../TimePicker/TimePicker";
 import Box from "@mui/material/Box";
 import ApiManager from "../../../apiManager/apiManager";
+import DeleteAppointmentDialog from "../DeleteAppointmentDialog/DeleteAppointmentDialog";
 
-export default function SingleMedicalAppointment({ ma }) {
+export default function SingleMedicalAppointment({ ma, handleDelete, appointmentId }) {
   const utility = new Utility();
   const apiManager = new ApiManager()
 
+  console.log(appointmentId);
   const [isInputFieldsDisabled, setInputFieldsDisabled] = useState(true);
-  const [medicalAppointment, setMedicalAppointments] = useState(ma)
+  const [medicalAppointment, setMedicalAppointment] = useState(ma)
   const [editSaveButton, setEditSaveButton] = useState("Edit")
   const [date, setDate] = useState(utility.dateFormatter(medicalAppointment.date));
   const [time, setTime] = useState(utility.timeFormatter(medicalAppointment.time));
   const [inspection, setInspection] = useState(medicalAppointment.typeOfInspection)
 
-  const upDateAppointment = async(id, object) => {
+  const updateAppointment = async(id, object) => {
     let response = await apiManager.editMedicalAppointment(id, object)
-    setMedicalAppointments(response.data)
-    return response
+    setMedicalAppointment(response.data)
   }
 
   const handleTimeChange = (newTime) => {
@@ -42,14 +43,13 @@ export default function SingleMedicalAppointment({ ma }) {
         let editedAppointment = {}
         editedAppointment.date = utility.convertToIsoDateFormat(`${date} ${time}`)
         editedAppointment.typeOfInspection = inspection
-        upDateAppointment(ma._id, editedAppointment)
+        updateAppointment(appointmentId, editedAppointment)
         setInputFieldsDisabled(true)
         setEditSaveButton("Edit")
       }
       catch (error) {
         console.log(error);
       }
-      
     }
   };
 
@@ -57,7 +57,7 @@ export default function SingleMedicalAppointment({ ma }) {
     <tr>
       {isInputFieldsDisabled ? (
         <td>
-          {ma.typeOfInspection}
+          {medicalAppointment.typeOfInspection}
         </td>
       ) : (
         <td>
@@ -72,7 +72,7 @@ export default function SingleMedicalAppointment({ ma }) {
             <TextField
               disabled={isInputFieldsDisabled}
               id="outlined-basic"
-              value={inspection}
+              value={ma.inspection}
               onChange={(event) => setInspection(event.target.value)}
               variant="outlined"
             />
@@ -114,7 +114,7 @@ export default function SingleMedicalAppointment({ ma }) {
           onClick={handleAppointmentEdit}>
           {editSaveButton}
         </button>
-        <button className="action-btn delete">Delete</button>
+        <DeleteAppointmentDialog handleDelete={handleDelete} appointmentId={appointmentId} />
       </td>
     </tr>
   );

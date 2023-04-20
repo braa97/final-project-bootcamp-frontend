@@ -24,6 +24,18 @@ const ApiManager = function () {
     }
   };
 
+  const ajaxDeleteCall = async(url) => {
+    try {
+      let response = await axios.delete(url)
+      console.log(response);
+      return response
+    }
+    catch(error) {
+      console.log(error);
+      return error;
+    }
+  }
+
   const getResidentsByApartmentName = async (apartmentName) => {
     const response = await ajaxCall(
       process.env.REACT_APP_RESIDENTS_ROUTE + `/${apartmentName}`
@@ -88,6 +100,11 @@ const ApiManager = function () {
     return response;
   };
 
+  const deleteAppointment = async(appointmentId) => {
+    const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}`)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
@@ -97,6 +114,7 @@ const ApiManager = function () {
     getResidentMedicalAppointments,
     addMedicalAppointment,
     editMedicalAppointment,
+    deleteAppointment,
   };
 };
 

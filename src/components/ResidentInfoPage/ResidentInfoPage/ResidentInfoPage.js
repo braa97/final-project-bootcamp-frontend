@@ -16,23 +16,28 @@ const ResidentInfoPage = () => {
   const [resident, setResident] = useState([]);
   const [medicalAppointments, setMedicalAppointments] = useState([])
   const utility = new Utility()
+  const apiManager = new ApiManager();
+
+  const fetchResidentData = async () => {
+    let response = await apiManager.getResidentById(residentId);
+    setResident(response[0]);
+  };
+
+  const fetchResidentAppointment = async() => {
+    let response = await apiManager.getResidentMedicalAppointments(residentId)
+    setMedicalAppointments(response.medicalAppointments)
+  }
 
   useEffect(() => {
-    const apiManager = new ApiManager();
-
-    const fetchResidentData = async () => {
-      let response = await apiManager.getResidentById(residentId);
-      setResident(response[0]);
-    };
-
-    const fetchResidentAppointment = async() => {
-      let response = await apiManager.getResidentMedicalAppointments(residentId)
-      setMedicalAppointments(response.medicalAppointments)
-    }
-
     fetchResidentData();
     fetchResidentAppointment()
   }, [residentId]);
+
+  const handleDelete = async(appointmentId) => {
+    console.log(appointmentId);
+    await apiManager.deleteAppointment(appointmentId)
+    fetchResidentAppointment()
+  }
 
   try {
     return (
@@ -74,6 +79,7 @@ const ResidentInfoPage = () => {
             <MedicalAppointments
               medicalAppointments={medicalAppointments}
               setMedicalAppointments={setMedicalAppointments}
+              handleDelete={handleDelete}
             />
             <RelativeContacts contacts={resident.familyConnections} />
           </div>

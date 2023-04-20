@@ -8,6 +8,7 @@ import { useParams } from "react-router";
 const MedicalAppointments = ({
   medicalAppointments,
   setMedicalAppointments,
+  handleDelete
 }) => {
   const { residentId } = useParams();
 
@@ -47,7 +48,7 @@ const MedicalAppointments = ({
               </thead>
               <tbody>
                 {medicalAppointments.map((ma, i) => (
-                  <SingleMedicalAppointment key={i} ma={ma}/>
+                  <SingleMedicalAppointment handleDelete={handleDelete} key={i} ma={ma} appointmentId={ma._id}/>
                 ))}
               </tbody>
             </table>
