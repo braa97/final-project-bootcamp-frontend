@@ -7,7 +7,6 @@ import Utility from '../../../utilities/utility/util';
 
 export default function TimePicker({defaultTime, handleTimeChange}) {
   const utility = new Utility()
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimeField']}>
