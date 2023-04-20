@@ -5,67 +5,114 @@ import DatePickerField from "../DatePicker/DatePicker";
 import TextField from "@mui/material/TextField";
 import TimePicker from "../TimePicker/TimePicker";
 import Box from "@mui/material/Box";
+import ApiManager from "../../../apiManager/apiManager";
 
 export default function SingleMedicalAppointment({ ma }) {
   const utility = new Utility();
+  const apiManager = new ApiManager()
 
-  const [isEditable, setIsEditable] = useState(true);
-  const [date, setDate] = useState(utility.dateFormatter(ma.date));
-  const [time, setTime] = useState(utility.timeDateFormatter(ma.date));
+  const [isInputFieldsDisabled, setInputFieldsDisabled] = useState(true);
+  const [medicalAppointment, setMedicalAppointments] = useState(ma)
+  const [editSaveButton, setEditSaveButton] = useState("Edit")
+  const [date, setDate] = useState(utility.dateFormatter(medicalAppointment.date));
+  const [time, setTime] = useState(utility.timeFormatter(medicalAppointment.time));
+  const [inspection, setInspection] = useState(medicalAppointment.typeOfInspection)
+
+  const upDateAppointment = async(id, object) => {
+    let response = await apiManager.editMedicalAppointment(id, object)
+    setMedicalAppointments(response.data)
+    return response
+  }
 
   const handleTimeChange = (newTime) => {
-    setTime(newTime)
-  }
+    setTime(utility.timeFormatter(newTime.$d));
+  };
 
   const handleDateChange = (newDate) => {
-    setDate(newDate)
-  }
+    setDate(utility.dateFormatter(newDate.$d));
+  };
 
   const handleAppointmentEdit = () => {
-
-  }
+    if (editSaveButton === "Edit") {
+      setEditSaveButton("Save")
+      setInputFieldsDisabled(false)
+    }
+    if (editSaveButton === "Save") {
+      try {
+        let editedAppointment = {}
+        editedAppointment.date = utility.convertToIsoDateFormat(`${date} ${time}`)
+        editedAppointment.typeOfInspection = inspection
+        upDateAppointment(ma._id, editedAppointment)
+        setInputFieldsDisabled(true)
+        setEditSaveButton("Edit")
+      }
+      catch (error) {
+        console.log(error);
+      }
+      
+    }
+  };
 
   return (
     <tr>
-      <td>
-        <Box>
-          <TextField
-            disabled={isEditable}
-            id="outlined-basic"
-            value={ma.typeOfInspection}
-            variant="outlined"
+      {isInputFieldsDisabled ? (
+        <td>
+          {ma.typeOfInspection}
+        </td>
+      ) : (
+        <td>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              disabled={isInputFieldsDisabled}
+              id="outlined-basic"
+              value={inspection}
+              onChange={(event) => setInspection(event.target.value)}
+              variant="outlined"
+            />
+          </Box>
+        </td>
+      )}
+      {isInputFieldsDisabled ? (
+        <td>
+          {date}
+        </td>
+      ) : (
+        <td>
+          <DatePickerField
+            defaultDate={utility.dateFormatter(medicalAppointment.date)}
+            handleDateChange={handleDateChange}
           />
-        </Box>
-        {/* <input value={ma.typeOfInspection} disabled={isEditable} /> */}
-      </td>
-      <td>
-        <DatePickerField
-          isEditable={isEditable}
-          defaultDate={date}
-          handleDateChange={handleDateChange}
-        />
-      </td>
-      <td>
-        <TimePicker
-          isEditable={isEditable}
-          defaultTime={time}
-          handleTimeChange={handleTimeChange}
-        />
+        </td>
+      )}
+      {isInputFieldsDisabled ? (
+        <td>
+          {utility.timeFormatter(medicalAppointment.date)}
+        </td>
+      ) : (
+        <td>
+          <TimePicker
+            defaultTime={medicalAppointment.date}
+            handleTimeChange={handleTimeChange}
+          />
+        </td>
+      )}
 
-        {/* <input value={utility.timeFormatter(ma.date)} disabled={isEditable} /> */}
-      </td>
       <td>
-        <span className={`status ${ma.attended ? "green" : "red"}`}></span>
-        {ma.attended ? "Attended" : "Not Attended"}
+        <span className={`status ${medicalAppointment.attended ? "green" : "red"}`}></span>
+        {medicalAppointment.attended ? "Attended" : "Not Attended"}
       </td>
       <td>
         <button
           className="action-btn edit"
-          onClick={() =>
-            isEditable ? setIsEditable(false) : setIsEditable(true)
-          }
-        >
-          {isEditable ? "Edit" : "Save"}
+          onClick={handleAppointmentEdit}>
+          {editSaveButton}
         </button>
         <button className="action-btn delete">Delete</button>
       </td>

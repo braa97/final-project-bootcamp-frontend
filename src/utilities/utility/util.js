@@ -1,21 +1,26 @@
-import Moment from 'moment';
+import moment from 'moment';
 const Utility = function() {
 
     const dateFormatter = (date) => {
-        return Moment(date).format('DD/MM/YYYY')
+        return moment(date).format('DD/MM/YYYY')
     }
     const timeFormatter = (timeFormat) => {
-        return Moment(timeFormat).format('hh:mm');
+        return moment(timeFormat).format('HH:mm');
     }
 
     const timeDateFormatter = (date) => {
-        return Moment(date).format('ddd MMM D YYYY hh:mm:ss ZZ')
+        return moment(date).format('YYYY-MM-DDTHH:mm:ss.SSSZ')
+    }
+
+    const convertToIsoDateFormat = (date) => {
+        return moment(date, 'DD/MM/YYYY HH:mm').toISOString(true);
     }
 
     return {
         dateFormatter,
         timeFormatter,
-        timeDateFormatter
+        timeDateFormatter,
+        convertToIsoDateFormat
     }
 }
 

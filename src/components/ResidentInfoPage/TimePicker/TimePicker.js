@@ -5,23 +5,16 @@ import { TimeField } from '@mui/x-date-pickers/TimeField';
 import { useState } from 'react';
 import Utility from '../../../utilities/utility/util';
 
-export default function TimePicker({isEditable, defaultTime, handleTimeChange}) {
+export default function TimePicker({defaultTime, handleTimeChange}) {
   const utility = new Utility()
-  const [newTime, setNewTime] = useState(defaultTime)
-
-  console.log(defaultTime);
-  const handleNewTimeChange = (newValue) => {
-    setNewTime(newValue)
-    console.log(newValue);
-  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['TimeField']}>
         <TimeField
-          onChange={(newValue) => handleNewTimeChange(newValue)}
+          label={utility.timeFormatter(defaultTime)}
+          onChange={(newValue) => handleTimeChange(newValue)}
           format="HH:mm"
-          disabled={isEditable}
         />
       </DemoContainer>
     </LocalizationProvider>
