@@ -20,19 +20,23 @@ const Apartments = () => {
     fetchApartments();
   }, []);
 
-  return (
-    <>
-      <div className="apartments-header-label">
-        <label>{apartments.length != 0 ? "Apartments" : null}</label>
-      </div>
-      <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
-      <div className="apartments-container">
-        {apartments.map((apartment) => (
-          <Apartment key={apartment._id} apartment={apartment} />
-        ))}
-      </div>
-    </>
-  );
+  try {
+    return (
+      <>
+        <div className="apartments-header-label">
+          <label>{apartments.length != 0 ? "Apartments" : null}</label>
+        </div>
+        <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
+        <div className="apartments-container">
+          {apartments.map((apartment) => (
+            <Apartment key={apartment._id} apartment={apartment} />
+          ))}
+        </div>
+      </>
+    );
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default Apartments;
