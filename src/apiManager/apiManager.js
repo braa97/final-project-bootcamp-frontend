@@ -41,7 +41,6 @@ const ApiManager = function () {
     );
     return response.data;
   };
-
   const getApartments = async () => {
     const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
     console.log(response);
