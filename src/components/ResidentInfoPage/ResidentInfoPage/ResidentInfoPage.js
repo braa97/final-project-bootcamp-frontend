@@ -16,23 +16,15 @@ const ResidentInfoPage = () => {
   const [resident, setResident] = useState([]);
   const [medicalAppointments, setMedicalAppointments] = useState([])
   const utility = new Utility()
+  const apiManager = new ApiManager();
+
+  const fetchResidentData = async () => {
+    let response = await apiManager.getResidentById(residentId);
+    setResident(response[0]);
+  };
 
   useEffect(() => {
-    const apiManager = new ApiManager();
-
-    const fetchResidentData = async () => {
-      let response = await apiManager.getResidentById(residentId);
-      setResident(response[0]);
-    };
-
-    const fetchResidentAppointment = async() => {
-      let response = await apiManager.getResidentMedicalAppointments(residentId)
-      console.log(response);
-      setMedicalAppointments(response.medicalAppointments)
-    }
-
     fetchResidentData();
-    fetchResidentAppointment()
   }, [residentId]);
 
   try {
@@ -73,8 +65,7 @@ const ResidentInfoPage = () => {
           </div>
           <div className="recent-grid">
             <MedicalAppointments
-              medicalAppointments={medicalAppointments}
-              setMedicalAppointments={setMedicalAppointments}
+              residentId={residentId}
             />
             <RelativeContacts contacts={resident.familyConnections} />
           </div>

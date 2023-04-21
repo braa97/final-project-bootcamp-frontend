@@ -14,6 +14,27 @@ const ApiManager = function () {
     }
   };
 
+  const ajaxPostCall = async (url, object) => {
+    try {
+      let response = await axios.put(url, object);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const ajaxDeleteCall = async (url) => {
+    try {
+      let response = await axios.delete(url);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
   const getResidentsByApartmentName = async (apartmentName) => {
     const response = await ajaxCall(
       process.env.REACT_APP_RESIDENTS_ROUTE + `/${apartmentName}`
@@ -23,6 +44,7 @@ const ApiManager = function () {
 
   const getApartments = async () => {
     const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
+    console.log(response);
     return response.data;
   };
 
@@ -55,7 +77,6 @@ const ApiManager = function () {
   };
 
   const addMedicalAppointment = async (residentId, newMedicalAppointment) => {
-    console.log(residentId);
     const res = await axios.put(
       process.env.REACT_APP_SERVER_ROUTE +
         `/resident/medicalAppointment/${residentId}`,
@@ -64,12 +85,28 @@ const ApiManager = function () {
     return res;
   };
 
-  const updateAttendStatus = async (residentId) => {
-    console.log(residentId);
+  const updateAttendStatus = async (medicalAppointmentID) => {
+    console.log(medicalAppointmentID);
     const res = await axios.put(
-      process.env.REACT_APP_SERVER_ROUTE + `/resident/appointment/${residentId}`
+      process.env.REACT_APP_SERVER_ROUTE +
+        `/resident/medicalAppointment/status/${medicalAppointmentID}`
     );
     return res;
+  };
+
+  const editMedicalAppointment = async (appointmentId, appointment) => {
+    const response = await ajaxPostCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointments/details/${appointmentId}`,
+      { updatedAppointment: appointment }
+    );
+    return response;
+  };
+
+  const deleteAppointment = async (appointmentId, residentId) => {
+    const response = await ajaxDeleteCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`
+    );
+    return response;
   };
 
   return {
@@ -80,6 +117,9 @@ const ApiManager = function () {
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
     getResidentMedicalAppointments,
     addMedicalAppointment,
+    editMedicalAppointment,
+    updateAttendStatus,
+    deleteAppointment,
   };
 };
 
