@@ -45,7 +45,6 @@ const ApiManager = function () {
 
   const getApartments = async () => {
     const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
-    console.log(response);
     return response.data;
   };
 
@@ -101,7 +100,6 @@ const ApiManager = function () {
   };
 
   const deleteAppointment = async(appointmentId, residentId) => {
-    console.log(appointmentId);
     const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
     return response
   }
