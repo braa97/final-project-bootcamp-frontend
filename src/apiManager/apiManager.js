@@ -101,20 +101,13 @@ const ApiManager = function () {
     return response;
   };
 
-<<<<<<< HEAD
   const deleteAppointment = async (appointmentId, residentId) => {
+    console.log(appointmentId);
     const response = await ajaxDeleteCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`
     );
     return response;
   };
-=======
-  const deleteAppointment = async(appointmentId, residentId) => {
-    console.log(appointmentId);
-    const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
-    return response
-  }
->>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,

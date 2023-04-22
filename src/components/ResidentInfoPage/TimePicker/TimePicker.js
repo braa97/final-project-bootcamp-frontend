@@ -13,21 +13,6 @@ export default function TimePicker({ defaultTime, handleTimeChange }) {
     handleTimeChange(newValue);
     setTime(newValue);
   };
-<<<<<<< HEAD
-
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["TimeField"]}>
-        <TimeField
-          label={utility.timeFormatter(defaultTime)}
-          value={time}
-          onChange={(newValue) => handleTimeChangeCallBack(newValue)}
-          format="HH:mm"
-        />
-      </DemoContainer>
-    </LocalizationProvider>
-  );
-=======
   try {
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -44,5 +29,4 @@ export default function TimePicker({ defaultTime, handleTimeChange }) {
   } catch (error) {
     console.log(error);
   }
->>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
 }
