@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./dashboard/Dashboard";
 import ApiManager from "./apiManager/apiManager";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import GoogleButton from "./components/GoogleLogin/GoogleButton";
+import SignIn from "./components/SignIn/SignIn";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -19,11 +21,13 @@ const App = () => {
         <Navbar />
         <Routes>
           {/* <Route path="/" element={<Dashboard/>} /> */}
-          <Route path="/" element={<Apartments />} />
+          <Route path="/apartments" element={<Apartments />} />
           <Route path="/residents/:apartmentName" element={<Residents />} />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
           <Route path="/server-error" element={<ServerError />} />
           {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="/" element={<SignIn />} />
+          <Route path="/:instructorId/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </QueryClientProvider>
