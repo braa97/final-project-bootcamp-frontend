@@ -9,14 +9,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-export default function DeleteAppointmentDialog({handleDelete, appointmentId}) {
+export default function DeleteAppointmentDialog({handleDeleteAppointment, appointmentId}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleDeleteCallBack = () => {
-    console.log(`Appointment id ==> ${appointmentId}`);
-    handleDelete(appointmentId)
+  const handleDeleteAppointmentCallBack = () => {
+    handleDeleteAppointment(appointmentId)
     setOpen(false);
   }
 
@@ -51,7 +50,7 @@ export default function DeleteAppointmentDialog({handleDelete, appointmentId}) {
           <Button autoFocus onClick={handleClose}>
             Close
           </Button>
-          <Button onClick={handleDeleteCallBack} autoFocus>
+          <Button onClick={handleDeleteAppointmentCallBack} autoFocus>
             Delete
           </Button>
         </DialogActions>

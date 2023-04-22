@@ -8,14 +8,19 @@ import Box from "@mui/material/Box";
 import ApiManager from "../../../apiManager/apiManager";
 import DeleteAppointmentDialog from "../DeleteAppointmentDialog/DeleteAppointmentDialog";
 
+<<<<<<< HEAD
 export default function SingleMedicalAppointment({
   appointment,
   handleDelete,
   appointmentId,
 }) {
+=======
+export default function SingleMedicalAppointment({ appointment, handleDeleteAppointment, appointmentId }) {
+>>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
   const utility = new Utility();
   const apiManager = new ApiManager();
   const [isInputFieldsDisabled, setInputFieldsDisabled] = useState(true);
+<<<<<<< HEAD
   const [medicalAppointment, setMedicalAppointment] = useState(appointment);
   const [editSaveButton, setEditSaveButton] = useState("Edit");
   const [date, setDate] = useState(
@@ -27,6 +32,12 @@ export default function SingleMedicalAppointment({
   const [inspection, setInspection] = useState(
     medicalAppointment.typeOfInspection
   );
+=======
+  const [medicalAppointment, setMedicalAppointment] = useState(appointment)
+  const [editSaveButton, setEditSaveButton] = useState("Edit")
+  const [date, setDate] = useState(utility.dateFormatter(medicalAppointment.date));
+  const [time, setTime] = useState(utility.timeFormatter(medicalAppointment.time));
+>>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
 
   const updateAppointment = async (id, object) => {
     let response = await apiManager.editMedicalAppointment(id, object);
@@ -34,8 +45,19 @@ export default function SingleMedicalAppointment({
   };
 
   const handleTimeChange = (newTime) => {
-    setTime(utility.timeFormatter(newTime.$d));
+    try {
+      setTime(utility.timeFormatter(newTime.$d));
+    }
+    catch(error) {
+      console.log(error);
+    }
   };
+
+  const setInspectionType = (value) => {
+    let newMedicalAppointment = {...medicalAppointment}
+    newMedicalAppointment.typeOfInspection = value
+    setMedicalAppointment(newMedicalAppointment)
+  }
 
   const handleDateChange = (newDate) => {
     setDate(utility.dateFormatter(newDate.$d));
@@ -48,6 +70,7 @@ export default function SingleMedicalAppointment({
     }
     if (editSaveButton === "Save") {
       try {
+<<<<<<< HEAD
         let editedAppointment = {};
         editedAppointment.date = utility.convertToIsoDateFormat(
           `${date} ${time}`
@@ -57,6 +80,16 @@ export default function SingleMedicalAppointment({
         setInputFieldsDisabled(true);
         setEditSaveButton("Edit");
       } catch (error) {
+=======
+        let editedAppointment = {}
+        editedAppointment.date = utility.convertToIsoDateFormat(`${date} ${time}`)
+        editedAppointment.typeOfInspection = medicalAppointment.typeOfInspection
+        updateAppointment(appointmentId, editedAppointment)
+        setInputFieldsDisabled(true)
+        setEditSaveButton("Edit")
+      }
+      catch (error) {
+>>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
         console.log(error);
       }
     }
@@ -79,8 +112,8 @@ export default function SingleMedicalAppointment({
             <TextField
               disabled={isInputFieldsDisabled}
               id="outlined-basic"
-              value={medicalAppointment.inspection}
-              onChange={(event) => setInspection(event.target.value)}
+              value={medicalAppointment.typeOfInspection}
+              onChange={(event) => setInspectionType(event.target.value)}
               variant="outlined"
             />
           </Box>
@@ -119,10 +152,14 @@ export default function SingleMedicalAppointment({
         </button>
         {/* {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>} */}
 
+<<<<<<< HEAD
         <DeleteAppointmentDialog
           handleDelete={handleDelete}
           appointmentId={appointmentId}
         />
+=======
+        <DeleteAppointmentDialog handleDeleteAppointment={handleDeleteAppointment} appointmentId={appointmentId} />
+>>>>>>> 164caaaad81e9e8ce573097055c98c57e99bd418
       </td>
     </tr>
   );
