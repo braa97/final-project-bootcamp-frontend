@@ -101,6 +101,7 @@ const ApiManager = function () {
   };
 
   const deleteAppointment = async(appointmentId, residentId) => {
+    console.log(appointmentId);
     const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
     return response
   }

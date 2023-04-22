@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import ApiManager from "../../../apiManager/apiManager";
 import DeleteAppointmentDialog from "../DeleteAppointmentDialog/DeleteAppointmentDialog";
 
-export default function SingleMedicalAppointment({ appointment, handleDelete, appointmentId }) {
+export default function SingleMedicalAppointment({ appointment, handleDeleteAppointment, appointmentId }) {
   const utility = new Utility();
   const apiManager = new ApiManager()
   const [isInputFieldsDisabled, setInputFieldsDisabled] = useState(true);
@@ -16,7 +16,6 @@ export default function SingleMedicalAppointment({ appointment, handleDelete, ap
   const [editSaveButton, setEditSaveButton] = useState("Edit")
   const [date, setDate] = useState(utility.dateFormatter(medicalAppointment.date));
   const [time, setTime] = useState(utility.timeFormatter(medicalAppointment.time));
-  const [inspection, setInspection] = useState(medicalAppointment.typeOfInspection)
 
   const updateAppointment = async(id, object) => {
     let response = await apiManager.editMedicalAppointment(id, object)
@@ -24,8 +23,19 @@ export default function SingleMedicalAppointment({ appointment, handleDelete, ap
   }
 
   const handleTimeChange = (newTime) => {
-    setTime(utility.timeFormatter(newTime.$d));
+    try {
+      setTime(utility.timeFormatter(newTime.$d));
+    }
+    catch(error) {
+      console.log(error);
+    }
   };
+
+  const setInspectionType = (value) => {
+    let newMedicalAppointment = {...medicalAppointment}
+    newMedicalAppointment.typeOfInspection = value
+    setMedicalAppointment(newMedicalAppointment)
+  }
 
   const handleDateChange = (newDate) => {
     setDate(utility.dateFormatter(newDate.$d));
@@ -40,7 +50,7 @@ export default function SingleMedicalAppointment({ appointment, handleDelete, ap
       try {
         let editedAppointment = {}
         editedAppointment.date = utility.convertToIsoDateFormat(`${date} ${time}`)
-        editedAppointment.typeOfInspection = inspection
+        editedAppointment.typeOfInspection = medicalAppointment.typeOfInspection
         updateAppointment(appointmentId, editedAppointment)
         setInputFieldsDisabled(true)
         setEditSaveButton("Edit")
@@ -70,8 +80,8 @@ export default function SingleMedicalAppointment({ appointment, handleDelete, ap
             <TextField
               disabled={isInputFieldsDisabled}
               id="outlined-basic"
-              value={medicalAppointment.inspection}
-              onChange={(event) => setInspection(event.target.value)}
+              value={medicalAppointment.typeOfInspection}
+              onChange={(event) => setInspectionType(event.target.value)}
               variant="outlined"
             />
           </Box>
@@ -114,7 +124,7 @@ export default function SingleMedicalAppointment({ appointment, handleDelete, ap
         </button>
         {/* {!ma.attended ?  <button className="action-btn " onClick={event =>handleAttendClick(ma)}>Attend</button>:<div></div>} */}
 
-        <DeleteAppointmentDialog handleDelete={handleDelete} appointmentId={appointmentId} />
+        <DeleteAppointmentDialog handleDeleteAppointment={handleDeleteAppointment} appointmentId={appointmentId} />
       </td>
     </tr>
   );

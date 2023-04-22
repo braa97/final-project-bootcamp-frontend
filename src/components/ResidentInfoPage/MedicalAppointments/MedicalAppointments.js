@@ -27,7 +27,7 @@ const MedicalAppointments = ({ residentId }) => {
     fetchResidentAppointment();
   };
 
-  const handleDelete = async (appointmentId) => {
+  const handleDeleteAppointment = async (appointmentId) => {
     await apiManager.deleteAppointment(appointmentId, residentId);
     fetchResidentAppointment();
   };
@@ -62,7 +62,7 @@ const MedicalAppointments = ({ residentId }) => {
                 <tbody>
                   {medicalAppointments.map((appointment) => (
                     <SingleMedicalAppointment
-                      handleDelete={handleDelete}
+                    handleDeleteAppointment={handleDeleteAppointment}
                       key={appointment._id}
                       appointment={appointment}
                       appointmentId={appointment._id}
