@@ -3,10 +3,13 @@ import axios from "axios";
 const ApiManager = function () {
   //Create try and catch
 
-  //make a better error handling function
   const ajaxCall = async (url) => {
     try {
-      let response = await axios.get(url);
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
+      let response = await axios.get(url, { headers });
       return response;
     } catch (error) {
       console.log(error);
@@ -34,10 +37,23 @@ const ApiManager = function () {
       return error;
     }
   };
+  const axiosPostCall = async (url, body) => {
+    try {
+      const response = await axios.post(url, body);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getResidentsByApartmentName = async (apartmentName) => {
-    const response = await ajaxCall(
-      process.env.REACT_APP_RESIDENTS_ROUTE + `/${apartmentName}`
+    const headers = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    const response = await axios.get(
+      process.env.REACT_APP_RESIDENTS_ROUTE + `/${apartmentName}`,
+      { headers }
     );
     return response.data;
   };
@@ -108,6 +124,19 @@ const ApiManager = function () {
     );
     return response;
   };
+  const signIn = async (email, password) => {
+    const response = await axiosPostCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/sign-in`,
+      { email, password }
+    );
+    return response;
+  };
+  const getApartmentsByInstructorId = async (instructorId) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/apartments/${instructorId}`
+    );
+    return response.data;
+  };
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
@@ -120,6 +149,8 @@ const ApiManager = function () {
     editMedicalAppointment,
     updateAttendStatus,
     deleteAppointment,
+    signIn,
+    getApartmentsByInstructorId,
   };
 };
 

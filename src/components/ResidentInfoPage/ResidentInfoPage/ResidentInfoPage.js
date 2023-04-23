@@ -6,7 +6,7 @@ import "./ResidentInfoPage.css";
 import CDN from "../CDN";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import { useParams } from "react-router";
-import Utility from '../../../utilities/utility/util'
+import Utility from "../../../utilities/utility/util";
 import ApiManager from "../../../apiManager/apiManager";
 const LINE_AWESOME_CDN =
   "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css";
@@ -14,8 +14,8 @@ const LINE_AWESOME_CDN =
 const ResidentInfoPage = () => {
   const { residentId } = useParams();
   const [resident, setResident] = useState([]);
-  const [medicalAppointments, setMedicalAppointments] = useState([])
-  const utility = new Utility()
+  const [medicalAppointments, setMedicalAppointments] = useState([]);
+  const utility = new Utility();
   const apiManager = new ApiManager();
 
   const fetchResidentData = async () => {
@@ -64,9 +64,7 @@ const ResidentInfoPage = () => {
             />
           </div>
           <div className="recent-grid">
-            <MedicalAppointments
-              residentId={residentId}
-            />
+            <MedicalAppointments residentId={residentId} />
             <RelativeContacts contacts={resident.familyConnections} />
           </div>
         </div>

@@ -18,7 +18,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
           {/* <Route path="/" element={<Dashboard/>} /> */}
           <Route path="/apartments" element={<Apartments />} />
@@ -28,6 +28,7 @@ const App = () => {
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/" element={<SignIn />} />
           <Route path="/:instructorId/dashboard" element={<Dashboard />} />
+          <Route path="/apartments/:instructorId" element={<Apartments />} />
         </Routes>
       </Router>
     </QueryClientProvider>

@@ -16,6 +16,7 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
+import ApiManager from "../../apiManager/apiManager";
 
 function Copyright(props) {
   return (
@@ -39,6 +40,7 @@ const theme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
+
   const responseMessage = (response) => {
     console.log(response);
     navigate("/apartments");
@@ -46,13 +48,26 @@ export default function SignIn() {
   const errorMessage = (error) => {
     console.log(error);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const apiManager = new ApiManager();
+    const response = await apiManager.signIn(
+      data.get("email"),
+      data.get("password")
+    );
+    console.log(response);
+    if (response) {
+      localStorage.setItem("token", response.token);
+      navigate(`/apartments/${response.user.id}`);
+    } else {
+      alert("email or password no correct");
+    }
+
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (
@@ -107,9 +122,7 @@ export default function SignIn() {
               Sign In
             </Button>
             <p>OR</p>
-
             <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

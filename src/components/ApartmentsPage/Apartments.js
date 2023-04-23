@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const Apartments = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const { instructorId } = useParams();
   useEffect(() => {
     const apiManager = new ApiManager();
 
     let fetchApartments = async () => {
-      let apartments = await apiManager.getApartments();
+      let apartments = await apiManager.getApartmentsByInstructorId(
+        instructorId
+      );
       setApartments(apartments);
       setLoading(false);
     };
