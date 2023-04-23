@@ -59,7 +59,7 @@ export default function SignIn() {
     console.log(response);
     if (response) {
       localStorage.setItem("token", response.token);
-      navigate(`/apartments/${response.user.id}`);
+      navigate(`/${response.user.id}/dashboard`);
     } else {
       alert("email or password no correct");
     }

@@ -5,10 +5,9 @@ import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
 import { useNavigate, useParams } from "react-router";
 
-const Apartments = () => {
+const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { instructorId } = useParams();
   useEffect(() => {
     const apiManager = new ApiManager();
 
@@ -31,7 +30,12 @@ const Apartments = () => {
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">
           {apartments.map((apartment) => (
-            <Apartment key={apartment._id} apartment={apartment} />
+            <Apartment
+              key={apartment._id}
+              apartment={apartment}
+              setSelectedItem={setSelectedItem}
+              setApartmentName={setApartmentName}
+            />
           ))}
         </div>
       </>
