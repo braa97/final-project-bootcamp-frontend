@@ -67,7 +67,7 @@ const ResidentInfoPage = () => {
             <MedicalAppointments
               residentId={residentId}
             />
-            <RelativeContacts contacts={resident.familyConnections} />
+            <RelativeContacts contacts={resident.familyConnections} resident={resident} />
           </div>
         </div>
       </>

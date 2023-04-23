@@ -14,9 +14,19 @@ const ApiManager = function () {
     }
   };
 
-  const ajaxPostCall = async (url, object) => {
+  const ajaxPutCall = async (url, object) => {
     try {
       let response = await axios.put(url, object);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  };
+
+  const ajaxPostCall = async (url, object) => {
+    try {
+      let response = await axios.post(url, object);
       return response;
     } catch (error) {
       console.log(error);
@@ -27,7 +37,6 @@ const ApiManager = function () {
   const ajaxDeleteCall = async(url) => {
     try {
       let response = await axios.delete(url)
-      console.log(response);
       return response
     }
     catch(error) {
@@ -92,7 +101,7 @@ const ApiManager = function () {
   }
 
   const editMedicalAppointment = async (appointmentId, appointment) => {
-    const response = await ajaxPostCall(
+    const response = await ajaxPutCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointments/details/${appointmentId}`,
       { updatedAppointment: appointment }
     );
@@ -101,6 +110,11 @@ const ApiManager = function () {
 
   const deleteAppointment = async(appointmentId, residentId) => {
     const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
+    return response
+  }
+
+  const sendMessageToResidentRelativeContact = async(message) => {
+    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`, message)
     return response
   }
 
@@ -115,6 +129,7 @@ const ApiManager = function () {
     editMedicalAppointment,
     updateAttendStatus,
     deleteAppointment,
+    sendMessageToResidentRelativeContact,
   };
 };
 
