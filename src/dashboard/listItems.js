@@ -14,6 +14,7 @@ import { Home as HomeIcon } from "@mui/icons-material";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PieChartOutlineIcon from "@mui/icons-material/PieChartOutline";
 
 // export const mainListItems = (
 //   <React.Fragment>
@@ -158,7 +159,7 @@ export const Sidebar = ({ setSelectedItem }) => {
       </ListItemButton>
       <ListItemButton onClick={() => setSelectedItem("Visualization")}>
         <ListItemIcon>
-          <VaccinesIcon />
+          <PieChartOutlineIcon />
         </ListItemIcon>
         <ListItemText primary="visualization" />
       </ListItemButton>
