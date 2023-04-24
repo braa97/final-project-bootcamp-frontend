@@ -6,6 +6,7 @@ import Sidebar from "./components/Nabar-Sidebar/Sidebar/Sidebar";
 import Apartments from "./components/ApartmentsPage/Apartments";
 import Residents from "./components/ResidentsPage/Residents";
 import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage/ResidentInfoPage";
+import Home from "./components/Home/Home";
 import ServerError from "./components/ServerError/ServerError";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +18,7 @@ const App = () => {
   const navigate = useNavigate()
   const [isCollapsed, setCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(null);
 
   const handleSidebarCollapse = function () {
     setCollapsed(!isCollapsed);
@@ -28,18 +29,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      setIsLoggedin(true)
-    }
-    else {
+    if (!isLoggedin) {
       navigate('/login')
     }
-  })
+  }, [isLoggedin])
 
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
-      <Router>
         {isLoggedin ? (
           <>
             <Navbar
@@ -51,16 +48,14 @@ const App = () => {
         ) : null}
         <Routes>
           {/* <Route path="/" element={<Dashboard/>} /> */}
-          <Route path="/apartments" element={<Apartments />} />
+          <Route path="/" element={<Apartments />} />
           <Route path="/residents/:apartmentName" element={<Residents />} />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
           <Route path="/server-error" element={<ServerError />} />
           {/* <Route path="*" element={<NotFound />} /> */}
-          <Route path="/login" element={<SignIn />} />
+          <Route path="/login" element={<SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />} />
           {/* <Route path="/:instructorId/dashboard" element={<Home />} /> */}
-          <Route path="/apartments/:instructorId" element={<Apartments />} />
         </Routes>
-      </Router>
     </div>
   );
 };

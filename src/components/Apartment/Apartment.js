@@ -2,7 +2,7 @@ import "./Apartment.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Apartment = ({ apartment, setSelectedItem, setApartmentName }) => {
+const Apartment = ({ apartment }) => {
   const generateRandomNumber = () => {
     return Math.round(Math.random() * 255);
   };
@@ -19,13 +19,7 @@ const Apartment = ({ apartment, setSelectedItem, setApartmentName }) => {
   };
 
   return (
-    <div
-      onClick={() => {
-        setSelectedItem("Residents");
-        setApartmentName(apartment.apartmentName);
-      }}
-      className="apartment-card"
-    >
+    <div className="apartment-card">
       <div className="card__container">
         <div
           className="card__image"
