@@ -17,7 +17,7 @@ const ApiManager = function () {
     }
   };
 
-  const ajaxPostCall = async (url, object) => {
+  const ajaxPutCall = async (url, object) => {
     try {
       const headers = {
         "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const ApiManager = function () {
   };
 
   const editMedicalAppointment = async (appointmentId, appointment) => {
-    const response = await ajaxPostCall(
+    const response = await ajaxPutCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointments/details/${appointmentId}`,
       { updatedAppointment: appointment }
     );
@@ -145,6 +145,11 @@ const ApiManager = function () {
     return response.data;
   };
 
+  const sendMessageToResidentRelativeContact = async(message) => {
+    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`, message)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartments: getApartments,
@@ -156,8 +161,12 @@ const ApiManager = function () {
     editMedicalAppointment,
     updateAttendStatus,
     deleteAppointment,
+<<<<<<< HEAD
     signIn,
     getApartmentsByInstructorId,
+=======
+    sendMessageToResidentRelativeContact,
+>>>>>>> bugFixes
   };
 };
 
