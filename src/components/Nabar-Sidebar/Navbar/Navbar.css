@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.navbar {
+    height: 60px;
+    border-bottom: 0.5px solid #e7e4e4;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: #555;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbar .logo-container {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .logo-container img {
+    margin-top: 5px;
+    width: 50px;
+}
+
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1976d2;
+    padding: 10px;
+}
+
+.navbar .nav-wrapper {
+    width: 100%;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav-wrapper .nav-search {
+    display: flex;
+    align-items: center;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.navbar .nav-wrapper .nav-search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    padding: .2em .4em;
+    font-size: inherit;
+}
+
+.navbar .nav-wrapper .nav-search input::placeholder {
+    font-size: 14px;
+}
+
+.navbar .nav-wrapper .nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-wrapper .nav-items .nav-item {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+}
+
+.navbar .nav-wrapper .nav-items .nav-item .nav-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.navbar .nav-wrapper .nav-items .nav-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: fill;
+}
+
+.navbar .nav-wrapper .nav-items .nav-item .notification-counter {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
+}
