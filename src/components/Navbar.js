@@ -1,8 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
-// import "cirrus-ui";
-import Profile from "../Profile/Profile";
+import "cirrus-ui";
 
 const Navbar = () => {
   return (
@@ -10,7 +9,7 @@ const Navbar = () => {
       <div className="header-brand">
         <div className="nav-item no-hover">
           <a>
-            <h6 className="title">AptLife</h6>
+            <h6 className="title">Logo</h6>
           </a>
         </div>
         <div className="nav-item nav-btn" id="header-btn">
@@ -24,16 +23,13 @@ const Navbar = () => {
           <div className="nav-item active">
             <Link to={"/"}>Home</Link>
           </div>
-          {/* <div className="nav-item">
-            <Link to={"/reports"}>Reports</Link>
-          </div> */}
           <div className="nav-item">
-            <Link to={"/"}>google</Link>
+            <Link to={"/reports"}>Reports</Link>
           </div>
         </div>
         <div className="nav-right">
           <div className="nav-item">
-            <Profile />
+            <figure className="avatar avatar--sm" data-text="Jz"></figure>
           </div>
         </div>
       </div>

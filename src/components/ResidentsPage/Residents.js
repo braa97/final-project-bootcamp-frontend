@@ -5,8 +5,8 @@ import ApiManager from "../../apiManager/apiManager";
 import Resident from "../Resident/Resident";
 import { useNavigate } from "react-router-dom";
 
-const Residents = () => {
-  const { apartmentName } = useParams();
+const Residents = ({ apartmentName }) => {
+  // const { apartmentName } = useParams();
   const [residents, setResidents] = useState([]);
   const [apartment, setApartment] = useState([]);
   const navigate = useNavigate();

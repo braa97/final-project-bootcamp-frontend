@@ -3,10 +3,13 @@ import axios from "axios";
 const ApiManager = function () {
   //Create try and catch
 
-  //make a better error handling function
   const ajaxCall = async (url) => {
     try {
-      let response = await axios.get(url);
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
+      let response = await axios.get(url, { headers });
       return response;
     } catch (error) {
       console.log(error);
@@ -16,7 +19,11 @@ const ApiManager = function () {
 
   const ajaxPostCall = async (url, object) => {
     try {
-      let response = await axios.put(url, object);
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
+      let response = await axios.put(url, object, { headers });
       return response;
     } catch (error) {
       console.log(error);
@@ -24,17 +31,28 @@ const ApiManager = function () {
     }
   };
 
-  const ajaxDeleteCall = async(url) => {
+  const ajaxDeleteCall = async (url) => {
     try {
-      let response = await axios.delete(url)
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      };
+      let response = await axios.delete(url, { headers });
       console.log(response);
-      return response
-    }
-    catch(error) {
+      return response;
+    } catch (error) {
       console.log(error);
       return error;
     }
-  }
+  };
+  const axiosPostCall = async (url, body) => {
+    try {
+      const response = await axios.post(url, body);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getResidentsByApartmentName = async (apartmentName) => {
     const response = await ajaxCall(
@@ -42,7 +60,6 @@ const ApiManager = function () {
     );
     return response.data;
   };
-
   const getApartments = async () => {
     const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
     return response.data;
@@ -77,19 +94,26 @@ const ApiManager = function () {
   };
 
   const addMedicalAppointment = async (residentId, newMedicalAppointment) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
     const res = await axios.put(
       process.env.REACT_APP_SERVER_ROUTE +
         `/resident/medicalAppointment/${residentId}`,
-      { newAppointment: newMedicalAppointment }
+      { newAppointment: newMedicalAppointment },
+      { headers }
     );
     return res;
   };
 
-  const updateAttendStatus = async(medicalAppointmentID) => {
-    console.log(medicalAppointmentID)
-    const res = await axios.put(process.env.REACT_APP_SERVER_ROUTE  + `/resident/medicalAppointment/status/${medicalAppointmentID}`);
-    return res
-  }
+  const updateAttendStatus = async (medicalAppointmentID) => {
+    const res = await axios.put(
+      process.env.REACT_APP_SERVER_ROUTE +
+        `/resident/medicalAppointment/status/${medicalAppointmentID}`
+    );
+    return res;
+  };
 
   const editMedicalAppointment = async (appointmentId, appointment) => {
     const response = await ajaxPostCall(
@@ -99,10 +123,27 @@ const ApiManager = function () {
     return response;
   };
 
-  const deleteAppointment = async(appointmentId, residentId) => {
-    const response = await ajaxDeleteCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`)
-    return response
-  }
+  const deleteAppointment = async (appointmentId, residentId) => {
+    const response = await ajaxDeleteCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointment/${appointmentId}?residentId=${residentId}`
+    );
+    return response;
+  };
+
+  const signIn = async (email, password) => {
+    const response = await axiosPostCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/sign-in`,
+      { email, password }
+    );
+    return response;
+  };
+  
+  const getApartmentsByInstructorId = async (instructorId) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/apartments/${instructorId}`
+    );
+    return response.data;
+  };
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
@@ -115,6 +156,8 @@ const ApiManager = function () {
     editMedicalAppointment,
     updateAttendStatus,
     deleteAppointment,
+    signIn,
+    getApartmentsByInstructorId,
   };
 };
 
