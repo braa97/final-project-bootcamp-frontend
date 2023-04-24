@@ -45,7 +45,7 @@ const ApiManager = function () {
       return error;
     }
   };
-  const axiosPostCall = async (url, body) => {
+  const ajaxPostCall = async (url, body) => {
     try {
       const response = await axios.post(url, body);
       return response.data;
@@ -131,7 +131,7 @@ const ApiManager = function () {
   };
 
   const signIn = async (email, password) => {
-    const response = await axiosPostCall(
+    const response = await ajaxPostCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/instructor/sign-in`,
       { email, password }
     );
@@ -161,12 +161,9 @@ const ApiManager = function () {
     editMedicalAppointment,
     updateAttendStatus,
     deleteAppointment,
-<<<<<<< HEAD
     signIn,
     getApartmentsByInstructorId,
-=======
     sendMessageToResidentRelativeContact,
->>>>>>> bugFixes
   };
 };
 
