@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Resident = ({ resident }) => {
-  
   try {
     return (
       <div className="card">
