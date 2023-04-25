@@ -5,18 +5,24 @@ export default function Home({
   handleSidebarCollapse,
   handleDarkMode,
   isCollapsed,
+  isLoggedin
 }) {
   return (
     <>
-      <div className="navbar-container">
-        <Navbar
-          handleSidebarCollapse={handleSidebarCollapse}
-          handleDarkMode={handleDarkMode}
-        />
-      </div>
-      <div className="sidebar-container">
-        <Sidebar isCollapsed={isCollapsed} />
-      </div>
+      {isLoggedin ? (
+        <div>
+          {" "}
+          <div className="navbar-container">
+            <Navbar
+              handleSidebarCollapse={handleSidebarCollapse}
+              handleDarkMode={handleDarkMode}
+            />
+          </div>
+          <div className="sidebar-container">
+            <Sidebar isCollapsed={isCollapsed} />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

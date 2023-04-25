@@ -45,17 +45,13 @@ const App = () => {
   return (
     <div>
       <div>
+        <Home
+          handleSidebarCollapse={handleSidebarCollapse}
+          handleDarkMode={handleDarkMode}
+          isCollapsed={isCollapsed}
+          isLoggedin={isLoggedin}
+        />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                handleSidebarCollapse={handleSidebarCollapse}
-                handleDarkMode={handleDarkMode}
-                isCollapsed={isCollapsed}
-              />
-            }
-          />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
           <Route path="/apartments" element={<Apartments />} />
           <Route path="/server-error" element={<ServerError />} />
