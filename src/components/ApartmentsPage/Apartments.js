@@ -7,23 +7,22 @@ import { useLocation } from "react-router-dom";
 
 const Apartments = () => {
   const location = useLocation();
+  const object = location.state;
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [instructorId, setInstructorId] = useState(localStorage.getItem("instructorId"))
   
-  const object = location.state;
   
   useEffect(() => {
     const apiManager = new ApiManager();
 
     let fetchApartments = async () => {
-      let apartments = await apiManager.getApartmentsByInstructorId(
-        object.userId
-      );
+      let apartments = await apiManager.getApartmentsByInstructorId(instructorId);
       setApartments(apartments);
       setLoading(false);
     };
     fetchApartments();
-  }, []);
+  }, [instructorId]);
 
   try {
     return (

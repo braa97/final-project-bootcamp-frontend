@@ -70,7 +70,8 @@ export default function SignIn({setIsLoggedin, isLoggedin}) {
     if (response) {
       localStorage.setItem("token", response.token);
       setIsLoggedin(JSON.stringify(localStorage.getItem("token")))
-      navigate(`/`, {state: {userId: response.user.id}});
+      localStorage.setItem("instructorId", response.user.id)
+      navigate(`/`);
     } else {
       alert("email or password no correct");
     }

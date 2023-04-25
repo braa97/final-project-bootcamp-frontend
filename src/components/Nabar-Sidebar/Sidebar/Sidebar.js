@@ -9,9 +9,17 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import SummarizeIcon from '@mui/icons-material/Summarize'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
 const Sidebar = ({ isCollapsed }) => {
+    const navigate = useNavigate()
+
+    const Logout = () => {
+        localStorage.removeItem("instructorId")
+        localStorage.removeItem("token")
+        window.location.reload()
+    }
     return (
         <div className={`sidebar ${isCollapsed && 'collapse'}`}>
             <div className='center'>
@@ -75,7 +83,7 @@ const Sidebar = ({ isCollapsed }) => {
                             <span className='sidebar-link'>Profile</span>
                         </li>
                     </Link>
-                    <Link to='/logout'>
+                    <Link onClick={Logout}>
                         <li>
                             <ExitToAppIcon className='side-icon' />
                             <span className='sidebar-link'>Logout</span>
