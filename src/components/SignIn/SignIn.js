@@ -12,14 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify";
 
-// import {
-//   GoogleLogin,
-//   useGoogleLogin,
-//   useGoogleOneTapLogin,
-// } from "@react-oauth/google";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ApiManager from "../../apiManager/apiManager";
 import { googleLogin } from "../../auth-2.0/authFunctions";
@@ -46,33 +39,6 @@ const theme = createTheme();
 
 export default function SignIn() {
   const navigate = useNavigate();
-  const [token, setToken] = React.useState(
-    localStorage.getItem("google-token")
-      ? localStorage.getItem("google-token")
-      : null
-  );
-  const responseMessage = (response) => {
-    console.log(response);
-    navigate("/apartments");
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
-
-  const onAuthorization = async (token) => {
-    setToken(token);
-    localStorage.setItem("google-token", JSON.stringify(token));
-    toast("Logged In Successfully");
-  };
-
-  async function onGoogleLoginSuccess(token) {
-    try {
-      await googleLogin(token);
-    } catch (err) {
-      toast(err.message);
-    }
-    onAuthorization(token);
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

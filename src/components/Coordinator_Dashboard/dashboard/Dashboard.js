@@ -93,7 +93,7 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [selectedItem, setSelectedItem] = React.useState("Dashboard");
-  // const { id } = useParams();
+  const { id } = useParams();
   // const [apartmentName, setApartmentName] = React.useState("");
   const navigate = useNavigate();
   const logout = function () {
@@ -180,7 +180,9 @@ function DashboardContent() {
           ) : null}
           {selectedItem == "Logout" ? logout() : null}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            {selectedItem == "Apartments" ? <Apartments /> : null}
+            {selectedItem == "Apartments" ? (
+              <Apartments coordinatorId={id} />
+            ) : null}
             {/* <Grid container spacing={3}> */}
             {/*  <Grid container spacing={3}>
               {/* Chart */}
