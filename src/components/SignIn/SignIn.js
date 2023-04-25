@@ -12,17 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify";
 
-import {
-  GoogleLogin,
-  useGoogleLogin,
-  useGoogleOneTapLogin,
-} from "@react-oauth/google";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ApiManager from "../../apiManager/apiManager";
-import { googleLogin } from "../../auth-2.0/authFunctions";
 
 function Copyright(props) {
   return (
@@ -44,20 +36,8 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn({setIsLoggedin, isLoggedin}) {
+export default function SignIn({ setIsLoggedin, isLoggedin }) {
   const navigate = useNavigate();
-  const [token, setToken] = React.useState(
-    localStorage.getItem("google-token")
-      ? localStorage.getItem("google-token")
-      : null
-  );
-  const responseMessage = (response) => {
-    console.log(response);
-    navigate("/apartments");
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -69,9 +49,14 @@ export default function SignIn({setIsLoggedin, isLoggedin}) {
     );
     if (response) {
       localStorage.setItem("token", response.token);
-      setIsLoggedin(JSON.stringify(localStorage.getItem("token")))
-      localStorage.setItem("instructorId", response.user.id)
-      navigate(`/`);
+      if (response.user.type === "Instructor") {
+        setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
+        localStorage.setItem("instructorId", response.user.id);
+        navigate(`/apartments`);
+      }
+      if (response.user.type === "Coordinator") {
+        navigate(`/Coordinator/dashboard/${response.user.ref}`);
+      }
     } else {
       alert("email or password no correct");
     }
@@ -79,9 +64,9 @@ export default function SignIn({setIsLoggedin, isLoggedin}) {
 
   React.useEffect(() => {
     if (isLoggedin) {
-      navigate('/')
+      navigate("/");
     }
-  })
+  });
 
   return (
     <ThemeProvider theme={theme}>

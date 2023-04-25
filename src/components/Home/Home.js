@@ -1,15 +1,22 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import Navbar from "../Nabar-Sidebar/Navbar/Navbar";
+import Sidebar from "../Nabar-Sidebar/Sidebar/Sidebar";
 
-export default function Home() {
-  const location = useLocation();
-  try {
-    const object = location.state;
-    console.log(object.userId);
-  } catch (error) {
-    console.log(error);
-  }
-
-  return <>
-  <h1>Hiiiiiiiiiiiiii</h1></>;
+export default function Home({
+  handleSidebarCollapse,
+  handleDarkMode,
+  isCollapsed,
+}) {
+  return (
+    <>
+      <div className="navbar-container">
+        <Navbar
+          handleSidebarCollapse={handleSidebarCollapse}
+          handleDarkMode={handleDarkMode}
+        />
+      </div>
+      <div className="sidebar-container">
+        <Sidebar isCollapsed={isCollapsed} />
+      </div>
+    </>
+  );
 }

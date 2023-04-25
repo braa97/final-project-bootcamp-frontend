@@ -48,6 +48,7 @@ const ApiManager = function () {
   const ajaxPostCall = async (url, body) => {
     try {
       const response = await axios.post(url, body);
+      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
