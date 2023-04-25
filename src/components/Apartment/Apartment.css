@@ -4,3 +4,8 @@
   box-shadow: 0 0px 12px black ;
   border-radius: 8px;
 }
+
+.apartment-card img {
+  width: 300px;
+  height: 300px;
+}

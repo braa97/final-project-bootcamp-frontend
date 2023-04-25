@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Nabar-Sidebar/Navbar/Navbar";
 import Sidebar from "./components/Nabar-Sidebar/Sidebar/Sidebar";
 import Apartments from "./components/ApartmentsPage/Apartments";
-import Residents from "./components/ResidentsPage/Residents";
+import Residents from "./components/ApartmentInfo/ResidentsPage/ResidentsPage";
 import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage/ResidentInfoPage";
 import Home from "./components/Home/Home";
 import ServerError from "./components/ServerError/ServerError";
@@ -61,12 +61,15 @@ const App = () => {
         <Routes>
           {/* <Route path="/" element={<Dashboard/>} /> */}
           <Route path="/" element={<Apartments />} />
-          <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
+          <Route
+            path="/apartment-info/resident/:residentId"
+            element={<ResidentInfoPage />}
+          />
           <Route path="/server-error" element={<ServerError />} />
-          {/* <Route
+          <Route
             path="/apartment-info/:apartmentName"
-            // element={<Residents />}
-          /> */}
+            element={<Residents />}
+          />
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route
             path="/login"
