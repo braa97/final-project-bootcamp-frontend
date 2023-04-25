@@ -14,11 +14,11 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 
-import {
-  GoogleLogin,
-  useGoogleLogin,
-  useGoogleOneTapLogin,
-} from "@react-oauth/google";
+// import {
+//   GoogleLogin,
+//   useGoogleLogin,
+//   useGoogleOneTapLogin,
+// } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ApiManager from "../../apiManager/apiManager";
@@ -148,10 +148,10 @@ export default function SignIn() {
             </Button>
             <p>OR</p>
             {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-            <GoogleLogin
+            {/* <GoogleLogin
               onSuccess={(res) => onGoogleLoginSuccess(res.credential)}
               onError={() => toast("Login Failed")}
-            />
+            /> */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
