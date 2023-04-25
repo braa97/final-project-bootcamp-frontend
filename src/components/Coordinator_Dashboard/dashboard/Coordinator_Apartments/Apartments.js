@@ -7,8 +7,9 @@ export default function Apartments({ coordinatorId }) {
     const apiManager = new CoordinatorApiMan();
     const fetchApartments = async () => {
       const response = await apiManager.getCoordinatorApartments(coordinatorId);
-      const apartments = await apartments.json();
-      setApartments(apartments);
+      const newApartments = await response.json();
+      setApartments(newApartments);
+      console.log(newApartments);
     };
     fetchApartments();
   }, []);

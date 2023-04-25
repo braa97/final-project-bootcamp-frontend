@@ -140,7 +140,7 @@ export const Sidebar = ({ setSelectedItem }) => {
         <ListItemText primary="Appointments" />
       </ListItemButton> */}
       <ListSubheader component="div" inset>
-        Services
+        Actions
       </ListSubheader>
       {/* <ListItemButton onClick={() => setSelectedItem("Medication")}>
         <ListItemIcon>
