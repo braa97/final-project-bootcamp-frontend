@@ -98,7 +98,7 @@ function DashboardContent() {
   const navigate = useNavigate();
   const logout = function () {
     localStorage.removeItem("token");
-    navigate("/");
+    navigate("/login");
   };
   const toggleDrawer = () => {
     setOpen(!open);

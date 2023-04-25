@@ -41,27 +41,23 @@ const App = () => {
     if (!isLoggedin) {
       navigate("/login");
     }
-  }, []);
+  }, [isLoggedin]);
 
   return (
-    <div className="main-page-container">
-      {isLoggedin ? (
-        <>
-          <div className="navbar-container">
-            <Navbar
-              handleSidebarCollapse={handleSidebarCollapse}
-              handleDarkMode={handleDarkMode}
-            />
-          </div>
-          <div className="sidebar-container">
-            <Sidebar isCollapsed={isCollapsed} />
-          </div>
-        </>
-      ) : null}
-      <div className="main-content">
+    <div>
+      <div>
         <Routes>
           {/* <Route path="/" element={<Dashboard/>} /> */}
-          <Route path="/" element={<Apartments />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                handleSidebarCollapse={handleSidebarCollapse}
+                handleDarkMode={handleDarkMode}
+                isCollapsed={isCollapsed}
+              />
+            }
+          />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
           <Route path="/server-error" element={<ServerError />} />
           {/* <Route
@@ -75,8 +71,8 @@ const App = () => {
               <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
             }
           />
-          <Route path="/" element={<SignIn />} />
-          <Route path="/:instructorId/dashboard" element={<Dashboard />} />
+          {/* <Route path="/" element={<SignIn />} /> */}
+          {/* <Route path="/:instructorId/dashboard" element={<Dashboard />} /> */}
           <Route path="/apartments/:instructorId" element={<Apartments />} />
           <Route
             path="/Coordinator/dashboard/:id"
