@@ -27,7 +27,6 @@ const App = () => {
   const [isLoggedin, setIsLoggedin] = useState(
     localStorage.getItem("instructorId") || null
   );
-  console.log(isLoggedin);
 
   const handleSidebarCollapse = function () {
     setCollapsed(!isCollapsed);
@@ -46,18 +45,13 @@ const App = () => {
   return (
     <div>
       <div>
+        <Home
+          handleSidebarCollapse={handleSidebarCollapse}
+          handleDarkMode={handleDarkMode}
+          isCollapsed={isCollapsed}
+          isLoggedin={isLoggedin}
+        />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                handleSidebarCollapse={handleSidebarCollapse}
-                handleDarkMode={handleDarkMode}
-                isCollapsed={isCollapsed}
-                isLoggedin={isLoggedin}
-              />
-            }
-          />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
           <Route path="/apartments" element={<Apartments />} />
           <Route path="/server-error" element={<ServerError />} />
@@ -72,8 +66,6 @@ const App = () => {
               <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
             }
           />
-          {/* <Route path="/" element={<SignIn />} /> */}
-          {/* <Route path="/:instructorId/dashboard" element={<Dashboard />} /> */}
           <Route path="/apartments/:instructorId" element={<Apartments />} />
           <Route
             path="/Coordinator/dashboard/:id"

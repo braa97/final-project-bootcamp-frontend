@@ -8,7 +8,7 @@ export default function Home({
   isLoggedin,
 }) {
   return (
-    <div>
+    <>
       {isLoggedin ? (
         <div>
           {" "}
@@ -23,6 +23,6 @@ export default function Home({
           </div>
         </div>
       ) : null}
-    </div>
+    </>
   );
 }

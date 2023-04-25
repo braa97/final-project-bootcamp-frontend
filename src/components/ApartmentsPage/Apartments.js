@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 
 const Apartments = () => {
   const location = useLocation();
-  const object = location.state;
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [instructorId, setInstructorId] = useState(
@@ -23,6 +22,7 @@ const Apartments = () => {
       );
       // console.log(instructorId);
       setApartments(apartments);
+      console.log(apartments);
       setLoading(false);
     };
     fetchApartments();
