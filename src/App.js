@@ -11,6 +11,7 @@ import ApiManager from "./apiManager/apiManager";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import GoogleButton from "./components/GoogleLogin/GoogleButton";
 import SignIn from "./components/SignIn/SignIn";
+import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -29,6 +30,10 @@ const App = () => {
           <Route path="/" element={<SignIn />} />
           <Route path="/:instructorId/dashboard" element={<Dashboard />} />
           <Route path="/apartments/:instructorId" element={<Apartments />} />
+          <Route
+            path="/Coordinator/dashboard/:id"
+            element={<CoordinatorHome />}
+          />
         </Routes>
       </Router>
     </QueryClientProvider>

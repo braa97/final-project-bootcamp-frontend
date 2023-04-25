@@ -84,7 +84,12 @@ export default function SignIn() {
     console.log(response);
     if (response) {
       localStorage.setItem("token", response.token);
-      navigate(`/${response.user.id}/dashboard`);
+      if (response.user.type === "Instructor") {
+        navigate(`/${response.user.ref}/dashboard`);
+      }
+      if (response.user.type === "Coordinator") {
+        navigate(`/Coordinator/dashboard/${response.user.ref}`);
+      }
     } else {
       alert("email or password no correct");
     }
