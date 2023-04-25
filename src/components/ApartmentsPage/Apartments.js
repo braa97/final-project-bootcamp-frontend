@@ -3,23 +3,26 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
-import { useNavigate, useParams } from "react-router";
+import { useLocation } from "react-router-dom";
 
-const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
+const Apartments = () => {
+  const location = useLocation();
+  const object = location.state;
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [instructorId, setInstructorId] = useState(localStorage.getItem("instructorId"))
+  
+  
   useEffect(() => {
     const apiManager = new ApiManager();
 
     let fetchApartments = async () => {
-      let apartments = await apiManager.getApartmentsByInstructorId(
-        instructorId
-      );
+      let apartments = await apiManager.getApartmentsByInstructorId(instructorId);
       setApartments(apartments);
       setLoading(false);
     };
     fetchApartments();
-  }, []);
+  }, [instructorId]);
 
   try {
     return (
@@ -33,8 +36,6 @@ const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
             <Apartment
               key={apartment._id}
               apartment={apartment}
-              setSelectedItem={setSelectedItem}
-              setApartmentName={setApartmentName}
             />
           ))}
         </div>

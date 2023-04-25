@@ -44,7 +44,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({setIsLoggedin, isLoggedin}) {
   const navigate = useNavigate();
   const [token, setToken] = React.useState(
     localStorage.getItem("google-token")
@@ -59,20 +59,6 @@ export default function SignIn() {
     console.log(error);
   };
 
-  const onAuthorization = async (token) => {
-    setToken(token);
-    localStorage.setItem("google-token", JSON.stringify(token));
-    toast("Logged In Successfully");
-  };
-
-  async function onGoogleLoginSuccess(token) {
-    try {
-      await googleLogin(token);
-    } catch (err) {
-      toast(err.message);
-    }
-    onAuthorization(token);
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -81,19 +67,21 @@ export default function SignIn() {
       data.get("email"),
       data.get("password")
     );
-    console.log(response);
     if (response) {
       localStorage.setItem("token", response.token);
-      navigate(`/${response.user.id}/dashboard`);
+      setIsLoggedin(JSON.stringify(localStorage.getItem("token")))
+      localStorage.setItem("instructorId", response.user.id)
+      navigate(`/`);
     } else {
       alert("email or password no correct");
     }
-
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
   };
+
+  React.useEffect(() => {
+    if (isLoggedin) {
+      navigate('/')
+    }
+  })
 
   return (
     <ThemeProvider theme={theme}>
@@ -146,7 +134,6 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <p>OR</p>
             {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
             {/* <GoogleLogin
               onSuccess={(res) => onGoogleLoginSuccess(res.credential)}
