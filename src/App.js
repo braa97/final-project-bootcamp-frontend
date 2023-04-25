@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "./components/Nabar-Sidebar/Navbar/Navbar";
 import Sidebar from "./components/Nabar-Sidebar/Sidebar/Sidebar";
 import Apartments from "./components/ApartmentsPage/Apartments";
-import Residents from "./components/ResidentsPage/Residents";
+import Residents from './components/ApartmentInfo/ResidentsPage/ResidentsPage'
 import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage/ResidentInfoPage";
 import Home from "./components/Home/Home";
 import ServerError from "./components/ServerError/ServerError";
@@ -17,7 +17,6 @@ import SignIn from "./components/SignIn/SignIn";
 
 const App = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [isCollapsed, setCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [isLoggedin, setIsLoggedin] = useState(
@@ -57,9 +56,9 @@ const App = () => {
       <Routes>
         {/* <Route path="/" element={<Dashboard/>} /> */}
         <Route path="/" element={<Apartments />} />
-        <Route path="/residents/:apartmentName" element={<Residents />} />
-        <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
+        <Route path="/apartment-info/resident/:residentId" element={<ResidentInfoPage />} />
         <Route path="/server-error" element={<ServerError />} />
+        <Route path="/apartment-info/:apartmentName" element={<Residents />} />
         {/* <Route path="*" element={<NotFound />} /> */}
         <Route
           path="/login"
@@ -67,7 +66,6 @@ const App = () => {
             <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
           }
         />
-        {/* <Route path="/:instructorId/dashboard" element={<Home />} /> */}
       </Routes>
       </div>
     </div>
