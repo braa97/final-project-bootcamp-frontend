@@ -37,6 +37,18 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const onWindowClose = () => {
+      localStorage.removeItem("instructorId")
+    };
+
+    window.addEventListener("beforeunload", onWindowClose);
+
+    return () => {
+      window.removeEventListener("beforeunload", onWindowClose);
+    };
+  }, []);
+
   return (
     <div className="main-page-container">
       {isLoggedin ? (
