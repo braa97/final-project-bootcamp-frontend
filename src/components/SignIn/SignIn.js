@@ -51,7 +51,7 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
       localStorage.setItem("token", response.token);
       if (response.user.type === "Instructor") {
         setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
-        localStorage.setItem("instructorId", response.user.id);
+        localStorage.setItem("instructorId", response.user.ref);
         navigate(`/apartments`);
       }
       if (response.user.type === "Coordinator") {
@@ -64,7 +64,7 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
 
   React.useEffect(() => {
     if (isLoggedin) {
-      navigate("/");
+      navigate("/apartments");
     }
   });
 

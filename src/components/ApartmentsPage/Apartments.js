@@ -21,11 +21,12 @@ const Apartments = () => {
       let apartments = await apiManager.getApartmentsByInstructorId(
         instructorId
       );
+      // console.log(instructorId);
       setApartments(apartments);
       setLoading(false);
     };
     fetchApartments();
-  }, [instructorId]);
+  }, []);
 
   try {
     return (
@@ -35,13 +36,9 @@ const Apartments = () => {
         </div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">
-          hiiii
-          {/* {apartments.map((apartment) => (
-            <Apartment
-              key={apartment._id}
-              apartment={apartment}
-            />
-          ))} */}
+          {apartments.map((apartment) => (
+            <Apartment key={apartment._id} apartment={apartment} />
+          ))}
         </div>
       </>
     );

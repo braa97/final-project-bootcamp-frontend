@@ -54,6 +54,7 @@ const App = () => {
                 handleSidebarCollapse={handleSidebarCollapse}
                 handleDarkMode={handleDarkMode}
                 isCollapsed={isCollapsed}
+                isLoggedin={isLoggedin}
               />
             }
           />
