@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 
 const Apartments = () => {
   const location = useLocation();
-  const object = location.state;
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [instructorId, setInstructorId] = useState(
@@ -22,6 +21,7 @@ const Apartments = () => {
         instructorId
       );
       setApartments(apartments);
+      console.log(apartments);
       setLoading(false);
     };
     fetchApartments();
@@ -35,13 +35,12 @@ const Apartments = () => {
         </div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">
-          hiiii
-          {/* {apartments.map((apartment) => (
+          {apartments.map((apartment) => (
             <Apartment
               key={apartment._id}
               apartment={apartment}
             />
-          ))} */}
+          ))}
         </div>
       </>
     );

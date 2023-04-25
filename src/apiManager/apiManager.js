@@ -61,10 +61,6 @@ const ApiManager = function () {
     );
     return response.data;
   };
-  const getApartments = async () => {
-    const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
-    return response.data;
-  };
 
   const getApartmentByName = async (apartmentName) => {
     const response = await ajaxCall(
@@ -153,7 +149,6 @@ const ApiManager = function () {
 
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
-    getApartments: getApartments,
     getApartmentByName: getApartmentByName,
     getResidentById: getResidentById,
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
