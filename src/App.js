@@ -20,12 +20,13 @@ import GoogleButton from "./components/GoogleLogin/GoogleButton";
 import SignIn from "./components/SignIn/SignIn";
 
 const App = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [isCollapsed, setCollapsed] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [isLoggedin, setIsLoggedin] = useState(
     localStorage.getItem("instructorId") || null
   );
+  console.log(isLoggedin);
 
   const handleSidebarCollapse = function () {
     setCollapsed(!isCollapsed);
@@ -42,43 +43,40 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div className="main-page-container">
-        {isLoggedin ? (
-          <>
-            <div className="navbar-container">
-              <Navbar
-                handleSidebarCollapse={handleSidebarCollapse}
-                handleDarkMode={handleDarkMode}
-              />
-            </div>
-            <div className="sidebar-container">
-              <Sidebar isCollapsed={isCollapsed} />
-            </div>
-          </>
-        ) : null}
-        <div className="main-content">
-          <Routes>
-            {/* <Route path="/" element={<Dashboard/>} /> */}
-            <Route path="/" element={<Apartments />} />
-            <Route path="/residents/:apartmentName" element={<Residents />} />
-            <Route
-              path="/resident/:residentId"
-              element={<ResidentInfoPage />}
+    <div className="main-page-container">
+      {isLoggedin ? (
+        <>
+          <div className="navbar-container">
+            <Navbar
+              handleSidebarCollapse={handleSidebarCollapse}
+              handleDarkMode={handleDarkMode}
             />
-            <Route path="/server-error" element={<ServerError />} />
-            {/* <Route path="*" element={<NotFound />} /> */}
-            <Route
-              path="/login"
-              element={
-                <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
-              }
-            />
-            {/* <Route path="/:instructorId/dashboard" element={<Home />} /> */}
-          </Routes>
-        </div>
+          </div>
+          <div className="sidebar-container">
+            <Sidebar isCollapsed={isCollapsed} />
+          </div>
+        </>
+      ) : null}
+      <div className="main-content">
+        <Routes>
+          {/* <Route path="/" element={<Dashboard/>} /> */}
+          <Route path="/" element={<Apartments />} />
+          <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
+          <Route path="/server-error" element={<ServerError />} />
+          {/* <Route
+            path="/apartment-info/:apartmentName"
+            // element={<Residents />}
+          /> */}
+          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route
+            path="/login"
+            element={
+              <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
+            }
+          />
+        </Routes>
       </div>
-    </Router>
+    </div>
   );
 };
 
