@@ -52,7 +52,7 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
       if (response.user.type === "Instructor") {
         setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
         localStorage.setItem("instructorId", response.user.id);
-        navigate(`/`);
+        navigate(`/apartments`);
       }
       if (response.user.type === "Coordinator") {
         navigate(`/Coordinator/dashboard/${response.user.ref}`);

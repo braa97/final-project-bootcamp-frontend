@@ -58,6 +58,7 @@ const App = () => {
             }
           />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
+          <Route path="/apartments" element={<Apartments />} />
           <Route path="/server-error" element={<ServerError />} />
           <Route
             path="/apartment-info/:apartmentName"

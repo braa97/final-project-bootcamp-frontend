@@ -10,14 +10,17 @@ const Apartments = () => {
   const object = location.state;
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [instructorId, setInstructorId] = useState(localStorage.getItem("instructorId"))
-  
-  
+  const [instructorId, setInstructorId] = useState(
+    localStorage.getItem("instructorId")
+  );
+
   useEffect(() => {
     const apiManager = new ApiManager();
 
     let fetchApartments = async () => {
-      let apartments = await apiManager.getApartmentsByInstructorId(instructorId);
+      let apartments = await apiManager.getApartmentsByInstructorId(
+        instructorId
+      );
       setApartments(apartments);
       setLoading(false);
     };
@@ -32,12 +35,13 @@ const Apartments = () => {
         </div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">
-          {apartments.map((apartment) => (
+          hiiii
+          {/* {apartments.map((apartment) => (
             <Apartment
               key={apartment._id}
               apartment={apartment}
             />
-          ))}
+          ))} */}
         </div>
       </>
     );
