@@ -23,6 +23,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Sidebar } from "./listItems";
 import Apartments from "./Coordinator_Apartments/Apartments";
 import { useNavigate, useParams } from "react-router-dom";
+import Instructors from "./Coordinator_Instructors/Inctructors";
 // import Residents from "../components/ResidentsPage/Residents";
 // function Copyright(props) {
 //   return (
@@ -182,6 +183,9 @@ function DashboardContent() {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             {selectedItem == "Apartments" ? (
               <Apartments coordinatorId={id} />
+            ) : null}
+            {selectedItem == "Instructors" ? (
+              <Instructors coordinatorId={id} />
             ) : null}
             {/* <Grid container spacing={3}> */}
             {/*  <Grid container spacing={3}>

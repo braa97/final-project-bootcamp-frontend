@@ -18,7 +18,7 @@ export default function Apartments({ coordinatorId }) {
     <div>
       <h1>Apartments</h1>
       {apartments.map((a) => {
-        return <Apartment />;
+        return <Apartment key={a._id} />;
       })}
     </div>
   );
