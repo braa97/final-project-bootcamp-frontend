@@ -28,6 +28,7 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isLoggedin, setIsLoggedin] = useState(
     localStorage.getItem("instructorId") || null
+    // true
   );
 
   const handleSidebarCollapse = function () {
