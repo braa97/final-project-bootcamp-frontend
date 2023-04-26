@@ -19,6 +19,7 @@ import ApiManager from "./apiManager/apiManager";
 import GoogleButton from "./components/GoogleLogin/GoogleButton";
 import SignIn from "./components/SignIn/SignIn";
 import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
+import NewResident from "./components/ApartmentInfo/NewResident/NewResident";
 
 const App = () => {
   const navigate = useNavigate();
@@ -52,13 +53,14 @@ const App = () => {
           isLoggedin={isLoggedin}
         />
         <Routes>
-          <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
-          <Route path="/apartments" element={<Apartments />} />
-          <Route path="/server-error" element={<ServerError />} />
-          <Route
-            path="/apartment-info/:apartmentName"
+        <Route path="/apartments" element={<Apartments />} />
+        <Route
+            path="/apartments/apartment-info/:apartmentName"
             element={<Residents />}
           />
+          <Route path="/apartments/apartment-info/resident/:residentId" element={<ResidentInfoPage />} />
+          <Route path="/apartments/apartment-info/resident/new-resident" element={<NewResident />} />
+          <Route path="/server-error" element={<ServerError />} />
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route
             path="/login"

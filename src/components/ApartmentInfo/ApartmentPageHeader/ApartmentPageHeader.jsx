@@ -7,16 +7,6 @@ const FONT_AWESOME_CDN =
   "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css";
 
 const ApartmenPagetHeader = ({ apartment }) => {
-    const apiManager = new ApiManager()
-    // const [apartment, setApartment] = useState({})
-    
-    // useEffect(() => {
-    //     const fetchApartmentData = async() => {
-    //         const response = await apiManager.getApartmentByName(apartmentName)
-    //         setApartment(response)
-    //     }
-    //     fetchApartmentData()
-    // }, [])
 
   try {
     return (
