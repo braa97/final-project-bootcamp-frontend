@@ -11,36 +11,37 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
+// import Grid from "@mui/material/Grid";
+// import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Chart from "./Chart";
-import Deposits from "./Deposits";
-import Orders from "./Orders";
+// import Chart from "./Chart";
+// import Deposits from "./Deposits";
+// import Orders from "./Orders";
 import { Sidebar } from "./listItems";
-import Apartments from "../components/ApartmentsPage/Apartments";
+import Apartments from "./Coordinator_Apartments/Apartments";
 import { useNavigate, useParams } from "react-router-dom";
-import Residents from "../components/ResidentsPage/Residents";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Instructors from "./Coordinator_Instructors/Inctructors";
+// import Residents from "../components/ResidentsPage/Residents";
+// function Copyright(props) {
+//   return (
+//     <Typography
+//       variant="body2"
+//       color="text.secondary"
+//       align="center"
+//       {...props}
+//     >
+//       {"Copyright © "}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{" "}
+//       {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -93,12 +94,12 @@ const mdTheme = createTheme();
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
   const [selectedItem, setSelectedItem] = React.useState("Dashboard");
-  const { instructorId } = useParams();
-  const [apartmentName, setApartmentName] = React.useState("");
+  const { id } = useParams();
+  // const [apartmentName, setApartmentName] = React.useState("");
   const navigate = useNavigate();
   const logout = function () {
-    localStorage.clear();
-    navigate("/");
+    localStorage.removeItem("token");
+    navigate("/login");
   };
   const toggleDrawer = () => {
     setOpen(!open);
@@ -157,17 +158,6 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {/* {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
-            <Divider sx={{ my: 1 }} />
-            {thirdListItems}
-            <Divider sx={{ my: 1 }} />
-            {fourthListItems}
-            <Divider sx={{ my: 1 }} />
-            {thirdListItems}
-            <Divider sx={{ my: 1 }} />
-            {fifthListItems} */}
             {<Sidebar setSelectedItem={setSelectedItem} />}{" "}
           </List>
         </Drawer>
@@ -184,22 +174,23 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          {selectedItem == "Apartments" ? (
-            <Apartments
-              instructorId={instructorId}
-              setSelectedItem={setSelectedItem}
-              setApartmentName={setApartmentName}
-            />
-          ) : null}
 
           {selectedItem == "Residents" ? (
-            <Residents apartmentName={apartmentName} />
+            // <Residents apartmentName={apartmentName} />
+            <></>
           ) : null}
           {selectedItem == "Logout" ? logout() : null}
-          {/* <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            {selectedItem == "Apartments" ? (
+              <Apartments coordinatorId={id} />
+            ) : null}
+            {selectedItem == "Instructors" ? (
+              <Instructors coordinatorId={id} />
+            ) : null}
+            {/* <Grid container spacing={3}> */}
+            {/*  <Grid container spacing={3}>
               {/* Chart */}
-          {/* <Grid item xs={12} md={8} lg={9}>
+            {/* <Grid item xs={12} md={8} lg={9}>
             <Paper
               sx={{
                 p: 2,
@@ -211,9 +202,9 @@ function DashboardContent() {
               <Chart />
             </Paper>
           </Grid>{" "} */}
-          {/* */}
-          {/* Recent Deposits */}
-          {/* <Grid item xs={12} md={4} lg={3}>
+            {/* */}
+            {/* Recent Deposits */}
+            {/* <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
                     p: 2,
@@ -225,21 +216,21 @@ function DashboardContent() {
                   <Deposits />
                 </Paper>
               </Grid> */}
-          {/* Recent Orders */}
-          {/* <Grid item xs={12}>
+            {/* Recent Orders */}
+            {/* <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
                   <Orders />
                 </Paper>
               </Grid>
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container> */}
+            <Copyright sx={{ pt: 4 }} />*/}
+          </Container>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function Dashboard({ coordinatorId }) {
   return <DashboardContent />;
 }

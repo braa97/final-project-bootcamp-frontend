@@ -12,17 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { ToastContainer, toast } from "react-toastify";
 
-import {
-  GoogleLogin,
-  useGoogleLogin,
-  useGoogleOneTapLogin,
-} from "@react-oauth/google";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ApiManager from "../../apiManager/apiManager";
-import { googleLogin } from "../../auth-2.0/authFunctions";
 
 function Copyright(props) {
   return (
@@ -44,35 +36,9 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ setIsLoggedin, isLoggedin }) {
   const navigate = useNavigate();
-  const [token, setToken] = React.useState(
-    localStorage.getItem("google-token")
-      ? localStorage.getItem("google-token")
-      : null
-  );
-  const responseMessage = (response) => {
-    console.log(response);
-    navigate("/apartments");
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
 
-  const onAuthorization = async (token) => {
-    setToken(token);
-    localStorage.setItem("google-token", JSON.stringify(token));
-    toast("Logged In Successfully");
-  };
-
-  async function onGoogleLoginSuccess(token) {
-    try {
-      await googleLogin(token);
-    } catch (err) {
-      toast(err.message);
-    }
-    onAuthorization(token);
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -81,19 +47,26 @@ export default function SignIn() {
       data.get("email"),
       data.get("password")
     );
-    console.log(response);
     if (response) {
       localStorage.setItem("token", response.token);
-      navigate(`/${response.user.id}/dashboard`);
+      if (response.user.type === "Instructor") {
+        setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
+        localStorage.setItem("instructorId", response.user.ref);
+        navigate(`/apartments`);
+      }
+      if (response.user.type === "Coordinator") {
+        navigate(`/Coordinator/dashboard/${response.user.ref}`);
+      }
     } else {
       alert("email or password no correct");
     }
-
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
   };
+
+  React.useEffect(() => {
+    if (isLoggedin) {
+      navigate("/apartments");
+    }
+  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -146,12 +119,11 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <p>OR</p>
             {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /> */}
-            <GoogleLogin
+            {/* <GoogleLogin
               onSuccess={(res) => onGoogleLoginSuccess(res.credential)}
               onError={() => toast("Login Failed")}
-            />
+            /> */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

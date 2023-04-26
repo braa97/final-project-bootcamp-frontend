@@ -3,11 +3,16 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
-import { useNavigate, useParams } from "react-router";
+import { useLocation } from "react-router-dom";
 
-const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
+const Apartments = () => {
+  const location = useLocation();
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [instructorId, setInstructorId] = useState(
+    localStorage.getItem("instructorId")
+  );
+
   useEffect(() => {
     const apiManager = new ApiManager();
 
@@ -15,7 +20,9 @@ const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
       let apartments = await apiManager.getApartmentsByInstructorId(
         instructorId
       );
+      // console.log(instructorId);
       setApartments(apartments);
+      console.log(apartments);
       setLoading(false);
     };
     fetchApartments();
@@ -30,12 +37,7 @@ const Apartments = ({ instructorId, setSelectedItem, setApartmentName }) => {
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">
           {apartments.map((apartment) => (
-            <Apartment
-              key={apartment._id}
-              apartment={apartment}
-              setSelectedItem={setSelectedItem}
-              setApartmentName={setApartmentName}
-            />
+            <Apartment key={apartment._id} apartment={apartment} />
           ))}
         </div>
       </>

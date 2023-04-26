@@ -1,37 +1,79 @@
 import "./App.css";
+import "./components/Style/dark-style.css";
 import React, { useEffect, useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Nabar-Sidebar/Navbar/Navbar";
+import Sidebar from "./components/Nabar-Sidebar/Sidebar/Sidebar";
 import Apartments from "./components/ApartmentsPage/Apartments";
-import Residents from "./components/ResidentsPage/Residents";
+import Residents from "./components/ApartmentInfo/ResidentsPage/ResidentsPage";
 import ResidentInfoPage from "./components/ResidentInfoPage/ResidentInfoPage/ResidentInfoPage";
+import Home from "./components/Home/Home";
 import ServerError from "./components/ServerError/ServerError";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./dashboard/Dashboard";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import ApiManager from "./apiManager/apiManager";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import GoogleButton from "./components/GoogleLogin/GoogleButton";
 import SignIn from "./components/SignIn/SignIn";
+import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const navigate = useNavigate();
+  const [isCollapsed, setCollapsed] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const [isLoggedin, setIsLoggedin] = useState(
+    localStorage.getItem("instructorId") || null
+  );
+
+  const handleSidebarCollapse = function () {
+    setCollapsed(!isCollapsed);
+  };
+
+  const handleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    if (!isLoggedin) {
+      navigate("/login");
+    }
+  }, [isLoggedin]);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        {/* <Navbar /> */}
+    <div>
+      <div>
+        <Home
+          handleSidebarCollapse={handleSidebarCollapse}
+          handleDarkMode={handleDarkMode}
+          isCollapsed={isCollapsed}
+          isLoggedin={isLoggedin}
+        />
         <Routes>
-          {/* <Route path="/" element={<Dashboard/>} /> */}
-          <Route path="/apartments" element={<Apartments />} />
-          <Route path="/residents/:apartmentName" element={<Residents />} />
           <Route path="/resident/:residentId" element={<ResidentInfoPage />} />
+          <Route path="/apartments" element={<Apartments />} />
           <Route path="/server-error" element={<ServerError />} />
+          <Route
+            path="/apartment-info/:apartmentName"
+            element={<Residents />}
+          />
           {/* <Route path="*" element={<NotFound />} /> */}
-          <Route path="/" element={<SignIn />} />
-          <Route path="/:instructorId/dashboard" element={<Dashboard />} />
+          <Route
+            path="/login"
+            element={
+              <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
+            }
+          />
           <Route path="/apartments/:instructorId" element={<Apartments />} />
+          <Route
+            path="/Coordinator/dashboard/:id"
+            element={<CoordinatorHome />}
+          />
         </Routes>
-      </Router>
-    </QueryClientProvider>
+      </div>
+    </div>
   );
 };
 

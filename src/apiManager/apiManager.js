@@ -17,7 +17,7 @@ const ApiManager = function () {
     }
   };
 
-  const ajaxPostCall = async (url, object) => {
+  const ajaxPutCall = async (url, object) => {
     try {
       const headers = {
         "Content-Type": "application/json",
@@ -45,9 +45,10 @@ const ApiManager = function () {
       return error;
     }
   };
-  const axiosPostCall = async (url, body) => {
+  const ajaxPostCall = async (url, body) => {
     try {
       const response = await axios.post(url, body);
+      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -58,10 +59,6 @@ const ApiManager = function () {
     const response = await ajaxCall(
       process.env.REACT_APP_RESIDENTS_ROUTE + `/${apartmentName}`
     );
-    return response.data;
-  };
-  const getApartments = async () => {
-    const response = await ajaxCall(process.env.REACT_APP_APARTMENTS_ROUTE);
     return response.data;
   };
 
@@ -116,7 +113,7 @@ const ApiManager = function () {
   };
 
   const editMedicalAppointment = async (appointmentId, appointment) => {
-    const response = await ajaxPostCall(
+    const response = await ajaxPutCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/resident/medicalAppointments/details/${appointmentId}`,
       { updatedAppointment: appointment }
     );
@@ -129,13 +126,15 @@ const ApiManager = function () {
     );
     return response;
   };
+
   const signIn = async (email, password) => {
-    const response = await axiosPostCall(
+    const response = await ajaxPostCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/instructor/sign-in`,
       { email, password }
     );
     return response;
   };
+  
   const getApartmentsByInstructorId = async (instructorId) => {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/apartments/${instructorId}`
@@ -143,9 +142,13 @@ const ApiManager = function () {
     return response.data;
   };
 
+  const sendMessageToResidentRelativeContact = async(message) => {
+    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`, message)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
-    getApartments: getApartments,
     getApartmentByName: getApartmentByName,
     getResidentById: getResidentById,
     getResidentDetailsByQueryString: getResidentDetailsByQueryString,
@@ -156,6 +159,7 @@ const ApiManager = function () {
     deleteAppointment,
     signIn,
     getApartmentsByInstructorId,
+    sendMessageToResidentRelativeContact,
   };
 };
 

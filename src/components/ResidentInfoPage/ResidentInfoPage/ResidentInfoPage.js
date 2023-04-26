@@ -64,8 +64,10 @@ const ResidentInfoPage = () => {
             />
           </div>
           <div className="recent-grid">
-            <MedicalAppointments residentId={residentId} />
-            <RelativeContacts contacts={resident.familyConnections} />
+            <MedicalAppointments
+              residentId={residentId}
+            />
+            <RelativeContacts contacts={resident.familyConnections} resident={resident} />
           </div>
         </div>
       </>

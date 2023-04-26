@@ -4,11 +4,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
-import AssignmentIcon from "@mui/icons-material/Assignment";
+// import LayersIcon from "@mui/icons-material/Layers";
+// import AssignmentIcon from "@mui/icons-material/Assignment";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { Home as HomeIcon } from "@mui/icons-material";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
@@ -121,11 +121,11 @@ export const Sidebar = ({ setSelectedItem }) => {
       <ListSubheader component="div" inset>
         Lists{" "}
       </ListSubheader>
-      <ListItemButton onClick={() => setSelectedItem("Residents")}>
+      <ListItemButton onClick={() => setSelectedItem("Instructors")}>
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Residents" />
+        <ListItemText primary="Instructors" />
       </ListItemButton>
       <ListItemButton onClick={() => setSelectedItem("Apartments")}>
         <ListItemIcon>
@@ -133,36 +133,36 @@ export const Sidebar = ({ setSelectedItem }) => {
         </ListItemIcon>
         <ListItemText primary="Apartments" />
       </ListItemButton>
-      <ListItemButton onClick={() => setSelectedItem("Appointments")}>
+      {/* <ListItemButton onClick={() => setSelectedItem("Appointments")}>
         <ListItemIcon>
           <CalendarMonthOutlinedIcon />
         </ListItemIcon>
         <ListItemText primary="Appointments" />
-      </ListItemButton>
+      </ListItemButton> */}
       <ListSubheader component="div" inset>
-        Services
+        Actions
       </ListSubheader>
-      <ListItemButton onClick={() => setSelectedItem("Medication")}>
+      {/* <ListItemButton onClick={() => setSelectedItem("Medication")}>
         <ListItemIcon>
           <VaccinesIcon />
         </ListItemIcon>
         <ListItemText primary="Medication" />
-      </ListItemButton>
+      </ListItemButton> */}
       <ListSubheader component="div" inset>
         Useful
       </ListSubheader>
-      <ListItemButton onClick={() => setSelectedItem("Stats")}>
+      {/* <ListItemButton onClick={() => setSelectedItem("Stats")}>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Stats" />
-      </ListItemButton>
-      <ListItemButton onClick={() => setSelectedItem("Visualization")}>
+      </ListItemButton> */}
+      {/* <ListItemButton onClick={() => setSelectedItem("Visualization")}>
         <ListItemIcon>
           <PieChartOutlineIcon />
         </ListItemIcon>
         <ListItemText primary="visualization" />
-      </ListItemButton>
+      </ListItemButton> */}
       <ListSubheader component="div" inset>
         User
       </ListSubheader>
