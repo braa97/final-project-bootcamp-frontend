@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CoordinatorApiMan from "../../../../coordinatorApiManager/coordinatorApiMan";
 import Apartment from "./Apartment";
+import ApartmentsPage from "../../../ApartmentsPage/Apartments";
 
 export default function Apartments({ coordinatorId }) {
   const [apartments, setApartments] = useState([]);
@@ -16,10 +17,7 @@ export default function Apartments({ coordinatorId }) {
   }, []);
   return (
     <div>
-      <h1>Apartments</h1>
-      {apartments.map((a) => {
-        return <Apartment key={a._id} />;
-      })}
+      <ApartmentsPage coordinatorApartments={apartments} />
     </div>
   );
 }

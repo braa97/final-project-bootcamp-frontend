@@ -5,7 +5,7 @@ import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
 import { useLocation } from "react-router-dom";
 
-const Apartments = () => {
+const Apartments = ({ coordinatorApartments }) => {
   const location = useLocation();
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,8 +25,13 @@ const Apartments = () => {
       console.log(apartments);
       setLoading(false);
     };
-    fetchApartments();
-  }, []);
+    if (localStorage.getItem("instructorId")) {
+      fetchApartments();
+    } else {
+      setLoading(false);
+      setApartments(coordinatorApartments);
+    }
+  }, [coordinatorApartments]);
 
   try {
     return (
