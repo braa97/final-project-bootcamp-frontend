@@ -3,8 +3,6 @@
     flex: 1 1;
     border-right: 0.5px solid #e6e3e3;
     min-height: 100vh;
-    /* background-color: white; */
-    width: 200px;
     z-index: 2000;
 }
 
@@ -44,6 +42,7 @@
     display: flex;
     align-items: center;
     padding: 5px;
+    margin: 5px 0;
     cursor: pointer;
 }
 .sidebar .center ul li:hover {
@@ -80,4 +79,9 @@
 }
 .sidebar .bottom .colorOption:nth-child(3) {
     background-color: darkblue;
+}
+
+.sidebar-divider {
+    margin: 15px 0;
+    border-color: #ffffff00 !important;
 }
