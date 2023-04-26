@@ -20,6 +20,7 @@ import GoogleButton from "./components/GoogleLogin/GoogleButton";
 import SignIn from "./components/SignIn/SignIn";
 import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
 import NewResident from "./components/ApartmentInfo/NewResident/NewResident";
+import ProfileCard from "./components/CoordinatorProfile/ProfileCard";
 
 const App = () => {
   const navigate = useNavigate();
@@ -46,12 +47,13 @@ const App = () => {
   return (
     <div>
       <div>
-        <Home
+        <ProfileCard/>
+       { /*<Home
           handleSidebarCollapse={handleSidebarCollapse}
           handleDarkMode={handleDarkMode}
           isCollapsed={isCollapsed}
           isLoggedin={isLoggedin}
-        />
+  />*/}
         <Routes>
         <Route path="/apartments" element={<Apartments />} />
         <Route
