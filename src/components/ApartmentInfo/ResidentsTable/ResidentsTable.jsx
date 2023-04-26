@@ -65,7 +65,7 @@ const ResidentsTable = ({ residents }) => {
         return (
           <div className="cellAction">
             <Link
-              to={`/apartment-info/resident/${params.row._id}`}
+              to={`/apartments/apartment-info/resident/${params.row._id}`}
               style={{ textDecoration: "none" }}
             >
               <button className="viewButton">View</button>
@@ -87,7 +87,7 @@ const ResidentsTable = ({ residents }) => {
       <div className="datatable">
         <div className="data-grid-title">
           Residents
-          <Link to="/new-resident" className="new-resident-link">
+          <Link to="/apartments/apartment-info/resident/new-resident" className="new-resident-link">
             Add New
           </Link>
         </div>

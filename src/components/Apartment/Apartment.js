@@ -7,7 +7,7 @@ const Apartment = ({ apartment }) => {
   return (
     <div className="apartment-card">
       <div className="card__container">
-        <Link to={`/apartment-info/${apartment.apartmentName}`}>
+        <Link to={`/apartments/apartment-info/${apartment.apartmentName}`}>
         <div className="card__image">
           <img src={apartment.image} />
         </div>
