@@ -33,11 +33,11 @@ const ApartmenPagetHeader = ({ apartment }) => {
           <div className="apartment-info">
             <div className="info-item">
               <h5>City</h5>
-              <p>{apartment.address ? apartment.address.value.split(", ")[1] : null}</p>
+              <p>{apartment.address ? apartment.address.split(", ")[1] : null}</p>
             </div>
             <div className="info-item">
               <h5>Street</h5>
-              <p>{apartment.address ? apartment.address.value.split(", ")[0] + "." : null}</p>
+              <p>{apartment.address ? apartment.address.split(", ")[0] + "." : null}</p>
             </div>
             <div className="info-item">
               <h5>People</h5>
