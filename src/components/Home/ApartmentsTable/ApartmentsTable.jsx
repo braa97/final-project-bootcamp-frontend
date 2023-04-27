@@ -2,6 +2,8 @@ import './ApartmentsTable.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
 const apartments = [
     {
         id: 1,
@@ -47,7 +49,7 @@ const apartments = [
 const ApartmentsTable = () => {
     const filteredApartments = apartments.map((apartment) => {
         return {
-            id: apartment.id,
+            id: uuidv4(),
             apartmentName: apartment.apartmentName,
             budget: `₪ ${
                 apartment.budget > 999
@@ -67,7 +69,6 @@ const ApartmentsTable = () => {
     }
 
     const columnsTitles = [
-        { field: 'id', headerName: 'ID', width: 80 },
         {
             field: 'apartmentName',
             headerName: 'Apartment Name',
