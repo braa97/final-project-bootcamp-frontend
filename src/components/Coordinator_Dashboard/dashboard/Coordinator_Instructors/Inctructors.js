@@ -15,6 +15,10 @@ export default function Instructors({ coordinatorId }) {
   useEffect(() => {
     fetchInstructors();
   }, []);
+  const deleteInstructor = async function(instructorId){
+    await apiManager.deleteInstructor(instructorId)
+    fetchInstructors()
+  }
   return (
     <div>
       <Container
@@ -32,7 +36,7 @@ export default function Instructors({ coordinatorId }) {
           {instructors.map((i) => {
             return (
               <Grid item key={i._id} xs={12} sm={6} md={4}>
-                <Instructor key={i._id} instructor={i} />{" "}
+                <Instructor key={i._id} instructor={i} deleteEvent={deleteInstructor}/>{" "}
               </Grid>
             );
           })}
