@@ -142,6 +142,14 @@ const ApiManager = function () {
     return response.data;
   };
 
+  const deleteInstructor = async (appointmentId, instructorId) => {
+    const response = await ajaxDeleteCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/${instructorId}`
+    );
+    return response;
+  };
+
+
   const sendMessageToResidentRelativeContact = async (message) => {
     const response = await ajaxPostCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`,
@@ -176,6 +184,7 @@ const ApiManager = function () {
     sendMessageToResidentRelativeContact,
     getInstructorShifts,
     getApartmentName,
+    deleteInstructor
   };
 };
 
