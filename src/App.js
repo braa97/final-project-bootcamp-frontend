@@ -12,6 +12,8 @@ import SignIn from "./components/SignIn/SignIn";
 import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
 import NewResident from "./components/ApartmentInfo/NewResident/NewResident";
 import Sidebar from "./components/Sidebar/Sidebar";
+import ReportPage from "./components/ReportPage/ReportPage.js/ReportPage";
+import CreateReport from "./components/ReportPage/CreateReport/CreateReport";
 
 const App = () => {
   const navigate = useNavigate();
@@ -66,13 +68,9 @@ const App = () => {
           />
           <Route path="/server-error" element={<ServerError />} />
           {/* <Route path="*" element={<NotFound />} /> */}
-          {/* <Route
-            path="/login"
-            element={
-              <SignIn setIsLoggedin={setIsLoggedin} isLoggedin={isLoggedin} />
-            }
-          /> */}
-          <Route path="/apartments/:instructorId" element={<Apartments />} />
+          <Route path="/reports" element={<ReportPage />} />
+          <Route path="/reports/create-report/:apartmentName" element={<CreateReport />} />
+          <Route path="/apartments" element={<Apartments />} />
           <Route
             path="/Coordinator/dashboard/:id"
             element={<CoordinatorHome />}

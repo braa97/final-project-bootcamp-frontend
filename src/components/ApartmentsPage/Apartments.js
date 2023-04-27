@@ -20,9 +20,7 @@ const Apartments = ({ coordinatorApartments }) => {
       let apartments = await apiManager.getApartmentsByInstructorId(
         instructorId
       );
-      // console.log(instructorId);
       setApartments(apartments);
-      console.log(apartments);
       setLoading(false);
     };
     if (localStorage.getItem("instructorId")) {

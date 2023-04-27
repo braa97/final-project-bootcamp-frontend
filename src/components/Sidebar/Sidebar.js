@@ -57,10 +57,12 @@ const Sidebar = () => {
             <SettingsSystemDaydreamOutlinedIcon className="icon" />
             <span>Medications</span>
           </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Report</span>
-          </li>
+          <Link to={'/reports'}>
+            <li>
+              <PsychologyOutlinedIcon className="icon" />
+              <span>Report</span>
+            </li>
+          </Link>
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
