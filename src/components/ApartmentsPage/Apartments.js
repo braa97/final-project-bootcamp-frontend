@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
+import ApartmentsTable from "../Home/ApartmentsTable/ApartmentsTable";
 // import { useLocation } from "react-router-dom";
 
 const Apartments = ({ coordinatorApartments }) => {
@@ -22,7 +23,7 @@ const Apartments = ({ coordinatorApartments }) => {
       );
       // console.log(instructorId);
       setApartments(apartments);
-      console.log(apartments);
+      // console.log(apartments);
       setLoading(false);
     };
     if (localStorage.getItem("instructorId")) {
@@ -40,10 +41,12 @@ const Apartments = ({ coordinatorApartments }) => {
           <label>{apartments.length !== 0 ? "Apartments" : null}</label>
         </div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
+        <ApartmentsTable apartments={apartments} />
         <div className="apartments-container">
-          {apartments.map((apartment) => (
+          {/* {apartments.map((apartment) => (
             <Apartment key={apartment._id} apartment={apartment} />
-          ))}
+          ))} */}
+            
         </div>
       </>
     );
