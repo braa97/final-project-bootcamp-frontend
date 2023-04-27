@@ -9,87 +9,44 @@ import Checkbox from '@mui/material/Checkbox';
 import { AppContext } from './Context';
 
 export default function SecondStep() {
+  const {stepTwoForumValues, setStepTwoForumValues, stepTwoForumInput, handleBack, handleNext, variant, margin} = useContext(AppContext)
 
-
-  const isError = useCallback(
-    () =>
-      Object.keys({ city, date, phone, agreenemt }).some(
-        (name) => (formValues[name].required && !formValues[name].value) || formValues[name].error
-      ),
-    [formValues, city, date, phone, agreenemt]
-  );
+  const isStepTwoFormValid = useCallback(() => {
+    const values = Object.values(stepTwoForumValues);
+    return values.every((value) => value.trim() !== '');
+  }, [stepTwoForumValues]);
+  
+  const isFormValid = isStepTwoFormValid();
 
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField
-            variant={variant}
-            margin={margin}
-            fullWidth
-            label='City'
-            name='city'
-            placeholder='Enter your city'
-            value={city.value}
-            onChange={handleChange}
-            error={!!city.error}
-            helperText={city.error}
-            required={city.required}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant={variant}
-            margin={margin}
-            fullWidth
-            InputLabelProps={{
-              shrink: true
-            }}
-            label='Date of birth'
-            name='date'
-            type='date'
-            defaultValue={date.value}
-            onChange={handleChange}
-            required={date.required}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant={variant}
-            margin={margin}
-            fullWidth
-            label='Phone number'
-            name='phone'
-            placeholder='i.e: xxx-xxx-xxxx'
-            value={phone.value}
-            onChange={handleChange}
-            error={!!phone.error}
-            helperText={phone.error}
-            required={phone.required}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={agreenemt.value}
-                onChange={handleChange}
-                name='agreenemt'
-                color='primary'
-                required={agreenemt.required}
-              />
-            }
-            label='Agree to terms and conditions'
-          />
-          <FormHelperText error={!!agreenemt.error}>{agreenemt.error}</FormHelperText>
-        </Grid>
+    {stepTwoForumInput.map(input => (
+        <Grid item xs={12} key={input.id}>
+        <TextField
+          variant={variant}
+          margin={margin}
+          fullWidth
+          label={input.label}
+          name={input.name}
+          multiline
+          placeholder={input.placeholder}
+          value={stepTwoForumValues[input.name]}
+          onChange={(event) => setStepTwoForumValues((prevState) => ({...prevState, [event.target.name]: event.target.value}))}
+          // error={!!city.error}
+          // helperText={city.error}
+          // required={city.required}
+        />
+      </Grid>
+    ))}
+
       </Grid>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
         <Button onClick={handleBack} sx={{ mr: 1 }}>
           Back
         </Button>
-        <Button variant='contained' disabled={isError()} color='primary' onClick={!isError() ? handleNext : () => null}>
+        <Button variant='contained' disabled={isFormValid} color='primary' onClick={handleNext}>
           Next
         </Button>
       </Box>
