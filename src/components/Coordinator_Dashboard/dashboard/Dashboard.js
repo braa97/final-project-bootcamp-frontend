@@ -24,6 +24,7 @@ import { Sidebar } from "./listItems";
 import Apartments from "./Coordinator_Apartments/Apartments";
 import { useNavigate, useParams } from "react-router-dom";
 import Instructors from "./Coordinator_Instructors/Inctructors";
+import Scheduler from "../../Scheduler/Scheduler";
 // import Main from "";
 // import Residents from "../components/ResidentsPage/Residents";
 // function Copyright(props) {
@@ -188,7 +189,7 @@ function DashboardContent() {
             {selectedItem == "Instructors" ? (
               <Instructors coordinatorId={id} />
             ) : null}
-            {selectedItem == "Dashboard" ? <div></div> : null}
+            {selectedItem == "Dashboard" ? <Scheduler /> : null}
             {/* <Grid container spacing={3}> */}
             {/*  <Grid container spacing={3}>
               {/* Chart */}
