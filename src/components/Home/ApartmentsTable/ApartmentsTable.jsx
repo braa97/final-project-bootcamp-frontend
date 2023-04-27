@@ -1,65 +1,28 @@
 import './ApartmentsTable.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
-const apartments = [
-    {
-        id: 1,
-        apartmentName: 'Sea View Residence',
-        image: 'https://pix10.agoda.net/hotelImages/200/2009116/2009116_17042015020052512011.jpg?ca=6&ce=1&s=1024x768',
-        address: {
-            value: '15 Dizengoff St, Tel Aviv, Israel',
-            wazeLink: 'https://waze.com/ul/rt64kj8d',
-        },
-        budget: 6000,
-        residents: [
-            {
-                residentId: 'RES001',
-            },
-            {
-                residentId: 'RES002',
-            },
-            {
-                residentId: 'RES003',
-            },
-        ],
-    },
-    {
-        id: 2,
-        apartmentName: 'Garden Oasis',
-        image: 'https://thumbs.dreamstime.com/b/apartment-building-balconies-photoof-34869405.jpg',
-        address: {
-            value: '15 Rothschild Blvd, Tel Aviv, Israel',
-            wazeLink: 'https://waze.com/ul/rt64kj8d',
-        },
-        budget: 4500,
-        residents: [
-            {
-                residentId: 'RES004',
-            },
-            {
-                residentId: 'RES005',
-            },
-        ],
-    },
-]
+import { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
-const ApartmentsTable = () => {
-    const filteredApartments = apartments.map((apartment) => {
-        return {
-            id: apartment.id,
-            apartmentName: apartment.apartmentName,
-            budget: `₪ ${
-                apartment.budget > 999
-                    ? (apartment.budget / 1000).toFixed(1) + 'k'
-                    : apartment.budget
-            }`,
-            address: apartment.address.value,
-            img: apartment.image,
-        }
-    })
-
-    const [rows, setRows] = useState(filteredApartments)
+const ApartmentsTable = ({ apartments }) => {
+    
+    const [rows, setRows] = useState([])
+    useEffect(() => {
+        const filteredApartments = apartments.map((apartment) => {
+            return {
+                id: uuidv4(),
+                apartmentName: apartment.apartmentName,
+                budget: `₪ ${
+                    apartment.budget > 999
+                        ? (apartment.budget / 1000).toFixed(1) + 'k'
+                        : apartment.budget
+                }`,
+                address: apartment.address,
+                img: apartment.image,
+            }
+        })
+        setRows(filteredApartments)
+    }, [apartments])
 
     function handleDelete(id) {
         setRows(rows.filter((r) => r.id !== id))
@@ -67,7 +30,6 @@ const ApartmentsTable = () => {
     }
 
     const columnsTitles = [
-        { field: 'id', headerName: 'ID', width: 80 },
         {
             field: 'apartmentName',
             headerName: 'Apartment Name',
