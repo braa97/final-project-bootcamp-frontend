@@ -12,6 +12,7 @@ import SignIn from "./components/SignIn/SignIn";
 import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home/CoordinatorHome";
 import NewResident from "./components/ApartmentInfo/NewResident/NewResident";
 import Sidebar from "./components/Sidebar/Sidebar";
+import SchedulerDemo from "./components/Instructor_Scheduler/Instructor_Scheduler";
 
 const App = () => {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const App = () => {
             element={<NewResident />}
           />
           <Route path="/server-error" element={<ServerError />} />
+          <Route path="/scheduler" element={<SchedulerDemo shifts={[]} />} />
           {/* <Route path="*" element={<NotFound />} /> */}
           {/* <Route
             path="/login"

@@ -19,6 +19,9 @@ import { Sidebar } from "./listItems";
 import Apartments from "./Coordinator_Apartments/Apartments";
 import { useNavigate, useParams } from "react-router-dom";
 import Instructors from "./Coordinator_Instructors/Inctructors";
+import SchedulerComponent from "../../Scheduler/Scheduler";
+import ShiftScheduler from "../../Scheduler/Scheduler";
+import CoordinatorApiMan from "../../../coordinatorApiManager/coordinatorApiMan";
 
 const drawerWidth = 240;
 
@@ -81,6 +84,16 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [apartments, setApartments] = React.useState([]);
+  React.useEffect(() => {
+    const apiManager = new CoordinatorApiMan();
+    const fetchApartments = async () => {
+      const response = await apiManager.getCoordinatorApartments(id);
+      const newApartments = await response.json();
+      setApartments(newApartments);
+    };
+    fetchApartments();
+  }, []);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -159,12 +172,17 @@ function DashboardContent() {
           {selectedItem == "Logout" ? logout() : null}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             {selectedItem == "Apartments" ? (
-              <Apartments coordinatorId={id} />
+              <Apartments apartments={apartments} />
             ) : null}
             {selectedItem == "Instructors" ? (
               <Instructors coordinatorId={id} />
             ) : null}
-            {selectedItem == "Dashboard" ? <Scheduler /> : null}
+            {selectedItem == "Dashboard" ? (
+              <ShiftScheduler
+                instructorsApartments={apartments}
+                coordinatorId={id}
+              />
+            ) : null}
             {/* <Grid container spacing={3}> */}
             {/*  <Grid container spacing={3}>
               {/* Chart */}

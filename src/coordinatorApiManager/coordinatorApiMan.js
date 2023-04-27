@@ -52,10 +52,18 @@ const CoordinatorApiMan = function () {
     );
     return newInstructors;
   };
+  const addShift = async function (newShift) {
+    const response = await postCallWithFetch(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/shifts/${newShift.selectedInstructor.id}`,
+      newShift
+    );
+    return response;
+  };
   return {
     getCoordinatorApartments,
     getInstructors,
     addNewInstructorToCoordinator,
+    addShift,
   };
 };
 export default CoordinatorApiMan;

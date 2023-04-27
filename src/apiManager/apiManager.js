@@ -134,7 +134,7 @@ const ApiManager = function () {
     );
     return response;
   };
-  
+
   const getApartmentsByInstructorId = async (instructorId) => {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/apartments/${instructorId}`
@@ -142,11 +142,25 @@ const ApiManager = function () {
     return response.data;
   };
 
-  const sendMessageToResidentRelativeContact = async(message) => {
-    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`, message)
-    return response
-  }
-
+  const sendMessageToResidentRelativeContact = async (message) => {
+    const response = await ajaxPostCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/resident/contact`,
+      message
+    );
+    return response;
+  };
+  const getInstructorShifts = async function (instructorId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/shifts/${instructorId}`
+    );
+    return response;
+  };
+  const getApartmentName = async function (apartmentId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/apartmentName/${apartmentId}`
+    );
+    return response;
+  };
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartmentByName: getApartmentByName,
@@ -160,6 +174,8 @@ const ApiManager = function () {
     signIn,
     getApartmentsByInstructorId,
     sendMessageToResidentRelativeContact,
+    getInstructorShifts,
+    getApartmentName,
   };
 };
 

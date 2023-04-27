@@ -44,10 +44,12 @@ const Sidebar = () => {
           </Link>
 
           <hr className="sidebar-divider" />
-          <li>
-            <InsertChartIcon className="icon" />
-            <span>Stats</span>
-          </li>
+          <Link to="/scheduler">
+            <li>
+              <InsertChartIcon className="icon" />
+              <span>Scheduler</span>
+            </li>
+          </Link>
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
