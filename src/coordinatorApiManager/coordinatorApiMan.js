@@ -21,6 +21,17 @@ const CoordinatorApiMan = function () {
     const data = await response.json(); // Parse response body as JSON
     return data;
   };
+
+  const deleteCallWithFetch = async (url) => {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+  
+  };
   const getCoordinatorApartments = async function (id) {
     const apartments = await getCallWithFetch(
       `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinators/apartments/${id}`
@@ -59,11 +70,20 @@ const CoordinatorApiMan = function () {
     );
     return response;
   };
+
+  const deleteInstructor = async (instructorId) => {
+    const response = await deleteCallWithFetch(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/${instructorId}`
+    );
+    return response;
+  };
+
   return {
     getCoordinatorApartments,
     getInstructors,
     addNewInstructorToCoordinator,
     addShift,
+    deleteInstructor
   };
 };
 export default CoordinatorApiMan;

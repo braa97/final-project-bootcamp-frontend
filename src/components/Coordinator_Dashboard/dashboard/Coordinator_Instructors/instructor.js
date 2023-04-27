@@ -9,14 +9,17 @@ import {
 } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 
-export default function instructor({ instructor }) {
+export default function instructor({ instructor, deleteEvent }) {
   return (
     <div>
-      <MyCard instructor={instructor} />
+      <MyCard instructor={instructor}  deleteEvent={deleteEvent}/>
     </div>
   );
 }
-const MyCard = ({ instructor }) => {
+const MyCard = ({ instructor, deleteEvent }) => {
+  const handleDelete = function(){
+    deleteEvent(instructor._id)
+  }
   return (
     <Card sx={{ maxWidth: 345, mb: 10 }}>
       <CardMedia
@@ -49,7 +52,7 @@ const MyCard = ({ instructor }) => {
             <Edit />
           </IconButton>
           <IconButton color="secondary" aria-label="delete">
-            <Delete />
+            <Delete onClick={handleDelete}/>
           </IconButton>
         </div>
       </CardContent>
