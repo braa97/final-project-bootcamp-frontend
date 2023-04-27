@@ -4,14 +4,21 @@ import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 // import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import { Link } from "react-router-dom";
 // import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 // import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 
 const Navbar = () => {
-
   return (
     <div className="navbar">
       <div className="wrapper">
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <span className="logo">
+            Care
+            <br />
+            Companion+
+          </span>
+        </Link>
         <div className="search">
           <input type="text" placeholder="Search..." />
           <SearchOutlinedIcon />
@@ -22,9 +29,7 @@ const Navbar = () => {
             RTL
           </div>
           <div className="item">
-            <DarkModeOutlinedIcon
-              className="icon"
-            />
+            <DarkModeOutlinedIcon className="icon" />
           </div>
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />

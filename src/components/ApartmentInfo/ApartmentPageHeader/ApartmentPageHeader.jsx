@@ -18,7 +18,6 @@ const ApartmenPagetHeader = ({ apartment }) => {
     //     fetchApartmentData()
     // }, [])
 
-  try {
     return (
       <div>
         <CDN href={FONT_AWESOME_CDN} />
@@ -47,10 +46,6 @@ const ApartmenPagetHeader = ({ apartment }) => {
         </div>
       </div>
     );
-  } 
-  catch (error) {
-    console.log(error);
-  }
 };
 
 export default ApartmenPagetHeader;
