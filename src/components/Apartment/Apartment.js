@@ -10,7 +10,7 @@ const Apartment = ({ apartment }) => {
       <div className="card__container">
         <Link to={`/apartments/apartment-info/${apartment.apartmentName}`}>
           <div className="card__image">
-            <img src={apartment.image} />
+            <img src={apartment.image} alt=''/>
           </div>
           <div className="card__title-container">
             <p className="title">{apartment.apartmentName}</p>
