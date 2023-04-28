@@ -2,17 +2,17 @@ import './Apartments.css'
 import React, { useEffect, useState } from 'react'
 import ApiManager from '../../apiManager/apiManager'
 import LoadingWheel from '../LoadingWheel/LoadingWheel'
-import ApartmentsTable from '../Home/ApartmentsTable/ApartmentsTable'
+import ApartmentsTable from '../ApartmentsTable/ApartmentsTable'
 // import { useLocation } from "react-router-dom";
 
 const Apartments = ({ coordinatorApartments }) => {
     // const location = useLocation();
     const [apartments, setApartments] = useState([])
     const [loading, setLoading] = useState(true)
-    const [instructorId, setInstructorId] = useState(
-        localStorage.getItem('instructorId')
-    )
-
+    // const [instructorId, setInstructorId] = useState(
+    //     localStorage.getItem('instructorId')
+    // )
+    const instructorId = localStorage.getItem('instructorId')
     useEffect(() => {
         const apiManager = new ApiManager()
 
@@ -20,9 +20,7 @@ const Apartments = ({ coordinatorApartments }) => {
             let apartments = await apiManager.getApartmentsByInstructorId(
                 instructorId
             )
-            // console.log(instructorId);
             setApartments(apartments)
-            // console.log(apartments);
             setLoading(false)
         }
         if (localStorage.getItem('instructorId')) {
