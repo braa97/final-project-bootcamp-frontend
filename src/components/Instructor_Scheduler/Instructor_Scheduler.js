@@ -5,6 +5,8 @@ import {
   EditingState,
   IntegratedEditing,
 } from "@devexpress/dx-react-scheduler";
+import Typography from "@material-ui/core/Typography";
+
 import {
   Scheduler,
   Toolbar,
@@ -18,39 +20,18 @@ import {
   DragDropProvider,
   DateNavigator,
 } from "@devexpress/dx-react-scheduler-material-ui";
-
+import { makeStyles } from "@material-ui/core/styles";
+import { orange, blue, pink } from "@material-ui/core/colors";
+import { Event as EventIcon, Cake as CakeIcon } from "@material-ui/icons";
 import ApiManager from "../../apiManager/apiManager";
 import Appointment from "./Appointment";
-export const TimeScale = () => {
-  return (
-    <Scheduler.Root>
-      <Scheduler.Container>
-        {[...Array(24)].map((_, i) => (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              top: `${i * 60}px`,
-              left: "5px",
-              width: "50px",
-              height: "60px",
-              border: "1px solid lightgray",
-              fontSize: "12px",
-              textAlign: "center",
-              paddingTop: "5px",
-            }}
-          >
-            {`${i < 10 ? "0" + i : i}:00`}
-          </div>
-        ))}
-      </Scheduler.Container>
-    </Scheduler.Root>
-  );
-};
 
 function SchedulerDemo() {
   // Component state
   function convertUtcToLocalDate(utcDateString) {
+    if (!utcDateString) {
+      return null;
+    }
     const utcDate = new Date(utcDateString);
     const localDate = new Date(
       utcDate.getTime() + utcDate.getTimezoneOffset() * 60 * 1000
@@ -58,6 +39,7 @@ function SchedulerDemo() {
     return localDate;
   }
   const [data, setData] = useState([]);
+  const [inspections, setInspections] = useState([]);
 
   useEffect(() => {
     const fetchShifts = async function () {
@@ -68,18 +50,44 @@ function SchedulerDemo() {
       const appointments = await Promise.all(
         response.data.map(async (appointment) => {
           const name = await apiManager.getApartmentName(appointment.apartment);
-          console.log(name);
           return {
             ...appointment,
-            startDate: convertUtcToLocalDate(appointment.startDate),
-            endDate: convertUtcToLocalDate(appointment.endDate),
+            startDate: convertUtcToLocalDate(appointment?.startDate),
+            endDate: convertUtcToLocalDate(appointment?.endDate),
             title: name.data.apartmentName,
           };
         })
       );
       setData(appointments);
     };
+    const fetchInspections = async function () {
+      const apiManager = new ApiManager();
+      const response = await apiManager.getInspections(
+        localStorage.getItem("instructorId")
+      );
+      console.log(response.data);
+      const newInspections = response.data.apartments
+        .flatMap((apartment) => {
+          const apartmentName = apartment.apartmentName;
+          return apartment.residents.map((resident) =>
+            resident.medicalAppointments.map((inspection) => ({
+              id: inspection._id,
+              startDate: convertUtcToLocalDate(inspection.date),
+              endDate: convertUtcToLocalDate(inspection.date),
+              title: `${resident.firstName} ${resident.lastName} - ${inspection.typeOfInspection}`,
+              residentName: `${resident.firstName} ${resident.lastName}`,
+              apartmentName: apartmentName, // add apartmentName to inspection
+              type: "inspection",
+            }))
+          );
+        })
+        .flat();
+
+      setInspections(newInspections);
+    };
+
     fetchShifts();
+    fetchInspections();
   }, []);
 
   // Event handlers
@@ -104,23 +112,79 @@ function SchedulerDemo() {
       return newData;
     });
   };
+  // const AppointmentIcon = ({ data, children }) => {
+  //   console.log(children);
+  //   if (data?.type === "inspection") {
+  //     return <EventIcon />;
+  //   } else if (data?.type === "birthday") {
+  //     return <CakeIcon />;
+  //   } else {
+  //     return <EventIcon />;
+  //   }
+  // };
+  const AppointmentIcon = ({ appointmentData }) => (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginRight: "5px",
+      }}
+    >
+      <EventIcon />
+      <Typography variant="body2">
+        {appointmentData?.startDate?.getHours()}
+      </Typography>
+    </div>
+  );
+
+  const CustomAppointment = ({ children, style, data, ...restProps }) => (
+    <AppointmentTooltip.Content
+      {...restProps}
+      style={{
+        ...style,
+        backgroundColor:
+          data?.type === "inspection"
+            ? "#FF9900"
+            : data?.type === "birthday"
+            ? "#F48FB1"
+            : "#B3E5FC",
+        color: "white",
+        borderRadius: "8px",
+        padding: "8px",
+        fontSize: "14px",
+        lineHeight: "1.5",
+        textAlign: "left",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <AppointmentIcon appointmentData={data} children={children} />
+      {children}
+    </AppointmentTooltip.Content>
+  );
 
   // Render the Scheduler component
+  console.log([...data, ...inspections]);
   return (
     <Paper>
-      <Scheduler data={data}>
+      <Scheduler data={[...data, ...inspections]}>
         <ViewState defaultCurrentDate={new Date().toDateString()} />
         <EditingState onCommitChanges={commitChanges} />
         <IntegratedEditing />
 
-        <MonthView>
-          <TimeScale /> // add TimeScale component to MonthView
-        </MonthView>
-        <WeekView></WeekView>
-        <DayView />
+        <MonthView></MonthView>
+        <WeekView startDayHour={8} endDayHour={24}></WeekView>
+        <DayView startDayHour={8} endDayHour={24} />
         <Toolbar />
         <ViewSwitcher />
-        <Appointments />
+
+        <Appointments
+        // appointmentComponent={CustomAppointment}
+        // appointmentContentTemplate={AppointmentIcon}
+        // other props
+        />
+        {/* <CustomAppointment data={[...data, ...inspections]} /> */}
         <AppointmentTooltip showCloseButton />
         <AppointmentForm />
         <DragDropProvider />
