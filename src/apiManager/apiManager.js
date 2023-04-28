@@ -166,11 +166,19 @@ const ApiManager = function () {
     console.log(response);
     return response;
   };
+
+  const getResidentsByInstructorId = async function (instructorId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/${instructorId}`
+    );
+    return response.data;
+  };
+
   return {
-    getResidentsByApartmentName: getResidentsByApartmentName,
-    getApartmentByName: getApartmentByName,
-    getResidentById: getResidentById,
-    getResidentDetailsByQueryString: getResidentDetailsByQueryString,
+    getResidentsByApartmentName,
+    getApartmentByName,
+    getResidentById,
+    getResidentDetailsByQueryString,
     getResidentMedicalAppointments,
     addMedicalAppointment,
     editMedicalAppointment,
@@ -181,47 +189,9 @@ const ApiManager = function () {
     sendMessageToResidentRelativeContact,
     getInstructorShifts,
     getApartmentName,
+    getResidentsByInstructorId,
     getInspections,
   };
-};
-
-const getInstructorShifts = async function (instructorId) {
-  const response = await ajaxCall(
-    `${process.env.REACT_APP_SERVER_ROUTE}/instructor/shifts/${instructorId}`
-  );
-  return response;
-};
-
-const getApartmentName = async function (apartmentId) {
-  const response = await ajaxCall(
-    `${process.env.REACT_APP_SERVER_ROUTE}/apartmentName/${apartmentId}`
-  );
-  return response;
-};
-
-const getResidentsByInstructorId = async function (instructorId) {
-  const response = await ajaxCall(
-    `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/${instructorId}`
-  );
-  return response.data;
-};
-
-return {
-  getResidentsByApartmentName,
-  getApartmentByName,
-  getResidentById,
-  getResidentDetailsByQueryString,
-  getResidentMedicalAppointments,
-  addMedicalAppointment,
-  editMedicalAppointment,
-  updateAttendStatus,
-  deleteAppointment,
-  signIn,
-  getApartmentsByInstructorId,
-  sendMessageToResidentRelativeContact,
-  getInstructorShifts,
-  getApartmentName,
-  getResidentsByInstructorId,
 };
 
 export default ApiManager;
