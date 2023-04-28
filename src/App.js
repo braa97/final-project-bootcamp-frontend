@@ -25,7 +25,7 @@ const App = () => {
     if (!isLoggedin) {
       navigate("/login");
     }
-  }, [isLoggedin, navigate]);
+  }, [isLoggedin]);
 
   return (
     <div className="main-page-container">
