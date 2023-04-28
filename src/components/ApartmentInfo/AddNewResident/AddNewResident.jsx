@@ -1,5 +1,5 @@
 import React from "react";
-import "./NewResident.css";
+import "./AddNewResident.css";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 
