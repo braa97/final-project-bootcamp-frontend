@@ -1,4 +1,5 @@
 import axios from "axios";
+//import { getCoordinatorApartments } from "../../../final-project-bootcamp-backend/utilities/controller/coordinator-handler";
 
 const ApiManager = function () {
   //Create try and catch
@@ -147,6 +148,13 @@ const ApiManager = function () {
     return response
   }
 
+  const getCoordinatorDataByCoordinatorID = async(coordinatorID) =>{
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinators/instructors/${coordinatorID}`
+    );
+    return response.data;
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartmentByName: getApartmentByName,
@@ -160,6 +168,7 @@ const ApiManager = function () {
     signIn,
     getApartmentsByInstructorId,
     sendMessageToResidentRelativeContact,
+    getCoordinatorDataByCoordinatorID,
   };
 };
 

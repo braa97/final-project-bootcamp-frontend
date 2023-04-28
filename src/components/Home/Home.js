@@ -1,28 +1,18 @@
-import Navbar from "../Nabar-Sidebar/Navbar/Navbar";
-import Sidebar from "../Nabar-Sidebar/Sidebar/Sidebar";
+import "./Home.css";
+import "./Widgets/Widgets";
+import "./ApartmentsTable/ApartmentsTable";
+import Widgets from "./Widgets/Widgets";
+import ApartmentsTable from "./ApartmentsTable/ApartmentsTable";
 
-export default function Home({
-  handleSidebarCollapse,
-  handleDarkMode,
-  isCollapsed,
-  isLoggedin,
-}) {
+export default function Home() {
   return (
     <>
-      {isLoggedin ? (
-        <div>
-          {" "}
-          <div className="navbar-container">
-            <Navbar
-              handleSidebarCollapse={handleSidebarCollapse}
-              handleDarkMode={handleDarkMode}
-            />
-          </div>
-          <div className="sidebar-container">
-            <Sidebar isCollapsed={isCollapsed} />
-          </div>
+      <div className="home-page">
+        <div className="home-container">
+          <Widgets />
+          <ApartmentsTable />
         </div>
-      ) : null}
+      </div>
     </>
   );
 }

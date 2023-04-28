@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import Apartment from "../Apartment/Apartment";
 import ApiManager from "../../apiManager/apiManager";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 
 const Apartments = ({ coordinatorApartments }) => {
-  const location = useLocation();
+  // const location = useLocation();
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [instructorId, setInstructorId] = useState(
@@ -31,13 +31,13 @@ const Apartments = ({ coordinatorApartments }) => {
       setLoading(false);
       setApartments(coordinatorApartments);
     }
-  }, [coordinatorApartments]);
+  }, [coordinatorApartments, instructorId]);
 
   try {
     return (
       <>
         <div className="apartments-header-label">
-          <label>{apartments.length != 0 ? "Apartments" : null}</label>
+          <label>{apartments.length !== 0 ? "Apartments" : null}</label>
         </div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <div className="apartments-container">

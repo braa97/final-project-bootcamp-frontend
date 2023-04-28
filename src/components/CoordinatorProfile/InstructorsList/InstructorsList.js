@@ -5,17 +5,12 @@ import ApiManager from "../../../apiManager/apiManager";
 import Constants from "../../../utilities/constantValues/constants";
 import TopRightSnackbar from '../../MUI/TopRightSnackbar';
 
-const InstructorsList = ({ contacts, resident }) => {
+const InstructorsList = ({ instructors }) => {
   const apiManager = new ApiManager();
   const [open, setOpen] = React.useState(true);
 
-  const sendMessageToRelative = async(number, name) => {
-    const phoneNumber =
-      `${Constants.ISRAEL_DIALING_CODE}` + number.replace("-", "").substring(1);
-    const message = {
-      body: `Hello ${name}.\nWe are trying to contact you in regard to your relative ${resident.firstName} ${resident.lastName}\nPlease contact us when possible`,
-      contactNumber: phoneNumber,
-    };
+  /*const sendMessageToRelative = async(number, name) => {
+   
     let response = await apiManager.sendMessageToResidentRelativeContact(message);
     let type = 'error'
     if (response.data.status === 200) {
@@ -25,34 +20,34 @@ const InstructorsList = ({ contacts, resident }) => {
     return(
         <TopRightSnackbar snackbarContent={response.data.message} open={open} setOpen={setOpen} type={type} />
     )
-  };
+  };*/
 
   return (
     <>
-      <div className="contacts">
+      <div className="instructors">
         <div className="card">
           <div className="card-header">
-            <h3>Relative Contacts</h3>
+            <h3>Your Instructors</h3>
           </div>
           <div className="card-body">
-            {contacts.map((c, i) => (
-              <div className="contact-container" key={i}>
-                <div className="contact-info">
+            {instructors.map((instructor, i) => (
+              <div className="instructor-container" key={i}>
+                <div className="instructor-info">
                   <img
-                    className="contact-img"
-                    src="https://static.thenounproject.com/png/1095867-200.png"
+                    className="instructor-img"
+                    src={instructor.image}
                   />
                   <div>
-                    <h4>{c.name}</h4>
-                    <small>{c.contactNumber}</small>
+                    <h4>{instructor.name}</h4>
+                    {/*<small>{instructor.contactNumber}</small>*/}
                   </div>
                 </div>
-                <a href={`tel: ${c.contactNumber}`}>
+                
                   <div className="contact-icon">
                     <span className="las la-phone"></span>
                   </div>
-                </a>
-                <MessageIcon className="message-btn" onClick={() => sendMessageToRelative(c.contactNumber, c.name)}/>
+               
+                <MessageIcon className="message-btn" />
               </div>
             ))}
           </div>
