@@ -147,6 +147,11 @@ const ApiManager = function () {
     return response
   }
 
+  const addNewReport = async(reportData) => {
+    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/instructor/report`, reportData)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartmentByName: getApartmentByName,
@@ -160,6 +165,7 @@ const ApiManager = function () {
     signIn,
     getApartmentsByInstructorId,
     sendMessageToResidentRelativeContact,
+    addNewReport,
   };
 };
 

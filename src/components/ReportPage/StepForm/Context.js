@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [residentData, setResidentData] = useState({});
   const [emptyFields, setEmptyFields] = useState({});
+  const [apartmentId, setApartmentId] = useState({})
   const [touchedFields, setTouchedFields] = useState({});
   const [personalPlans, setPersonalPlans] = useState({});
   const [generalActivities, setGeneralActivities] = useState({});
@@ -49,44 +50,44 @@ export const AppProvider = ({ children }) => {
   ]);
   const [generalActivitiesForumInput, setGeneralActivitiesForumInput] = useState([
     {
-      id: 1,
+      id: "laundry",
       name: "laundry",
       label: "Laundry",
       type: "checkbox",
     },
     {
-      id: 2,
+      id: "cleaningToiletsAndShowers",
       name: "cleaningToiletsAndShowers",
       label: "Cleaning toilets and showers",
       type: "checkbox",
     },
     {
-      id: 3,
+      id: "emptyBin",
       name: "emptyBin",
       label: "Empty bin",
       type: "checkbox",
     },
     {
-      id: 4,
+      id: "arrangingClosetsAndRooms",
       name: "arrangingClosetsAndRooms",
       label: "Arranging closets and rooms",
       type: "checkbox",
     },
     {
-      id: 5,
+      id: "drugsGiving",
       name: "drugsGiving",
       label: "Drugs giving",
       type: "checkbox",
     },
     {
-      id: 6,
+      id: "teethBrushing",
       name: "teethBrushing",
       label: "Teeth brushing",
       type: "checkbox",
     },
     {
-      id: 7,
-      name: "glasseCleaning",
+      id: "glassesCleaning",
+      name: "glassesCleaning",
       label: "Glasses cleaning",
       type: "checkbox",
     },
@@ -140,6 +141,8 @@ export const AppProvider = ({ children }) => {
         generalActivitiesForumInput,
         generalActivities,
         setGeneralActivities,
+        apartmentId,
+        setApartmentId,
       }}
     >
       {children}

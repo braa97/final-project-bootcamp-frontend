@@ -11,9 +11,8 @@ import { Avatar } from "@mui/material";
 export default function FirstStep({ apartmentName }) {
   const apiManager = new ApiManager();
   const [residents, setResidents] = useState([]);
-  const [filledFields, setFilledFields] = useState(true);
-  const { residentData, setResidentData } = useContext(AppContext);
-  const { handleNext, variant, margin } = useContext(AppContext);
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
+  const {residentData, setResidentData, setApartmentId, handleNext, variant, margin } = useContext(AppContext);
   const [emptyFields, setEmptyFields] = useState(
     residents.reduce(
       (acc, resident) => ({ ...acc, [resident.firstName]: false }),
@@ -32,7 +31,9 @@ export default function FirstStep({ apartmentName }) {
       const response = await apiManager.getResidentsByApartmentName(
         apartmentName
       );
+      const apartment = await apiManager.getApartmentByName(apartmentName)
       setResidents(response);
+      setApartmentId(apartment._id)
     };
     fetchResidentsFromDB();
   }, []);
@@ -42,14 +43,16 @@ export default function FirstStep({ apartmentName }) {
     setTouchedFields((prevState) => ({ ...prevState, [name]: true }));
   }, []);
 
-  const validateEveryField = useCallback(() => {
-    const flag = !Object.values(residentData).every((val) => val);
-    setFilledFields(flag);
-  });
+  const checkAllFieldsFilled = useCallback(() => {
+    const allFieldsFilled = residents.every(
+      (resident) => residentData[`${resident.firstName}_${resident.lastName}`]
+    );
+    setAllFieldsFilled(allFieldsFilled);
+  }, [residents, residentData]);
 
   useEffect(() => {
-    validateEveryField();
-  }, [validateEveryField]);
+    checkAllFieldsFilled();
+  }, [checkAllFieldsFilled, residentData]);
 
   const handleValidate = useCallback(() => {
     const emptyFieldsObj = {};
@@ -118,8 +121,8 @@ export default function FirstStep({ apartmentName }) {
         <Button
           variant="contained"
           sx={{ mt: 3, ml: 1 }}
-          // disabled={filledFields}
-          disabled={false}
+          disabled={!allFieldsFilled}
+          // disabled={false}
           color="primary"
           onClick={handleNext}
         >

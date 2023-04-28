@@ -1,4 +1,4 @@
-import './report.css'
+import "./report.css";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -25,24 +25,23 @@ export default function ThirdStep() {
       [name]: checked,
     }));
   };
-
   return (
     <>
       <Grid className="report-field-grid-container" container spacing={2}>
         {generalActivitiesForumInput.map((input) => (
-                  <Grid item xs={12} sm={6}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={generalActivities[input.name]}
-                        onChange={handleChange}
-                        name={input.name}
-                        color='primary'
-                      />
-                    }
-                    label={input.label}
-                  />
-                </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={generalActivities[input.name]}
+                  onChange={handleChange}
+                  name={input.name}
+                  color="primary"
+                />
+              }
+              label={input.label}
+            />
+          </Grid>
         ))}
       </Grid>
 
@@ -50,12 +49,7 @@ export default function ThirdStep() {
         <Button onClick={handleBack} sx={{ mr: 1 }}>
           Back
         </Button>
-        <Button
-          variant="contained"
-          disabled={true}
-          color="primary"
-          onClick={handleNext}
-        >
+        <Button variant="contained" color="primary" onClick={handleNext}>
           Next
         </Button>
       </Box>

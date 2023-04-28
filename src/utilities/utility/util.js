@@ -16,11 +16,16 @@ const Utility = function() {
         return moment(date, 'DD/MM/YYYY HH:mm').toISOString(true);
     }
 
+    const convertToISO = date => {
+        return moment(date).toISOString(true);
+    }
+
     return {
         dateFormatter,
         timeFormatter,
         timeDateFormatter,
-        convertToIsoDateFormat
+        convertToIsoDateFormat,
+        convertToISO
     }
 }
 

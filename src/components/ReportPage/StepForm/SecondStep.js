@@ -19,7 +19,7 @@ export default function SecondStep() {
     variant,
     margin,
   } = useContext(AppContext);
-  const [filledFields, setFilledFields] = useState(true);
+  const [allFieldsFilled, setAllFieldsFilled] = useState(false);
   const [touchedFields, setTouchedFields] = useState(
     personalPlansForumInput.reduce(
       (acc, formValue) => ({ ...acc, [formValue.name]: false }),
@@ -33,26 +33,21 @@ export default function SecondStep() {
     )
   );
 
-  const isStepTwoFormValid = useCallback(() => {
-    const values = Object.values(personalPlans);
-    return values.every((value) => value.trim() !== "");
+  const checkAllFieldsFilled = useCallback(() => {
+    const allFieldsFilled = personalPlansForumInput.every(
+      (personalPlan) => personalPlans[personalPlan.name]
+    );
+    setAllFieldsFilled(allFieldsFilled);
   }, [personalPlans]);
 
-  const isFormValid = isStepTwoFormValid();
+  useEffect(() => {
+    checkAllFieldsFilled();
+  }, [checkAllFieldsFilled, personalPlans]);
 
   const handleBlur = useCallback((event) => {
     const { name } = event.target;
     setTouchedFields((prevState) => ({ ...prevState, [name]: true }));
   }, []);
-
-  const validateEveryField = useCallback(() => {
-    const flag = !Object.values(personalPlans).every((val) => val);
-    setFilledFields(flag);
-  });
-
-  useEffect(() => {
-    validateEveryField();
-  }, [validateEveryField]);
 
   const handleValidate = useCallback(() => {
     const emptyFieldsObj = {};
@@ -76,6 +71,7 @@ export default function SecondStep() {
   return (
     <>
       <Grid className="report-field-grid-container" container spacing={2}>
+        <label className='step-two-note'>Note: If no plan was done, fill the field with none</label>
         {personalPlansForumInput.map((input) => (
           <Grid item xs={12} sm={6} key={input.id}>
             <div className="report-field-label">
@@ -120,8 +116,7 @@ export default function SecondStep() {
         </Button>
         <Button
           variant="contained"
-          // disabled={isFormValid}
-          disabled={false}
+          disabled={!allFieldsFilled}
           color="primary"
           onClick={handleNext}
         >
