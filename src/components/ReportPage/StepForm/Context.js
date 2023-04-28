@@ -1,18 +1,23 @@
-import { createContext, useState, useCallback } from 'react';
+import { createContext, useState, useCallback } from "react";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
+import Diversity3Icon from "@mui/icons-material/Diversity3";
+import SummarizeIcon from "@mui/icons-material/Summarize";
+import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  
   const [activeStep, setActiveStep] = useState(0);
   const [residentData, setResidentData] = useState({});
   const [emptyFields, setEmptyFields] = useState({});
   const [touchedFields, setTouchedFields] = useState({});
-  const [stepTwoForumValues, setStepTwoForumValues] = useState({})
-  const [stepTwoForumInput, setStepTwoForumInput] = useState([
+  const [personalPlans, setPersonalPlans] = useState({});
+  const [generalActivities, setGeneralActivities] = useState({});
+  const [personalPlansForumInput, setPersonalPlansForumInput] = useState([
     {
       id: 1,
       name: "classes",
+      icon: <SelfImprovementIcon />,
       label: "Classes",
       type: "text",
       placeholder: "Classes the residents attended",
@@ -20,6 +25,7 @@ export const AppProvider = ({ children }) => {
     {
       id: 2,
       name: "meals",
+      icon: <FastfoodIcon />,
       label: "Meals",
       type: "text",
       placeholder: "What meals did the residents have",
@@ -27,16 +33,62 @@ export const AppProvider = ({ children }) => {
     {
       id: 3,
       name: "events",
+      icon: <Diversity3Icon />,
       label: "Group Events",
       type: "text",
-      placeholder: "What additional group events were done if any"
+      placeholder: "What additional group events were done if any",
     },
     {
       id: 4,
       name: "summary",
+      icon: <SummarizeIcon />,
       label: "General Summary",
       type: "text",
-      placeholder: "Summarize your work during your shift"
+      placeholder: "Summarize your work during your shift",
+    },
+  ]);
+  const [generalActivitiesForumInput, setGeneralActivitiesForumInput] = useState([
+    {
+      id: 1,
+      name: "laundry",
+      label: "Laundry",
+      type: "checkbox",
+    },
+    {
+      id: 2,
+      name: "cleaningToiletsAndShowers",
+      label: "Cleaning toilets and showers",
+      type: "checkbox",
+    },
+    {
+      id: 3,
+      name: "emptyBin",
+      label: "Empty bin",
+      type: "checkbox",
+    },
+    {
+      id: 4,
+      name: "arrangingClosetsAndRooms",
+      label: "Arranging closets and rooms",
+      type: "checkbox",
+    },
+    {
+      id: 5,
+      name: "drugsGiving",
+      label: "Drugs giving",
+      type: "checkbox",
+    },
+    {
+      id: 6,
+      name: "teethBrushing",
+      label: "Teeth brushing",
+      type: "checkbox",
+    },
+    {
+      id: 7,
+      name: "glasseCleaning",
+      label: "Glasses cleaning",
+      type: "checkbox",
     },
   ]);
 
@@ -61,10 +113,9 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleBlur = (event) => {
-    const { name } = event.target
-    updateTouchedFields((prevState) => ({ ...prevState, [name]: true }))
-  }
-
+    const { name } = event.target;
+    updateTouchedFields((prevState) => ({ ...prevState, [name]: true }));
+  };
 
   return (
     <AppContext.Provider
@@ -73,8 +124,8 @@ export const AppProvider = ({ children }) => {
         setActiveStep,
         handleNext,
         handleBack,
-        variant: 'outlined',
-        margin: 'normal',
+        variant: "outlined",
+        margin: "normal",
         residentData,
         emptyFields,
         touchedFields,
@@ -83,9 +134,12 @@ export const AppProvider = ({ children }) => {
         updateTouchedFields,
         setResidentData,
         handleBlur,
-        stepTwoForumValues,
-        setStepTwoForumValues,
-        stepTwoForumInput,
+        personalPlans,
+        setPersonalPlans,
+        personalPlansForumInput,
+        generalActivitiesForumInput,
+        generalActivities,
+        setGeneralActivities,
       }}
     >
       {children}

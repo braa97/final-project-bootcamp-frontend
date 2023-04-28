@@ -1,3 +1,4 @@
+import "./report.css";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -5,12 +6,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { AppContext } from "./Context";
 import ApiManager from "../../../apiManager/apiManager";
+import { Avatar } from "@mui/material";
 
 export default function FirstStep({ apartmentName }) {
   const apiManager = new ApiManager();
   const [residents, setResidents] = useState([]);
-  const [filledFields, setFilledFields] = useState(true)
-  const {residentData, setResidentData} = useContext(AppContext);
+  const [filledFields, setFilledFields] = useState(true);
+  const { residentData, setResidentData } = useContext(AppContext);
   const { handleNext, variant, margin } = useContext(AppContext);
   const [emptyFields, setEmptyFields] = useState(
     residents.reduce(
@@ -24,7 +26,6 @@ export default function FirstStep({ apartmentName }) {
       {}
     )
   );
-  
 
   useEffect(() => {
     const fetchResidentsFromDB = async () => {
@@ -32,11 +33,6 @@ export default function FirstStep({ apartmentName }) {
         apartmentName
       );
       setResidents(response);
-      const initialData = {};
-      response.forEach((resident) => {
-        initialData[resident.firstName] = "";
-      });
-      setResidentData(initialData);
     };
     fetchResidentsFromDB();
   }, []);
@@ -47,9 +43,9 @@ export default function FirstStep({ apartmentName }) {
   }, []);
 
   const validateEveryField = useCallback(() => {
-    const flag = !Object.values(residentData).every((val) => val)
-    setFilledFields(flag)
-  })
+    const flag = !Object.values(residentData).every((val) => val);
+    setFilledFields(flag);
+  });
 
   useEffect(() => {
     validateEveryField();
@@ -58,10 +54,13 @@ export default function FirstStep({ apartmentName }) {
   const handleValidate = useCallback(() => {
     const emptyFieldsObj = {};
     for (const resident of residents) {
-      if (!residentData[resident.firstName] && touchedFields[resident.firstName]) {
-        emptyFieldsObj[resident.firstName] = true;
+      if (
+        !residentData[`${resident.firstName}_${resident.lastName}`] &&
+        touchedFields[`${resident.firstName}_${resident.lastName}`]
+      ) {
+        emptyFieldsObj[`${resident.firstName}_${resident.lastName}`] = true;
       } else {
-        emptyFieldsObj[resident.firstName] = false;
+        emptyFieldsObj[`${resident.firstName}_${resident.lastName}`] = false;
       }
     }
     setEmptyFields(emptyFieldsObj);
@@ -73,27 +72,40 @@ export default function FirstStep({ apartmentName }) {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid className="report-field-grid-container" container spacing={2}>
         {residents.map((resident) => (
-          <Grid item xs={12} sm={6}>
+          <Grid className="report-field-grid-container" item xs={12} sm={6}>
+            <div className="report-field-label">
+              <Avatar
+                alt={`${resident.firstName} ${resident.lastName}`}
+                src={resident.image}
+              />
+              <label>
+                {resident.firstName} {resident.lastName}
+              </label>
+            </div>
             <TextField
               variant={variant}
               margin={margin}
               fullWidth
-              label={`${resident.firstName} ${resident.lastName}`}
-              name={resident.firstName}
+              name={`${resident.firstName}_${resident.lastName}`}
               placeholder="Resident Status"
-              value={residentData[resident.firstName] || ""}
-              onChange={(event) => {setResidentData((prevState) => ({ ...prevState, [event.target.name]: event.target.value }))}}
+              value={residentData[`${resident.firstName}_${resident.lastName}`] || ""}
+              onChange={(event) => {
+                setResidentData((prevState) => ({
+                  ...prevState,
+                  [event.target.name]: event.target.value,
+                }));
+              }}
               onBlur={handleBlur}
               multiline
               error={
-                emptyFields[resident.firstName] &&
-                !residentData[resident.firstName]
+                emptyFields[`${resident.firstName}_${resident.lastName}`] &&
+                !residentData[`${resident.firstName}_${resident.lastName}`]
               }
               helperText={
-                emptyFields[resident.firstName] &&
-                !residentData[resident.firstName]
+                emptyFields[`${resident.firstName}_${resident.lastName}`] &&
+                !residentData[`${resident.firstName}_${resident.lastName}`]
                   ? "This field is required."
                   : ""
               }
@@ -106,7 +118,8 @@ export default function FirstStep({ apartmentName }) {
         <Button
           variant="contained"
           sx={{ mt: 3, ml: 1 }}
-          disabled={filledFields}
+          // disabled={filledFields}
+          disabled={false}
           color="primary"
           onClick={handleNext}
         >
@@ -116,4 +129,3 @@ export default function FirstStep({ apartmentName }) {
     </>
   );
 }
-

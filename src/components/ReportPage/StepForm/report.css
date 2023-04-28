@@ -1,0 +1,17 @@
+.report-field-label {
+    display: flex;
+}
+
+.report-field-label label {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.report-field-grid-container {
+    margin-top: 25px !important;
+}
+
+.report-field-grid-inner-container {
+    margin-top: 15px !important;
+}

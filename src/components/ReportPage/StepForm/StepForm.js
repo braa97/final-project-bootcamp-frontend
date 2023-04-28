@@ -6,19 +6,22 @@ import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 import FirstStep from './FirstStep';
 import SecondStep from './SecondStep';
+import ThirdStep from './ThirdStep';
 import Confirm from './Confirm';
 import { AppContext } from './Context';
 
-const labels = ['Residents Status', 'Second Step', 'Confirmation'];
+const labels = ['Residents Status', 'Personal Plans', 'General Activities', 'Confirmation'];
 
 const handleSteps = (step, apartmentName) => {
   switch (step) {
     case 0:
       return <FirstStep apartmentName={apartmentName}/>;
     case 1:
-      return <SecondStep apartmentName={apartmentName}/>;
+      return <SecondStep/>;
     case 2:
-      return <Confirm apartmentName={apartmentName}/>;
+        return <ThirdStep />;
+    case 3:
+      return <Confirm/>;
     default:
       throw new Error('Unknown step');
   }
