@@ -161,6 +161,13 @@ const ApiManager = function () {
     );
     return response;
   };
+  const getInspections = async function (instructorId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/medicalAppointments/${instructorId}`
+    );
+    console.log(response);
+    return response;
+  };
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartmentByName: getApartmentByName,
@@ -176,6 +183,7 @@ const ApiManager = function () {
     sendMessageToResidentRelativeContact,
     getInstructorShifts,
     getApartmentName,
+    getInspections,
   };
 };
 
