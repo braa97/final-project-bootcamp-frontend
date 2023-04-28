@@ -1,41 +1,38 @@
 import './ResidentsTable.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
-import ApiManager from '../../../apiManager/apiManager'
+// import ApiManager from '../../../apiManager/apiManager'
 import { useEffect, useState } from 'react'
 
 const ResidentsTable = ({ residents }) => {
     const [rows, setRows] = useState([])
     // const [residents, setResidents] = useState([])
-    const [loading, setLoading] = useState(true)
-    const instructorId = localStorage.getItem('instructorId')
+    // const [loading, setLoading] = useState(true)
+    // const instructorId = localStorage.getItem('instructorId')
 
     useEffect(() => {
-        const apiManager = new ApiManager()
-        const fetchResidents = async () => {
-            let residents = await apiManager.getResidentsByInstructorId(
-                instructorId
-            )
-            // setResidents(residents)
-        }
-        const filterResidents = () => {
-            const filteredResidents = residents.map((r) => {
-                return {
-                    _id: r._id,
-                    id: r.residentId,
-                    residentName: r.firstName + ' ' + r.lastName,
-                    birthday: r.dateOfBirth,
-                    budget: `₪ ${
-                        r.budget > 999
-                            ? (r.budget / 1000).toFixed(1) + 'k'
-                            : r.budget
-                    }`,
-                    img: r.image,
-                }
-            })
-            setRows(filteredResidents)
-        }
-        filterResidents()
+        // const apiManager = new ApiManager()
+        // const fetchResidents = async () => {
+        // let residents = await apiManager.getResidentsByInstructorId(
+        // instructorId
+        // )
+        // setResidents(residents)
+        // }
+        const filteredResidents = residents.map((r) => {
+            return {
+                _id: r._id,
+                id: r.residentId,
+                residentName: r.firstName + ' ' + r.lastName,
+                birthday: r.dateOfBirth,
+                budget: `₪ ${
+                    r.budget > 999
+                        ? (r.budget / 1000).toFixed(1) + 'k'
+                        : r.budget
+                }`,
+                img: r.image,
+            }
+        })
+        setRows(filteredResidents)
     }, [residents])
 
     function handleDelete(id) {
@@ -44,7 +41,7 @@ const ResidentsTable = ({ residents }) => {
     }
 
     const columnsTitles = [
-        { field: 'id', headerName: 'ID', width: 80 },
+        // { field: 'id', headerName: 'ID', width: 80 },
         {
             field: 'resident',
             headerName: 'Resident',
@@ -100,7 +97,7 @@ const ResidentsTable = ({ residents }) => {
 
     return (
         <>
-            <div className='datatable'>
+            <div className='residents-datatable'>
                 <div className='data-grid-title'>
                     Residents
                     <Link

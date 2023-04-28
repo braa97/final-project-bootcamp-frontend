@@ -13,7 +13,7 @@ import CoordinatorHome from "./components/Coordinator_Dashboard/Coordinator_Home
 import NewResident from "./components/ApartmentInfo/AddNewResident/AddNewResident";
 import Sidebar from "./components/Sidebar/Sidebar";
 import SchedulerDemo from "./components/Instructor_Scheduler/Instructor_Scheduler";
-// import ResidentsTable from "./components/ApartmentInfo/ResidentsTable/ResidentsTable";
+import Residents from "./components/ResidentsPage/Residents";
 
 const App = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/apartments" element={<Apartments />} />
-          {/* <Route path="/residents" element={<Residents />} /> */}
+          <Route path="/residents" element={<Residents />} />
           <Route
             path="/apartments/apartment-info/:apartmentName"
             element={<ApartmentPage />}

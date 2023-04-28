@@ -22,6 +22,7 @@
     align-items: center;
     width: 60%;
     z-index: 1000;
+    font-size: 20px;
 }
 
 .apartment-details-component .apartment-details-widgets img {
@@ -73,14 +74,8 @@
 }
 
 @media screen and (max-width: 1190px) {
-    /* .apartment-details-component .apartment-title {
-        font-size: 17px;
-        justify-content: center;
-        width: 350px;
-    } */
     .apartment-details-component .apartment-details-widgets img {
         width: 800px;
-        /* height: 250px; */
     }
     .apartment-details-component .apartment-info {
         margin-top: 10px;

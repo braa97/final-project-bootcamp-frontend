@@ -168,7 +168,7 @@ const ApiManager = function () {
         const response = await ajaxCall(
             `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/${instructorId}`
         )
-        return response
+        return response.data
     }
 
     return {
