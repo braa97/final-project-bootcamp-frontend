@@ -60,7 +60,7 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
     if (isLoggedin) {
       navigate("/");
     }
-  });
+  }, []);
 
   return (
     <div className="signin-container">
