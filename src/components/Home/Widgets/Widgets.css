@@ -6,6 +6,29 @@
     padding: 25px;
 }
 
+.home-widgets-container .box {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; /* optional: add transition effect */
+}
+
+.home-widgets-container .box {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.home-widgets-container .box:hover {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.6em);
+}
+
+.home-widgets-container .box img {
+    pointer-events: none;
+}
+
+.home-widgets-container .box:hover img {
+    pointer-events: auto;
+}
+
 .home-page .box {
     flex-basis: calc(33.33% - 20px);
     padding: 20px;

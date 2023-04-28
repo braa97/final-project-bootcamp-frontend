@@ -7,7 +7,7 @@ const Widgets = () => {
         <div className='home-widgets-container'>
             <div className='box box1'>
                 <div>
-                    <h3>7K</h3>
+                    <h3>4k ₪</h3>
                     <div className='explanation'>Total Budget</div>
                 </div>
                 <div className='icon-placeholder'>
@@ -87,8 +87,8 @@ const Widgets = () => {
             </div>
             <div className='box box5'>
                 <div>
-                    <h3>Upcoming Meetings</h3>
-                    <div className='explanation'>21 Meetings</div>
+                    <h3>21 Meetings</h3>
+                    <div className='explanation'>This Month's Meetings</div>
                 </div>
                 <div className='icon-placeholder'>
                     <img src={service} alt='service' />
@@ -96,11 +96,11 @@ const Widgets = () => {
             </div>
             <div className='box box6'>
                 <div>
-                    <h3>Custom Topic</h3>
-                    <div className='explanation'>custom topic</div>
+                    <h3>3 Birthdays</h3>
+                    <div className='explanation'>This Month's Birthdays</div>
                 </div>
                 <div className='icon-placeholder'>
-                    <img src={service} alt='service' />
+                    <img src={users} alt='service' />
                 </div>
             </div>
         </div>
