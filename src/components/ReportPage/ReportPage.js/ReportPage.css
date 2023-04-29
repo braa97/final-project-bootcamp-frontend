@@ -12,3 +12,9 @@
 .report-container h1 {
     margin: 0 35px 15px 0;
 }
+
+.report-file-opener {
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(55, 59, 180) !important;
+}
