@@ -3,9 +3,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import ApiManager from "../../../apiManager/apiManager";
 import { useEffect, useState } from "react";
+import Utility from "../../../utilities/utility/util";
 
 const ResidentsTable = ({ residents }) => {
   const [rows, setRows] = useState([]);
+  const utility = new Utility()
 
   useEffect(() => {
     const filterResidents = () => {
@@ -14,7 +16,7 @@ const ResidentsTable = ({ residents }) => {
           _id: r._id,
           id: r.residentId,
           residentName: r.firstName + " " + r.lastName,
-          birthday: r.dateOfBirth,
+          birthday: utility.dateFormatter(r.dateOfBirth),
           budget: `₪ ${
             r.budget > 999 ? (r.budget / 1000).toFixed(1) + "k" : r.budget
           }`,

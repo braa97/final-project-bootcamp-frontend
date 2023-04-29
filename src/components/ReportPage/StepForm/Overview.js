@@ -8,15 +8,16 @@ import { Checkbox, FormControlLabel, Grid } from "@mui/material";
 import { useReactToPrint } from "react-to-print";
 import Snackbar_Top_Right from "../../Helper-Components/Snackbar/Snackbar_Top_Right";
 import { useNavigate } from "react-router-dom";
+import ReportDisplayPage from "../ReportDisplayPage/ReportDisplayPage";
 
 export default function Confirm() {
   const apiManager = new ApiManager();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const utility = new Utility();
   const componentRef = useRef();
   const [fileName, setFileName] = useState(null);
   const [instructorId, setInstructorId] = useState(null);
-  const [snackbarProps, setSnackbarProps] = useState("")
+  const [snackbarProps, setSnackbarProps] = useState("");
   const {
     residentData,
     personalPlans,
@@ -47,13 +48,12 @@ export default function Confirm() {
     const reportData = { instructorId, report };
     const response = await apiManager.addNewReport(reportData);
     if (response) {
-      setSnackbarProps({message: response.message, severity: "success"})
+      setSnackbarProps({ message: response.message, severity: "success" });
       setTimeout(() => {
-        navigate('/reports')
-      }, 3000)
-    }
-    else {
-      setSnackbarProps({message: "Something went wrong!", severity: "error"})
+        navigate("/reports");
+      }, 3000);
+    } else {
+      setSnackbarProps({ message: "Something went wrong!", severity: "error" });
     }
   };
 
@@ -76,64 +76,19 @@ export default function Confirm() {
 
   return (
     <>
-    {snackbarProps && <Snackbar_Top_Right props={snackbarProps} />}
-      <div className="centered-content" ref={componentRef}>
-        <label className="overview-label">Overview</label>
-        <h2 className="report-overview-header">Residents Status</h2>
-        <Grid className="report-field-grid-container" container spacing={2}>
-          {Object.entries(residentData).map(([key, value]) => (
-            <Grid className="report-field-grid-container" item xs={12} sm={6}>
-              <div className="report-overview-data">
-                <label>{key.replace("_", " ")}</label>
-                <p>{value}</p>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
-
-        <h2 className="report-overview-header">Personal Plans</h2>
-        <Grid className="report-field-grid-container" container spacing={2}>
-          {Object.entries(personalPlans).map(([key, value]) => (
-            <Grid className="report-field-grid-container" item xs={12} sm={6}>
-              <div className="report-overview-data">
-                <label>
-                  {key.charAt(0).toLocaleUpperCase() + key.slice(1)}
-                </label>
-                <p>{value}</p>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
-
-        <h2 className="report-overview-header">General Activities</h2>
-        <Grid className="report-field-grid-container" container spacing={2}>
-          {Object.entries(generalActivitiesForumInput).map(([key, value]) => (
-            <Grid item xs={12} sm={6}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={
-                      generalActivities[generalActivitiesForumInput[key].name]
-                        ? true
-                        : false
-                    }
-                    color="primary"
-                  />
-                }
-                label={generalActivitiesForumInput[key].label}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </div>
+      {snackbarProps && <Snackbar_Top_Right props={snackbarProps} />}
+      <ReportDisplayPage
+        componentRef={componentRef}
+        residentData={residentData}
+        personalPlans={personalPlans}
+        generalActivitiesForumInput={generalActivitiesForumInput}
+        generalActivities={generalActivities}
+      />
       <Box sx={{ display: "flex", justifyContent: "space-evenly", mt: 3 }}>
         <Button sx={{ mr: 1 }} onClick={handleBack}>
           Back
         </Button>
-        <Button
-          variant="contained"
-          onClick={() => generatePdfFile()}
-        >
+        <Button variant="contained" onClick={() => generatePdfFile()}>
           Save as PDF
         </Button>
         <Button variant="contained" onClick={handleSubmit}>

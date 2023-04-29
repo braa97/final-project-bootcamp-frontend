@@ -25,6 +25,7 @@ export default function ThirdStep() {
       [name]: checked,
     }));
   };
+  
   return (
     <>
       <Grid className="report-field-grid-container" container spacing={2}>
