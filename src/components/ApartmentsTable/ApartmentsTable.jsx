@@ -1,10 +1,10 @@
 import './ApartmentsTable.css'
+import '../../global-styles/datagrid-table-media-queries.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const ApartmentsTable = ({ apartments }) => {
-    
     const [rows, setRows] = useState([])
     useEffect(() => {
         const filteredApartments = apartments.map((apartment) => {
@@ -83,10 +83,10 @@ const ApartmentsTable = ({ apartments }) => {
 
     return (
         <>
-            <div className='home-apartments-datatable'>
+            <div className='datatable'>
                 <div className='data-grid-title'>
                     Apartments
-                    <Link to='/new-resident' className='new-resident-link'>
+                    <Link to='/' className='new-resident-link'>
                         Add New Apartment
                     </Link>
                 </div>
