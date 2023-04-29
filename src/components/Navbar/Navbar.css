@@ -1,3 +1,4 @@
+
 @import '../../global-styles/google-fonts.css';
 .navbar {
     height: 50px;
@@ -7,8 +8,11 @@
     font-size: 14px;
     color: #555;
     width: 100%;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    position: fixed;
+    z-index: 2000;
+    border: none;
+    margin-top: 50px;
+    background: #fff;
 }
 
 .navbar .wrapper {
@@ -18,11 +22,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.navbar .wrapper .logo img {
-    width: 100px;
-}
-
 .navbar .wrapper .search {
     display: flex;
     align-items: center;
