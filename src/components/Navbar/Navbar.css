@@ -1,7 +1,5 @@
 @import '../../global-styles/google-fonts.css';
 .navbar {
-    /*added for the background image*/
-    /* background: #fff; */
     height: 50px;
     border-bottom: 0.5px solid #e7e4e4;
     display: flex;
@@ -9,6 +7,12 @@
     font-size: 14px;
     color: #555;
     width: 100%;
+    position: fixed;
+    z-index: 2000;
+    border: none;
+    margin-top: 50px;
+    background: #fff;
+    /* box-shadow: 2px 4px 16px black; */
 }
 
 .navbar .wrapper {

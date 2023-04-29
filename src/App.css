@@ -18,7 +18,7 @@
 
 .sidebar-container {
     grid-area: sidebar;
-    border-right: 0.5px solid #e6e3e3;
+    /* border-right: 0.5px solid #e6e3e3; */
 }
 
 .footer-container {
@@ -50,38 +50,33 @@
         width: 100%;
     }
     .navbar-container {
-      position: fixed;
-      z-index: 99999;
-      border: none;
-      background: #e6e3e3;
+        position: fixed;
+        z-index: 99999;
+        border: none;
     }
     .navbar-container input {
         display: none;
     }
     .sidebar-container {
-      margin-top: 20px;
-      background: #e6e3e3;
-      width: 40px;
+        margin-top: 20px;
+        width: 40px;
     }
     .sidebar-container .sidebar {
         position: fixed;
         border: none;
     }
     .sidebar-container .sidebar .center ul li span {
-      font-size: 30px;
-      display: none;
-    }
-    .main-page-container {
-        width: 100%;
-    }
-    .main-page-container .home-apartments-datatable {
-        margin: 0 auto;
-        margin-bottom: 320px;
-    }
-    .main-page-container .home-widgets-container {
-        /* margin-left: 20px; */
+        font-size: 10px;
+        display: none;
     }
     .footer-container .footer .menu {
+        display: none;
+    }
+}
+
+@media (max-width: 730px) {
+    .sidebar-container .sidebar .center ul li span {
+        font-size: 10px;
         display: none;
     }
 }

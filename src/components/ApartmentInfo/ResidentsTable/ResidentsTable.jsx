@@ -1,4 +1,5 @@
 import './ResidentsTable.css'
+import '../../../global-styles/datagrid-table-media-queries.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -85,7 +86,7 @@ const ResidentsTable = ({ residents }) => {
 
     return (
         <>
-            <div className='residents-datatable'>
+            <div className='datatable'>
                 <div className='data-grid-title'>
                     Residents
                     <Link
