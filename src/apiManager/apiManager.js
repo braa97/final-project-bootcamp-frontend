@@ -48,7 +48,6 @@ const ApiManager = function () {
   const ajaxPostCall = async (url, body) => {
     try {
       const response = await axios.post(url, body);
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -152,6 +151,11 @@ const ApiManager = function () {
     return response
   }
 
+  const fetchReportsByInstructorId = async(requestObject) => {
+    const response = await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/instructor/reports`, requestObject)
+    return response
+  }
+
   return {
     getResidentsByApartmentName: getResidentsByApartmentName,
     getApartmentByName: getApartmentByName,
@@ -166,6 +170,7 @@ const ApiManager = function () {
     getApartmentsByInstructorId,
     sendMessageToResidentRelativeContact,
     addNewReport,
+    fetchReportsByInstructorId,
   };
 };
 

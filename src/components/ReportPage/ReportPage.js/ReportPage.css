@@ -6,6 +6,7 @@
 
 .report-page-header {
     display: flex;
+    align-items: center;
 }
 
 .report-container h1 {

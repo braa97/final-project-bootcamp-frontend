@@ -12,7 +12,7 @@ export default function FirstStep({ apartmentName }) {
   const apiManager = new ApiManager();
   const [residents, setResidents] = useState([]);
   const [allFieldsFilled, setAllFieldsFilled] = useState(false);
-  const {residentData, setResidentData, setApartmentId, handleNext, variant, margin } = useContext(AppContext);
+  const {residentData, setResidentData, setApartment, handleNext, variant, margin } = useContext(AppContext);
   const [emptyFields, setEmptyFields] = useState(
     residents.reduce(
       (acc, resident) => ({ ...acc, [resident.firstName]: false }),
@@ -33,7 +33,7 @@ export default function FirstStep({ apartmentName }) {
       );
       const apartment = await apiManager.getApartmentByName(apartmentName)
       setResidents(response);
-      setApartmentId(apartment._id)
+      setApartment(apartment)
     };
     fetchResidentsFromDB();
   }, []);

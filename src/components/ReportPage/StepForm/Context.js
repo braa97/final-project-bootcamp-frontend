@@ -10,7 +10,7 @@ export const AppProvider = ({ children }) => {
   const [activeStep, setActiveStep] = useState(0);
   const [residentData, setResidentData] = useState({});
   const [emptyFields, setEmptyFields] = useState({});
-  const [apartmentId, setApartmentId] = useState({})
+  const [apartment, setApartment] = useState({})
   const [touchedFields, setTouchedFields] = useState({});
   const [personalPlans, setPersonalPlans] = useState({});
   const [generalActivities, setGeneralActivities] = useState({});
@@ -141,8 +141,8 @@ export const AppProvider = ({ children }) => {
         generalActivitiesForumInput,
         generalActivities,
         setGeneralActivities,
-        apartmentId,
-        setApartmentId,
+        apartment,
+        setApartment,
       }}
     >
       {children}
