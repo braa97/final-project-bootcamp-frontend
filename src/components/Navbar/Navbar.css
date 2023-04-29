@@ -1,7 +1,5 @@
 @import '../../global-styles/google-fonts.css';
 .navbar {
-    /*added for the background image*/
-    /* background: #fff; */
     height: 50px;
     border-bottom: 0.5px solid #e7e4e4;
     display: flex;
@@ -9,6 +7,19 @@
     font-size: 14px;
     color: #555;
     width: 100%;
+    position: fixed;
+    z-index: 2000;
+    border: none;
+    margin-top: 50px;
+    background: #fff;
+}
+
+.navbar .logo {
+    font-size: 22px;
+    font-family: 'Coiny', sans-serif;
+    line-height: 1;
+    margin-top: 6px;
+    color: #5183f8;
 }
 
 .navbar .wrapper {
@@ -36,6 +47,7 @@
     display: flex;
     align-items: center;
 }
+
 .navbar .wrapper .items .item {
     display: flex;
     align-items: center;
@@ -45,6 +57,11 @@
 .navbar .wrapper .items .item .icon {
     font-size: 20px;
 }
+
+.navbar .wrapper .items .item a {
+    color: #555;
+}
+
 .navbar .wrapper .items .item .avatar {
     width: 30px;
     height: 30px;

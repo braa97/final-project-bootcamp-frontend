@@ -1,0 +1,39 @@
+@media screen and (max-width: 1250px) {
+    .datatable {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .datatable {
+        width: 700px;
+        position: sticky;
+        right: 0;
+    }
+}
+@media screen and (max-width: 880px) {
+    .datatable {
+        width: 600px;
+        position: sticky;
+        right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-page-container .datatable {
+        margin: 0 auto;
+        margin-bottom: 320px;
+    }
+}
+
+@media (max-width: 660px) {
+    .main-page-container .datatable {
+        width: 450px;
+    }
+}
+
+@media (max-width: 490px) {
+    .main-page-container .datatable {
+        width: 400px;
+    }
+}
