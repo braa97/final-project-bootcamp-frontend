@@ -18,6 +18,7 @@ import Footer from "./components/Footer/Footer";
 import AddNewApartment from "./components/AddNewApartment/AddNewApartment";
 import ReportPage from "./components/ReportPage/ReportPage.js/ReportPage";
 import CreateReport from "./components/ReportPage/CreateReport/CreateReport";
+import CoordinatorProfile from "./components/CoordinatorProfile/CoordinatorProfile/CoordinatorProfile";
 
 const App = () => {
   const navigate = useNavigate();
@@ -85,6 +86,10 @@ const App = () => {
           <Route
             path="/Coordinator/dashboard/:id"
             element={<CoordinatorHome />}
+          />
+          <Route
+            path="/Coordinator/profile/:coordinatorID"
+            element={<CoordinatorProfile />}
           />
           <Route path="/reports" element={<ReportPage />} />
           <Route

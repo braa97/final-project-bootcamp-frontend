@@ -7,15 +7,9 @@ const ApiManager = function () {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       };
-      console.log("no, here:");
-      console.log(url);
-
       let response = await axios.get(url, { headers });
-      console.log(response);
-
       return response;
     } catch (error) {
-      console.log("error here");
       console.log(error);
       return error;
     }
@@ -180,6 +174,13 @@ const ApiManager = function () {
     return response;
   };
 
+  const getCoordinatorDataByCoordinatorID = async (coordinatorID) => {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinators/instructors/${coordinatorID}`
+    );
+    return response.data;
+  };
+
   const fetchReportsByInstructorId = async (requestObject) => {
     const response = await ajaxPostCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/instructor/reports`,
@@ -196,10 +197,10 @@ const ApiManager = function () {
   };
 
   return {
-    getResidentsByApartmentName: getResidentsByApartmentName,
-    getApartmentByName: getApartmentByName,
-    getResidentById: getResidentById,
-    getResidentDetailsByQueryString: getResidentDetailsByQueryString,
+    getResidentsByApartmentName,
+    getApartmentByName,
+    getResidentById,
+    getResidentDetailsByQueryString,
     getResidentMedicalAppointments,
     addMedicalAppointment,
     editMedicalAppointment,
@@ -208,12 +209,13 @@ const ApiManager = function () {
     signIn,
     getApartmentsByInstructorId,
     sendMessageToResidentRelativeContact,
-    getApartmentName,
-    addNewReport,
-    fetchReportsByInstructorId,
     getInstructorShifts,
-    getInspections,
+    getApartmentName,
     getResidentsByInstructorId,
+    getInspections,
+    getCoordinatorDataByCoordinatorID,
+    fetchReportsByInstructorId,
+    addNewReport,
   };
 };
 
