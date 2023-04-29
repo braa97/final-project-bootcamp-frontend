@@ -1,8 +1,9 @@
+@import '../../global-styles/root-variables.css';
 
 .footer {
     position: relative;
     width: 100%;
-    background: #22344e;
+    background: var(--footer-bg-color);
     min-height: 100px;
     padding: 20px 50px;
     display: flex;
@@ -29,7 +30,7 @@
 
 .footer .social-icons li a {
     font-size: 2em;
-    color: #fff;
+    color: var(--footer-main-color);
     margin: 0 10px;
     display: inline-block;
     transition: 0.5s;
@@ -39,14 +40,9 @@
     transform: translateY(-10px);
 }
 
-.footer .menu-title {
-    text-align: center;
-    font-size: 1.2em;
-}
-
 .footer .menu li a {
-    font-size: 1.2em;
-    color: #fff;
+    font-size: 1.1em;
+    color: var(--footer-main-color);
     margin: 0 10px;
     display: inline-block;
     transition: 0.5s;
@@ -59,10 +55,10 @@
 }
 
 .footer p {
-    color: #fff;
+    color: var(--footer-main-color);
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1em;
 }
 
