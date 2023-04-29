@@ -1,4 +1,19 @@
 :root {
+    /* footer section */
     --footer-main-color: #fff;
     --footer-bg-color: #5183f8;
+
+    /* resident info page */
+    --main-color: black;
+    --color-dark: #1d2231;
+    --text-grey: #8390a2;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
 }

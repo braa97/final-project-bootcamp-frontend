@@ -64,7 +64,8 @@ const ApartmentsTable = ({ apartments }) => {
                 return (
                     <div className='cellAction'>
                         <Link
-                            to='/apartmentId/residentId'
+                            // to='/apartmentId/residentId'
+                            to={'/apartments/apartment-info/' + params.row.apartmentName}
                             style={{ textDecoration: 'none' }}
                         >
                             <button className='viewButton'>View</button>

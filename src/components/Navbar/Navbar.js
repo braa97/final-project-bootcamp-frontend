@@ -15,10 +15,7 @@ const Navbar = () => {
       <div className="wrapper">
         <Link to="/" style={{ textDecoration: "none" }}>
           <span className="logo">
-            Care
-            <br />
-            Companion+
-            {/* <img src={logo} alt='' /> */}
+            CareCompanion+
           </span>
         </Link>
         <div className="search">
