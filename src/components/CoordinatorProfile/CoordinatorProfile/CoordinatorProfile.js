@@ -34,7 +34,7 @@ const CoordinatorProfile = () => {
 
   useEffect(() => {
     fetchInstructorsData();
-  }, [instructors,coordinator]);
+  }, [instructors]);
 
   try {
     return (
