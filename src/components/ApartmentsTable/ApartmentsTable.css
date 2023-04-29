@@ -94,6 +94,7 @@
         width: 100%;
     }
 }
+
 @media screen and (max-width: 1000px) {
     .home-apartments-datatable {
         width: 700px;

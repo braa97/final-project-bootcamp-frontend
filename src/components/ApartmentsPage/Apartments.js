@@ -43,7 +43,7 @@ const Apartments = ({ coordinatorApartments }) => {
                     {loading ? <LoadingWheel /> : null}
                 </div>
                 <ApartmentsTable apartments={apartments} />
-                <div className='apartments-container'></div>
+                {/* <div className='apartments-container'></div> */}
             </>
         )
     } catch (error) {

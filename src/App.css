@@ -1,49 +1,87 @@
 .main-page-container {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  grid-template-areas:
-    "navbar navbar"
-    "sidebar main-content"
-    "footer footer";
-  height: 100vh;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas:
+        'navbar navbar'
+        'sidebar main-content'
+        'footer footer';
+    height: 100vh;
 }
 
 .navbar-container {
-  grid-area: navbar;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    grid-area: navbar;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sidebar-container {
-  grid-area: sidebar;
-  border-right: 0.5px solid #e6e3e3;
+    grid-area: sidebar;
+    border-right: 0.5px solid #e6e3e3;
 }
 
 .footer-container {
-  grid-area: footer;
-  
+    grid-area: footer;
 }
 
 .scheduler-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main-content {
-  grid-area: main-content;
+    grid-area: main-content;
+    margin-top: 30px;
 }
 
 @media (max-width: 768px) {
-  .main-page-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "navbar-container"
-      "sidebar-container"
-      "main-content";
-  }
+    .main-page-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            'navbar'
+            'sidebar main-content'
+            'footer';
+    }
+    .navbar-container {
+        width: 100%;
+    }
+    .navbar-container {
+      position: fixed;
+      z-index: 99999;
+      border: none;
+      background: #e6e3e3;
+    }
+    .navbar-container input {
+        display: none;
+    }
+    .sidebar-container {
+      margin-top: 20px;
+      background: #e6e3e3;
+      width: 40px;
+    }
+    .sidebar-container .sidebar {
+        position: fixed;
+        border: none;
+    }
+    .sidebar-container .sidebar .center ul li span {
+      font-size: 30px;
+      display: none;
+    }
+    .main-page-container {
+        width: 100%;
+    }
+    .main-page-container .home-apartments-datatable {
+        margin: 0 auto;
+        margin-bottom: 320px;
+    }
+    .main-page-container .home-widgets-container {
+        /* margin-left: 20px; */
+    }
+    .footer-container .footer .menu {
+        display: none;
+    }
 }
