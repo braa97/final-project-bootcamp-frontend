@@ -3,7 +3,8 @@
   grid-template-columns: 150px 1fr;
   grid-template-areas:
     "navbar navbar"
-    "sidebar main-content";
+    "sidebar main-content"
+    "footer footer";
   height: 100vh;
 }
 
@@ -19,6 +20,12 @@
   grid-area: sidebar;
   border-right: 0.5px solid #e6e3e3;
 }
+
+.footer-container {
+  grid-area: footer;
+  
+}
+
 .scheduler-container {
   width: 100%;
   display: flex;
