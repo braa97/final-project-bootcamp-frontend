@@ -1,14 +1,16 @@
 import "./Apartment.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Apartment = ({ apartment }) => {
-  console.log(apartment);
+  const location = useLocation()
+  const myObject = location.state;
 
   return (
     <div className="apartment-card">
       <div className="card__container">
-        <Link to={`/apartments/apartment-info/${apartment.apartmentName}`}>
+        <Link to={myObject?.location ? `/reports/create-report/${apartment.apartmentName}` : `/apartments/apartment-info/${apartment.apartmentName}`}>
           <div className="card__image">
             <img src={apartment.image} alt=''/>
           </div>

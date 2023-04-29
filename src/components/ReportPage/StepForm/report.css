@@ -1,0 +1,50 @@
+.report-field-label {
+    display: flex;
+}
+
+.report-field-label label {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.report-field-grid-container {
+    margin-top: 15px !important;
+}
+
+.report-field-grid-inner-container {
+    margin-top: 15px !important;
+}
+
+.step-two-note {
+    display: flex;
+    margin: 0 auto 10px;
+}
+
+.report-overview-data label {
+    font-weight: 700;
+}
+
+.report-overview-data p {
+    margin-top: 8px;
+}
+
+.overview-label {
+    display: flex;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.6em;
+}
+
+.report-overview-header {
+    display: flex;
+    justify-content: start;
+    margin-top: 15%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+@media print {
+    .centered-content {
+      text-align: center;
+    }
+  }

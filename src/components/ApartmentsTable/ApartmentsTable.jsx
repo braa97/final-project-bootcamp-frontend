@@ -1,10 +1,12 @@
 import './ApartmentsTable.css'
 import '../../global-styles/datagrid-table-media-queries.css'
 import { DataGrid } from '@mui/x-data-grid'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const ApartmentsTable = ({ apartments }) => {
+    const location = useLocation()
+    const locationObject = location.state
     const [rows, setRows] = useState([])
     useEffect(() => {
         const filteredApartments = apartments.map((apartment) => {
@@ -64,7 +66,7 @@ const ApartmentsTable = ({ apartments }) => {
                 return (
                     <div className='cellAction'>
                         <Link
-                            to={'/apartments/apartment-info/' + params.row.apartmentName}
+                            to={locationObject?.location ? `/reports/create-report/${params.row.apartmentName}` :  '/apartments/apartment-info/' + params.row.apartmentName}
                             style={{ textDecoration: 'none' }}
                         >
                             <button className='viewButton'>View</button>

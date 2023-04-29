@@ -1,0 +1,20 @@
+.report-container {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 8%;
+}
+
+.report-page-header {
+    display: flex;
+    align-items: center;
+}
+
+.report-container h1 {
+    margin: 0 35px 15px 0;
+}
+
+.report-file-opener {
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(55, 59, 180) !important;
+}
