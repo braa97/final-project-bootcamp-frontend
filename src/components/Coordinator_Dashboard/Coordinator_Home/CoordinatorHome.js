@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 export default function CoordinatorHome() {
   const { id } = useParams();
+
   return (
     <div>
       <Dashboard coordinatorId={id} />

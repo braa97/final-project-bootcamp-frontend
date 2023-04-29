@@ -1,5 +1,5 @@
 
-.datatable {
+.residents-datatable {
     height: 350px;
     padding: 20px;
     margin: 0 auto;
@@ -9,7 +9,7 @@
     border-radius: 10px;
 }
 
-.datatable .datagrid {
+.residents-datatable .datagrid {
     margin-bottom: 50px;
 }
 

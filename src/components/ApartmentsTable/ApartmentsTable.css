@@ -1,5 +1,5 @@
 
-.home-apartments-datatable {
+.datatable {
     height: 350px;
     padding: 20px;
     margin: 0 auto;
@@ -9,18 +9,18 @@
     border-radius: 10px;
 }
 
-.home-apartments-datatable .datagrid {
+.datatable .datagrid {
     margin-bottom: 50px;
 }
 
-.home-apartments-datatable .data-grid-title {
+.datatable .data-grid-title {
     width: 100%;
     font-size: 24px;
     color: gray;
     margin-bottom: 10px;
 }
 
-.home-apartments-datatable .data-grid-title .new-resident-link {
+.datatable .data-grid-title .new-apartment-link {
     margin-left: 20px;
     text-decoration: none;
     color: green;
@@ -32,12 +32,12 @@
     cursor: pointer;
 }
 
-.home-apartments-datatable .cell-with-img {
+.datatable .cell-with-img {
     display: flex;
     align-items: center;
 }
 
-.home-apartments-datatable .cell-with-img .cell-img {
+.datatable .cell-with-img .cell-img {
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -45,33 +45,33 @@
     margin-right: 20px;
 }
 
-.home-apartments-datatable .cellWithStatus {
+.datatable .cellWithStatus {
     padding: 5px;
     border-radius: 5px;
 }
 
-.home-apartments-datatable .cellWithStatus.active {
+.datatable .cellWithStatus.active {
     background-color: rgba(0, 128, 0, 0.05);
     color: green;
 }
 
-.home-apartments-datatable .cellWithStatus.pending {
+.datatable .cellWithStatus.pending {
     background-color: rgba(255, 217, 0, 0.05);
     color: goldenrod;
 }
 
-.home-apartments-datatable .cellWithStatus.passive {
+.datatable .cellWithStatus.passive {
     background-color: rgba(255, 0, 0, 0.05);
     color: crimson;
 }
 
-.home-apartments-datatable .cellAction {
+.datatable .cellAction {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.home-apartments-datatable .cellAction .viewButton {
+.datatable .cellAction .viewButton {
     padding: 2px 5px;
     border-radius: 5px;
     color: darkblue;
@@ -80,38 +80,11 @@
     background: none;
 }
 
-.home-apartments-datatable .cellAction .deleteButton {
+.datatable .cellAction .deleteButton {
     padding: 2px 5px;
     border-radius: 5px;
     color: crimson;
     border: 1px dotted rgba(220, 20, 60, 0.6);
     cursor: pointer;
     background: none;
-}
-
-@media screen and (max-width: 1250px) {
-    .home-apartments-datatable {
-        width: 100%;
-    }
-}
-@media screen and (max-width: 1000px) {
-    .home-apartments-datatable {
-        width: 700px;
-        position: sticky;
-        right: 0;
-    }
-}
-@media screen and (max-width: 880px) {
-    .home-apartments-datatable {
-        width: 600px;
-        position: sticky;
-        right: 0;
-    }
-}
-@media screen and (max-width: 740px) {
-    .home-apartments-datatable {
-        width: 400px;
-        position: sticky;
-        right: 0;
-    }
 }

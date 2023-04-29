@@ -5,38 +5,35 @@
     align-items: center;
 }
 
-.personal-card {
-    /* width: 350px; */
-    /* height: 290px; */
+.personal-card-container .personal-card {
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(81, 131, 248, 0.1);
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    /* flex-direction: column; */
     text-align: center;
     
     padding: 20px;
     background: #fff;
 }
 
-.image img {
+.personal-card-container .image img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: .5px solid black;
 }
 
-.content {
+.personal-card-container .content {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.container h1 {
+.personal-card-container .container h1 {
     color: #eee;
     font-size: 25px;
     font-weight: bolder;
@@ -44,7 +41,7 @@
 }
 
 
-.content h3 {
+.personal-card-container .content h3 {
     font-size: 17px;
     color: #8390a2;
     font-weight: bold;

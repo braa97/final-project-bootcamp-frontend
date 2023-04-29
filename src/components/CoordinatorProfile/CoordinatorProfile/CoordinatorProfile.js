@@ -47,6 +47,8 @@ const CoordinatorProfile = () => {
             img={coordinator.image}
             name={coordinator.fullName}
             IDNmber={coordinator.id}
+            phoneNumber={coordinator.phoneNumber}
+            email={coordinator.email}
           />
           <div className="cards">
             <InfoWidget
