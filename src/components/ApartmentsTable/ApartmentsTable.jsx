@@ -1,4 +1,5 @@
 import './ApartmentsTable.css'
+import '../../global-styles/datagrid-table-media-queries.css'
 import { DataGrid } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
