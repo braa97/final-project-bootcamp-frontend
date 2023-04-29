@@ -23,7 +23,6 @@
 
 .footer-container {
   grid-area: footer;
-  
 }
 
 .scheduler-container {
@@ -42,8 +41,8 @@
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-      "navbar-container"
-      "sidebar-container"
-      "main-content";
+      "navbar"
+      "sidebar main-content"
+      "footer";
   }
 }

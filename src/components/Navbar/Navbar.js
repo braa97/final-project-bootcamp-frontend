@@ -7,6 +7,7 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import { Link } from "react-router-dom";
 // import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 // import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+// import {logo} from '../../Assets/index'
 
 const Navbar = () => {
   return (
@@ -17,6 +18,7 @@ const Navbar = () => {
             Care
             <br />
             Companion+
+            {/* <img src={logo} alt='' /> */}
           </span>
         </Link>
         <div className="search">

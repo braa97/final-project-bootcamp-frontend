@@ -1,5 +1,11 @@
 @import '../../global-styles/root-variables.css';
 
+.footer-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer {
     position: relative;
     width: 100%;

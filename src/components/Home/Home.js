@@ -3,7 +3,6 @@ import './Widgets/Widgets'
 import '../ApartmentsTable/ApartmentsTable'
 import Widgets from './Widgets/Widgets'
 import Apartments from '../ApartmentsPage/Apartments';
-// import Footer from '../Footer/Footer'
 
 export default function Home() {
     return (
@@ -13,7 +12,6 @@ export default function Home() {
                     <Widgets />
                     <Apartments />
                 </div>
-                {/* <Footer /> */}
             </div>
         </>
     )
