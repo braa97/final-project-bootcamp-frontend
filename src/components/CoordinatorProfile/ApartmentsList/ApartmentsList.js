@@ -27,7 +27,7 @@ const ApartmentsList = ({ instructors }) => {
 
   useEffect(() => {
     fetchApartments();
-  },[]);
+  });
 
   /*const handleAddAppointment = async (typeOfInspection, date) => {
     const newMedicalAppointment = {

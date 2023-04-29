@@ -15,13 +15,17 @@ const CoordinatorProfile = () => {
   const { coordinatorID } = useParams();
   const [instructors, setInstructors] = useState([]);
   const [coordinator, setCoordinator] = useState([]);
-  const utility = new Utility();
   const apiManager = new ApiManager();
+
+  useEffect(() => {
+    fetchInstructorsData();
+  },[coordinatorID,coordinator]);
 
   const fetchInstructorsData = async () => {
     let response = await apiManager.getCoordinatorDataByCoordinatorID(coordinatorID);
+   setInstructors(response.instructors);
     setCoordinator(response)
-    setInstructors(response.instructors);
+
   };
 
   const getApartmentsNum = () => {
@@ -32,11 +36,9 @@ const CoordinatorProfile = () => {
     return numApart
   }
 
-  useEffect(() => {
-    fetchInstructorsData();
-  }, [instructors]);
 
-  try {
+
+ 
     return (
       <>
         <CDN href={LINE_AWESOME_CDN} />
@@ -57,21 +59,16 @@ const CoordinatorProfile = () => {
               title="Number Of Apartments"
               icon="las la-clipboard-list"
             />
-           
-
           </div>
-          <div className="recent-grid">
 
-            <ApartmentsList instructors={instructors} />
+          <div className="recent-grid"> 
+           <ApartmentsList instructors={instructors} />
             <InstructorList instructors={instructors} />
-
           </div>
         </div>
       </>
     );
-  } catch (error) {
-    console.log(error);
-  }
+  
 };
 
 export default CoordinatorProfile;
