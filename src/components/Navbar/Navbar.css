@@ -47,6 +47,7 @@
     display: flex;
     align-items: center;
 }
+
 .navbar .wrapper .items .item {
     display: flex;
     align-items: center;
@@ -56,6 +57,11 @@
 .navbar .wrapper .items .item .icon {
     font-size: 20px;
 }
+
+.navbar .wrapper .items .item a {
+    color: #555;
+}
+
 .navbar .wrapper .items .item .avatar {
     width: 30px;
     height: 30px;
