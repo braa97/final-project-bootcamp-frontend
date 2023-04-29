@@ -15,6 +15,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 import SchedulerDemo from './components/Instructor_Scheduler/Instructor_Scheduler'
 import Residents from './components/ResidentsPage/Residents'
 import Footer from './components/Footer/Footer'
+import AddNewApartment from './components/AddNewApartment/AddNewApartment'
 
 const App = () => {
     const navigate = useNavigate()
@@ -74,6 +75,10 @@ const App = () => {
                     <Route
                         path='/apartments/apartment-info/resident/new-resident'
                         element={<NewResident />}
+                    />
+                    <Route
+                        path='/apartments/apartment-info/apartment/new-apartment'
+                        element={<AddNewApartment />}
                     />
                     <Route path='/server-error' element={<ServerError />} />
                     <Route

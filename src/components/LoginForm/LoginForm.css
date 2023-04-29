@@ -1,17 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;	
-	font-family: Raleway, sans-serif;
-}
-
-body {
-	background: linear-gradient(90deg, #C7C5F4, #776BCC);		
-}
+@import '../../global-styles/google-fonts.css';
+@import '../../global-styles/root-variables.css';
 
 .container {
+	background: linear-gradient(90deg, #C7C5F4, #776BCC);
+	font-family: Raleway, sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: center;
