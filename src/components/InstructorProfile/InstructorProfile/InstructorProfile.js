@@ -52,7 +52,7 @@ const InstructorProfile = () => {
             img={instructor.image}
             name={instructor.name}
             IDNmber={instructor.instructorId}
-  
+            phoneNumber={instructor.phoneNumber}
            />
           <div className="cards">
             <InfoWidget
