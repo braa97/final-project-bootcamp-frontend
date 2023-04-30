@@ -59,18 +59,15 @@ export default function Confirm() {
 
   useEffect(() => {
     setInstructorId(localStorage.getItem("instructorId"));
-    const reportNameGenerator = (apartmentName, date, instructorId) => {
-      const formattedDate = utility.dateFormatter(date).replaceAll("/", "");
-      const formattedTime = utility.timeFormatter(date).replace(":", "");
-      const shortName = apartmentName.toLowerCase().slice(0, 2);
-      const shortId = instructorId.slice(-3);
-      const reportName = `${shortName}_${shortId}_${formattedDate}${formattedTime}`;
+    const reportNameGenerator = (apartmentName, date) => {
+      const formattedName = apartmentName.toLowerCase().replace(/ /g, "_");
+      const [day, month, year] = utility.dateFormatter(date).split("/",)
+      const reportName = `${formattedName}_${day}_${month}_${year}`;
       setFileName(reportName);
     };
     reportNameGenerator(
       apartment.apartmentName,
-      new Date(),
-      localStorage.getItem("instructorId")
+      new Date()
     );
   }, []);
 

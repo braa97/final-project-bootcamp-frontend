@@ -63,6 +63,7 @@ export default function AddMedicalAppointment({onClickEvent}) {
             <DateTimePicker 
             value={appointmentDate}
             onChange={(newValue) => setAppointmentDate(newValue)}
+            minDate={dayjs(new Date())}
              />
           </LocalizationProvider>
           </Box>

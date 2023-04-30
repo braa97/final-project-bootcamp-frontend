@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 export default function Snackbar_Top_Right({ props }) {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
-  console.log(isSnackbarOpen);
   // const openSnackbar = () => () => {
   //   setIsSnackbarOpen(true);
   // };
