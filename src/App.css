@@ -1,16 +1,8 @@
 .main-page-container {
-  /* display: grid;
-  grid-template-columns: 150px 1fr;
-  grid-template-areas:
-    "navbar navbar"
-    "sidebar main-content"
-    "footer footer";
-  height: 100vh; */
   display: grid;
-  /* grid-template-rows: auto 1fr auto; */
   grid-template-rows: min-content auto min-content;
   grid-template-columns: 200px 2fr;
-  grid-gap: 10px;
+  grid-gap: 1px;
   height: 100vh;
 
 }
@@ -39,7 +31,6 @@
 
 .sidebar-container {
   grid-area: sidebar;
-  /* border-right: 0.5px solid #e6e3e3; */
 }
 
 .footer-container {

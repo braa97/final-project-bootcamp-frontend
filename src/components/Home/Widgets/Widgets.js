@@ -9,7 +9,7 @@ import {
     user,
     seeAllImg,
 } from '../../../Assets/index'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Utility from '../../../utilities/utility/util'
 const today = new Date()
 const currentMonth = (today.getMonth() + 1).toString().padStart(2, '0')
@@ -93,7 +93,7 @@ const Widgets = ({ coordinatorApartments }) => {
         <div className='home-widgets-container'>
             <div className='box box1'>
                 <div>
-                    <h3>{getTotalApartmentsBudget()}</h3>
+                    <h3 className='card-value'>{getTotalApartmentsBudget()}</h3>
                     <div className='explanation'>Total Budget</div>
                 </div>
                 <div className='icon-placeholder'>
@@ -102,7 +102,7 @@ const Widgets = ({ coordinatorApartments }) => {
             </div>
             <div className='box box2'>
                 <div>
-                    <h3>Residents</h3>
+                    <h3 className='card-value'>Residents</h3>
                 </div>
                 <div className='avatars'>
                     {residents.slice(0, 3).map((resident, i) => {
@@ -123,7 +123,7 @@ const Widgets = ({ coordinatorApartments }) => {
                     <img
                         src={seeAllImg}
                         className='avatar'
-                        alt='Apartment 4'
+                        alt='all residents'
                         onClick={() => navigate(`residents`)}
                     />
                 </div>
@@ -133,7 +133,7 @@ const Widgets = ({ coordinatorApartments }) => {
             </div>
             <div className='box box3'>
                 <div>
-                    <h3>Apartments</h3>
+                    <h3 className='card-value'>Apartments</h3>
                 </div>
                 <div className='avatars'>
                     {apartments.slice(0, 2).map((apartment, i) => {
@@ -154,7 +154,7 @@ const Widgets = ({ coordinatorApartments }) => {
                     <img
                         src={seeAllImg}
                         className='avatar'
-                        alt='Apartment 4'
+                        alt='all apartments'
                         onClick={() => navigate(`apartments`)}
                     />
                 </div>
@@ -164,7 +164,7 @@ const Widgets = ({ coordinatorApartments }) => {
             </div>
             <div className='box box4'>
                 <div>
-                    <h3>{residents.length}</h3>
+                    <h3 className='card-value'>{residents.length}</h3>
                     <div className='explanation'>Total Residents</div>
                 </div>
                 <div className='icon-placeholder'>
@@ -173,7 +173,9 @@ const Widgets = ({ coordinatorApartments }) => {
             </div>
             <div className='box box5'>
                 <div>
-                    <h3>{totalMeetingsState} Meetings</h3>
+                    <h3 className='card-value'>
+                        {totalMeetingsState} Meetings
+                    </h3>
                     <div className='explanation'>This Month's Meetings</div>
                 </div>
                 <div className='icon-placeholder'>
@@ -182,7 +184,9 @@ const Widgets = ({ coordinatorApartments }) => {
             </div>
             <div className='box box6'>
                 <div>
-                    <h3>{getCurrentMonthBirthdays()} Birthdays</h3>
+                    <h3 className='card-value'>
+                        {getCurrentMonthBirthdays()} Birthdays
+                    </h3>
                     <div className='explanation'>This Month's Birthdays</div>
                 </div>
                 <div className='icon-placeholder'>

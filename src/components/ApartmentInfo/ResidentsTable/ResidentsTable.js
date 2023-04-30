@@ -95,7 +95,7 @@ const ResidentsTable = ({ residents }) => {
                         to='/apartments/apartment-info/resident/new-resident'
                         className='new-resident-link'
                     >
-                        Add New
+                        Add New Resident
                     </Link>
                 </div>
                 <DataGrid

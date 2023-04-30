@@ -7,11 +7,10 @@
     font-size: 14px;
     color: #555;
     width: 100%;
-    /* position: fixed; */
     z-index: 2000;
     border: none;
-    /* margin-top: 50px; */
     background: #fff;
+    border-bottom: 0.5px solid #5183f8;
 }
 
 .navbar .logo {

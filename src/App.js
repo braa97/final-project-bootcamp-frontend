@@ -14,7 +14,6 @@ import NewResident from './components/ApartmentInfo/AddNewResident/AddNewResiden
 import Sidebar from './components/Sidebar/Sidebar'
 import SchedulerDemo from './components/Instructor_Scheduler/Instructor_Scheduler'
 import Residents from './components/ResidentsPage/Residents'
-import Footer from './components/Footer/Footer'
 import AddNewApartment from './components/AddNewApartment/AddNewApartment'
 import ReportPage from './components/ReportPage/ReportPage.js/ReportPage'
 import CreateReport from './components/ReportPage/CreateReport/CreateReport'
@@ -37,15 +36,8 @@ const App = () => {
             <>
                 {isLoggedin ? (
                     <>
-                        {/* <div className="navbar-container"> */}
                         <Navbar className='navbar' />
-                        {/* </div> */}
-                        {/* <div className="sidebar-container"> */}
                         <Sidebar className='sidebar' />
-                        {/* </div> */}
-                        {/* <div className="footer-container"> */}
-                        {/* <Footer className='footer' /> */}
-                        {/* </div> */}
                     </>
                 ) : null}
 
@@ -61,8 +53,6 @@ const App = () => {
                     />
                 </Routes>
             </>
-
-            {/* <div className="main-content"> */}
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/apartments' element={<Apartments />} />
@@ -107,7 +97,6 @@ const App = () => {
                 />
             </Routes>
         </div>
-        // </div>
     )
 }
 
