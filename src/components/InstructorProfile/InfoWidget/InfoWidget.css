@@ -12,7 +12,7 @@
 }
 
 .card-single div:last-child span { /*icon*/
-    font-size: 3rem;
+    font-size: 1rem;
     color: var(--main-color);
 }
 

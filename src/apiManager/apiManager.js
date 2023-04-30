@@ -173,7 +173,7 @@ const ApiManager = function () {
     return response;
   };
 
-  const getCoordinatorDataByCoordinatorID = async (coordinatorID) => {
+  const getInstructorsDataByCoordinatorID = async (coordinatorID) => {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinators/instructors/${coordinatorID}`
     );
@@ -201,6 +201,21 @@ const ApiManager = function () {
     return response.data;
   };
 
+  const getInstructorByInstructorID = async function (instructorId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/instructor/${instructorId}`
+    );
+    return response.data;
+  }
+
+  const getCoordinatorByCoordinatorID = async function (coordinatorID) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinator/${coordinatorID}`
+    );
+    return response.data;
+  }
+
+
 
   return {
     getResidentsByApartmentName,
@@ -219,10 +234,12 @@ const ApiManager = function () {
     getApartmentName,
     getResidentsByInstructorId,
     getInspections,
-    getCoordinatorDataByCoordinatorID,
+    getInstructorsDataByCoordinatorID,
     fetchReportsByInstructorId,
     addNewReport,
     getResidentsbirthdays,
+    getInstructorByInstructorID,
+    getCoordinatorByCoordinatorID,
   };
 };
 

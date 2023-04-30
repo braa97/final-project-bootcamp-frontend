@@ -45,7 +45,7 @@
     margin-top: 3.5rem;
     display: grid;
     grid-gap: 2rem;
-    grid-template-columns: 67% auto;
+    grid-template-columns: 60% auto;
 }
 
 @media only screen and (max-width: 960px) {

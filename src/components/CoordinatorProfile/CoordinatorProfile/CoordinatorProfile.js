@@ -5,9 +5,7 @@ import InstructorList from '../InstructorsList/InstructorsList'
 import ProfileCard from "../ProfileCard/ProfileCard";
 import "./CoordinatorProfile.css";
 import { useParams } from "react-router";
-import Utility from "../../../utilities/utility/util";
 import ApiManager from "../../../apiManager/apiManager";
-import Apartments from "../../ApartmentsPage/Apartments";
 const LINE_AWESOME_CDN =
   "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css";
 
@@ -19,12 +17,13 @@ const CoordinatorProfile = () => {
 
   useEffect(() => {
     fetchInstructorsData();
-  },[coordinatorID,coordinator]);
+  },[coordinatorID,coordinator,instructors]);
 
   const fetchInstructorsData = async () => {
-    let response = await apiManager.getCoordinatorDataByCoordinatorID(coordinatorID);
-   setInstructors(response.instructors);
-    setCoordinator(response)
+    let coordinatorData = await apiManager.getCoordinatorByCoordinatorID(coordinatorID);
+    let instructorData = await apiManager.getInstructorsDataByCoordinatorID(coordinatorID)
+   setInstructors(instructorData.instructors);
+    setCoordinator(coordinatorData)
 
   };
 
