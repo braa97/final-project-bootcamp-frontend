@@ -56,9 +56,10 @@ export default function Confirm() {
       setSnackbarProps({ message: "Something went wrong!", severity: "error" });
     }
   };
+  
 
   useEffect(() => {
-    setInstructorId(localStorage.getItem("instructorId"));
+    setInstructorId(JSON.parse(localStorage.getItem('user')).userId);
     const reportNameGenerator = (apartmentName, date) => {
       const formattedName = apartmentName.toLowerCase().replace(/ /g, "_");
       const [day, month, year] = utility.dateFormatter(date).split("/",)

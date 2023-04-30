@@ -116,15 +116,26 @@ const StaticDateTimePickerLandscape = function ({
   );
 };
 
-const ShiftScheduler = ({ instructorsApartments, coordinatorId }) => {
+const ShiftScheduler = () => {
   const [selectedInstructor, setSelectedInstructor] = useState(null);
   const [selectedApartment, setSelectedApartment] = useState(null);
+  const [instructorsApartments, setInstructorsApartments] = useState([])
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const coordinatorId = JSON.parse(localStorage.getItem("user")).userId
   const [shift, setShift] = useState({
     date: "",
     startTime: "",
     endTime: "",
   });
+
+  useEffect(() => {
+    const apiManager = new CoordinatorApiMan();
+    const fetchApartments = async () => {
+      const response = await apiManager.getCoordinatorApartments(coordinatorId);
+      setInstructorsApartments(response.data);
+    };
+    fetchApartments();
+  }, []);
 
   const handleInstructorChange = (event, newValue) => {
     setSelectedInstructor(newValue);
