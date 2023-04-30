@@ -218,13 +218,10 @@ const ApiManager = function () {
     getApartmentName,
     getResidentsByInstructorId,
     getInspections,
-<<<<<<< HEAD
     getCoordinatorDataByCoordinatorID,
     fetchReportsByInstructorId,
     addNewReport,
-=======
     getResidentsbirthdays,
->>>>>>> fixScheduler
   };
 };
 
