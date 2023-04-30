@@ -108,7 +108,7 @@ const Widgets = ({ coordinatorApartments }) => {
                     {residents.slice(0, 3).map((resident, i) => {
                         return (
                             <img
-                                id={i}
+                                key={i}
                                 src={resident.image}
                                 className='avatar'
                                 alt='avatar'
@@ -139,7 +139,7 @@ const Widgets = ({ coordinatorApartments }) => {
                     {apartments.slice(0, 2).map((apartment, i) => {
                         return (
                             <img
-                                id={i}
+                                key={i}
                                 src={apartment.image}
                                 className='avatar'
                                 alt='avatar'
