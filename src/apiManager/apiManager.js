@@ -163,13 +163,18 @@ const ApiManager = function () {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/medicalAppointments/${instructorId}`
     );
-    console.log(response);
     return response;
   };
 
   const getResidentsByInstructorId = async function (instructorId) {
     const response = await ajaxCall(
       `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/${instructorId}`
+    );
+    return response.data;
+  };
+  const getResidentsbirthdays = async function (instructorId) {
+    const response = await ajaxCall(
+      `${process.env.REACT_APP_SERVER_ROUTE}/instructor/residents/birthdays/${instructorId}`
     );
     return response.data;
   };
@@ -191,6 +196,7 @@ const ApiManager = function () {
     getApartmentName,
     getResidentsByInstructorId,
     getInspections,
+    getResidentsbirthdays,
   };
 };
 
