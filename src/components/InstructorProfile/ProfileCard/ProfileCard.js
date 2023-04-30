@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ProfileCard = ({img, name, IDNmber, phoneNumber,email}) => {
+const ProfileCard = ({img, name, IDNmber, phoneNumber}) => {
 
     return (
         <div>
@@ -14,7 +14,6 @@ const ProfileCard = ({img, name, IDNmber, phoneNumber,email}) => {
                         <h1>{name}</h1>
                         <h3>ID: {IDNmber}</h3>
                         <h3> {phoneNumber}</h3>
-                        <h3>Email: {email}</h3>
                         <ul></ul>
                     </div>
                 </div>

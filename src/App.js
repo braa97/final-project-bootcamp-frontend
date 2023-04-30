@@ -19,6 +19,7 @@ import AddNewApartment from "./components/AddNewApartment/AddNewApartment";
 import ReportPage from "./components/ReportPage/ReportPage.js/ReportPage";
 import CreateReport from "./components/ReportPage/CreateReport/CreateReport";
 import CoordinatorProfile from "./components/CoordinatorProfile/CoordinatorProfile/CoordinatorProfile";
+import InstructorProfile from "./components/InstructorProfile/InstructorProfile/InstructorProfile";
 
 const App = () => {
   const navigate = useNavigate();
@@ -95,6 +96,10 @@ const App = () => {
           <Route
             path="/reports/create-report/:apartmentName"
             element={<CreateReport />}
+          />
+            <Route
+            path="/instructor/profile/:instructorID"
+            element={<InstructorProfile />}
           />
         </Routes>
       </div>

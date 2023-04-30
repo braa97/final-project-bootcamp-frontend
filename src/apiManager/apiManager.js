@@ -196,6 +196,7 @@ const ApiManager = function () {
     return response.data;
   };
 
+
   return {
     getResidentsByApartmentName,
     getApartmentByName,
