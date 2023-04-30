@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardMedia,
@@ -7,7 +7,8 @@ import {
   IconButton,
   Avatar,
 } from "@mui/material";
-import { Edit, Delete } from "@mui/icons-material";
+import {  Delete } from "@mui/icons-material";
+import EditButton from './editButton'
 
 export default function instructor({ instructor, deleteEvent }) {
   return (
@@ -20,6 +21,11 @@ const MyCard = ({ instructor, deleteEvent }) => {
   const handleDelete = function(){
     deleteEvent(instructor._id)
   }
+  const [instructorData, setInstructorData] = useState(instructor)
+  const updateInstructor = (instructor) => {
+        setInstructorData(instructor)
+  };
+
   return (
     <Card sx={{ maxWidth: 345, mb: 10 }}>
       <CardMedia
@@ -34,11 +40,11 @@ const MyCard = ({ instructor, deleteEvent }) => {
             {instructor.name.charAt(0)}
           </Avatar>
           <Typography gutterBottom variant="h5" component="div" sx={{ ml: 2 }}>
-            {instructor.name}
+            {instructorData.name}
           </Typography>
         </div>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          {instructor.email}
+          {instructorData.email}
         </Typography>
         <hr style={{ margin: "16px 0" }} />
         <div
@@ -48,9 +54,7 @@ const MyCard = ({ instructor, deleteEvent }) => {
             alignItems: "center",
           }}
         >
-          <IconButton color="primary" aria-label="edit">
-            <Edit />
-          </IconButton>
+          <EditButton instructor={instructor} updateInstructor={updateInstructor}/>
           <IconButton color="secondary" aria-label="delete">
             <Delete onClick={handleDelete}/>
           </IconButton>
