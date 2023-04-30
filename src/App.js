@@ -99,12 +99,9 @@ const App = () => {
             path="/reports/create-report/:apartmentName"
             element={<CreateReport />}
           />
-            <Route
-            path="/instructor/profile/:instructorID"
-            element={<InstructorProfile />}
-          />
           <Route path="/coordinator/instructors" element={<Instructors />} />
           <Route path="/coordinator/schedule" element={<ShiftScheduler />} />
+
         </Routes>
       </div>
     </div>
