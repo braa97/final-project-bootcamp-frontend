@@ -45,7 +45,7 @@ export default function SingleMedicalAppointment({
   };
 
   const handleDateChange = (newDate) => {
-    setDate(utility.dateFormatter(newDate.$d));
+    setDate(utility.dateFormatter(newDate?.$d));
   };
 
   const handleAppointmentEdit = () => {

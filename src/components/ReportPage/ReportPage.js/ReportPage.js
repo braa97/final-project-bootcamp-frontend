@@ -68,8 +68,6 @@ export default function ReportPage() {
     setIsOpen(false);
   };
 
-  console.log(reports);
-
   return (
     <div className="report-container">
       <div className="report-page-header">
