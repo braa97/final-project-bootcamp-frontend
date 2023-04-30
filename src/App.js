@@ -19,6 +19,7 @@ import AddNewApartment from "./components/AddNewApartment/AddNewApartment";
 import ReportPage from "./components/ReportPage/ReportPage.js/ReportPage";
 import CreateReport from "./components/ReportPage/CreateReport/CreateReport";
 import CoordinatorProfile from "./components/CoordinatorProfile/CoordinatorProfile/CoordinatorProfile";
+import InstructorProfile from "./components/InstructorProfile/InstructorProfile/InstructorProfile";
 import Instructors from "./components/Coordinator_Dashboard/dashboard/Coordinator_Instructors/Inctructors";
 import ShiftScheduler from "./components/Scheduler/Scheduler";
 
@@ -97,6 +98,10 @@ const App = () => {
           <Route
             path="/reports/create-report/:apartmentName"
             element={<CreateReport />}
+          />
+            <Route
+            path="/instructor/profile/:instructorID"
+            element={<InstructorProfile />}
           />
           <Route path="/coordinator/instructors" element={<Instructors />} />
           <Route path="/coordinator/schedule" element={<ShiftScheduler />} />
