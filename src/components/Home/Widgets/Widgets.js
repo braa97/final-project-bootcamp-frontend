@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import ApiManager from '../../../apiManager/apiManager'
 import './Widgets.css'
-import { reedem, service, users, revenue, user } from '../../../Assets/index'
+import {
+    reedem,
+    service,
+    users,
+    revenue,
+    user,
+    seeAllImg,
+} from '../../../Assets/index'
+import { Link, useNavigate } from 'react-router-dom'
 import Utility from '../../../utilities/utility/util'
 const today = new Date()
 const currentMonth = (today.getMonth() + 1).toString().padStart(2, '0')
 
 const Widgets = ({ coordinatorApartments }) => {
+    const navigate = useNavigate()
     const [apartments, setApartments] = useState([])
     const [residents, setResidents] = useState([])
     const [totalMeetingsState, setTotalMeetings] = useState(0)
@@ -43,7 +52,6 @@ const Widgets = ({ coordinatorApartments }) => {
                     }
                 }
             }
-            console.log('total meetings:', totalMeetings)
             setTotalMeetings(totalMeetings)
         }
 
@@ -95,28 +103,28 @@ const Widgets = ({ coordinatorApartments }) => {
             <div className='box box2'>
                 <div>
                     <h3>Residents</h3>
-                    <div className='explanation'>Latest Residents</div>
                 </div>
                 <div className='avatars'>
+                    {residents.slice(0, 3).map((resident, i) => {
+                        return (
+                            <img
+                                id={i}
+                                src={resident.image}
+                                className='avatar'
+                                alt='avatar'
+                                onClick={() =>
+                                    navigate(
+                                        `apartments/apartment-info/resident/${resident._id}`
+                                    )
+                                }
+                            />
+                        )
+                    })}
                     <img
-                        src='https://image.shutterstock.com/image-photo/confident-rich-eastern-indian-business-260nw-2200214153.jpg'
+                        src={seeAllImg}
                         className='avatar'
-                        alt='Avatar 1'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/smiling-young-middle-eastern-man-260nw-2063524544.jpg'
-                        className='avatar'
-                        alt='Avatar 2'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/successful-caucasian-young-man-student-260nw-2141124049.jpg'
-                        className='avatar'
-                        alt='Avatar 3'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/portrait-smiling-mature-man-standing-260nw-2137527991.jpg'
-                        className='avatar'
-                        alt='Avatar 4'
+                        alt='Apartment 4'
+                        onClick={() => navigate(`residents`)}
                     />
                 </div>
                 <div className='icon-placeholder'>
@@ -126,28 +134,28 @@ const Widgets = ({ coordinatorApartments }) => {
             <div className='box box3'>
                 <div>
                     <h3>Apartments</h3>
-                    <div className='explanation'>Latest Apartments</div>
                 </div>
                 <div className='avatars'>
+                    {apartments.slice(0, 2).map((apartment, i) => {
+                        return (
+                            <img
+                                id={i}
+                                src={apartment.image}
+                                className='avatar'
+                                alt='avatar'
+                                onClick={() =>
+                                    navigate(
+                                        `apartments/apartment-info/${apartment.apartmentName}`
+                                    )
+                                }
+                            />
+                        )
+                    })}
                     <img
-                        src='https://image.shutterstock.com/image-photo/interior-small-apartment-living-room-260nw-2154108011.jpg'
-                        className='avatar'
-                        alt='Apartment 1'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/eu-modern-european-complex-apartment-260nw-1445600369.jpg'
-                        className='avatar'
-                        alt='Apartment 2'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/cityscape-residential-area-modern-apartment-260nw-1723278520.jpg'
-                        className='avatar'
-                        alt='Apartment 3'
-                    />
-                    <img
-                        src='https://image.shutterstock.com/image-photo/stylish-apartment-interior-modern-kitchen-260nw-1097696003.jpg'
+                        src={seeAllImg}
                         className='avatar'
                         alt='Apartment 4'
+                        onClick={() => navigate(`apartments`)}
                     />
                 </div>
                 <div className='icon-placeholder'>
