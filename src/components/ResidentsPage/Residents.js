@@ -7,7 +7,7 @@ import './Residents.css'
 const Residents = ({ coordinatorApartments }) => {
     const [residents, setResidents] = useState([])
     const [loading, setLoading] = useState(true)
-    const instructorId = localStorage.getItem('instructorId')
+    const instructorId = JSON.parse(localStorage.getItem('user'))?.userId
 
     useEffect(() => {
         const apiManager = new ApiManager()
@@ -19,7 +19,7 @@ const Residents = ({ coordinatorApartments }) => {
             setResidents(apartments)
             setLoading(false)
         }
-        if (localStorage.getItem('instructorId')) {
+        if (localStorage.getItem('user')) {
             fetchInstructorResidents()
         } else {
             setLoading(false)

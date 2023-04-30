@@ -1,4 +1,5 @@
 import logo from "./logo.png";
+import seeAllImg from './more.png'
 import reedem from "./Reedem.png";
 import revenue from "./Revenue.png";
 import service from "./Service.png";
@@ -25,6 +26,7 @@ import signinBg from "./signin-bg.avif"
 export {
   signinBg,
   logo,
+  seeAllImg,
   reedem,
   revenue,
   service,

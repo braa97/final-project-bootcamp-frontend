@@ -10,11 +10,16 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const logout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("instructorId");
+    localStorage.removeItem("user");
+    // navigate('/login')
     window.location.reload();
   };
 
@@ -30,12 +35,25 @@ const Sidebar = () => {
             </li>
           </Link>
           <hr className="sidebar-divider" />
-          <Link to="/residents" style={{ textDecoration: "none" }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Residents</span>
-            </li>
-          </Link>
+          {user.userType === "Instructor" ? (
+            <Link to="/residents" style={{ textDecoration: "none" }}>
+              <li>
+                <PersonOutlineIcon className="icon" />
+                <span>Residents</span>
+              </li>
+            </Link>
+          ) : (
+            <Link
+              to="/coordinator/instructors"
+              style={{ textDecoration: "none" }}
+            >
+              <li>
+                <PersonOutlineIcon className="icon" />
+                <span>Instructors</span>
+              </li>
+            </Link>
+          )}
+
           <Link to="/apartments" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
@@ -44,12 +62,22 @@ const Sidebar = () => {
           </Link>
 
           <hr className="sidebar-divider" />
-          <Link to="/scheduler">
-            <li>
-              <InsertChartIcon className="icon" />
-              <span>Scheduler</span>
-            </li>
-          </Link>
+          {user.userType === "Instructor" ? (
+            <Link to="/scheduler">
+              <li>
+                <InsertChartIcon className="icon" />
+                <span>Scheduler</span>
+              </li>
+            </Link>
+          ) : (
+            <Link to="/coordinator/schedule">
+              <li>
+                <InsertChartIcon className="icon" />
+                <span>Schedule</span>
+              </li>
+            </Link>
+          )}
+
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
@@ -65,10 +93,6 @@ const Sidebar = () => {
               <span>Report</span>
             </li>
           </Link>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
           <hr className="sidebar-divider" />
           <li>
             <AccountCircleOutlinedIcon className="icon" />

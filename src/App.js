@@ -19,14 +19,19 @@ import AddNewApartment from "./components/AddNewApartment/AddNewApartment";
 import ReportPage from "./components/ReportPage/ReportPage.js/ReportPage";
 import CreateReport from "./components/ReportPage/CreateReport/CreateReport";
 import CoordinatorProfile from "./components/CoordinatorProfile/CoordinatorProfile/CoordinatorProfile";
+<<<<<<< HEAD
 import InstructorProfile from "./components/InstructorProfile/InstructorProfile/InstructorProfile";
+=======
+import Instructors from "./components/Coordinator_Dashboard/dashboard/Coordinator_Instructors/Inctructors";
+import ShiftScheduler from "./components/Scheduler/Scheduler";
+>>>>>>> master
 
 const App = () => {
   const navigate = useNavigate();
   const [isLoggedin, setIsLoggedin] = useState(
-    localStorage.getItem("instructorId") || null
+    localStorage.getItem("token") || null
   );
-
+  
   useEffect(() => {
     if (!isLoggedin) {
       navigate("/login");
@@ -44,9 +49,9 @@ const App = () => {
             <div className="sidebar-container">
               <Sidebar />
             </div>
-            <div className="footer-container">
+            {/* <div className="footer-container">
               <Footer />
-            </div>
+            </div> */}
           </>
         ) : null}
 
@@ -97,10 +102,15 @@ const App = () => {
             path="/reports/create-report/:apartmentName"
             element={<CreateReport />}
           />
+<<<<<<< HEAD
             <Route
             path="/instructor/profile/:instructorID"
             element={<InstructorProfile />}
           />
+=======
+          <Route path="/coordinator/instructors" element={<Instructors />} />
+          <Route path="/coordinator/schedule" element={<ShiftScheduler />} />
+>>>>>>> master
         </Routes>
       </div>
     </div>

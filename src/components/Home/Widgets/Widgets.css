@@ -59,24 +59,29 @@
     z-index: 1;
 }
 
-.avatar:nth-child(1) {
+.avatar:nth-child(1), .avatar1 {
     z-index: 2;
     left: 30%;
 }
 
-.avatar:nth-child(2) {
+.avatar:nth-child(2), .avatar2 {
     z-index: 3;
     left: 35%;
 }
 
-.avatar:nth-child(3) {
+.avatar:nth-child(3), .avatar3 {
     z-index: 4;
     left: 40%;
 }
 
-.avatar:nth-child(4) {
+.avatar:nth-child(4), .avatar4 {
     z-index: 5;
     left: 45%;
+}
+
+.avatar:nth-child(5), .avatar5 {
+    z-index: 6;
+    left: 50%;
 }
 
 h3 {

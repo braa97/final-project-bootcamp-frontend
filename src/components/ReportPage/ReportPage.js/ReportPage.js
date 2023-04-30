@@ -48,7 +48,7 @@ export default function ReportPage() {
   };
 
   useEffect(() => {
-    const instructorId = localStorage.getItem("instructorId");
+    const instructorId = JSON.parse(localStorage.getItem('user'))?.userId
     const fetchReportsFromDb = async (instructorId) => {
       const response = await apiManager.fetchReportsByInstructorId({
         instructorId: instructorId,

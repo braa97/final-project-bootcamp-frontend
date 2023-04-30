@@ -43,14 +43,15 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
     console.log(response);
     if (response) {
       localStorage.setItem("token", response.token);
-      if (response.user.type === "Instructor") {
-        setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
-        localStorage.setItem("instructorId", response.user.ref);
-        navigate(`/`);
-      }
-      if (response.user.type === "Coordinator") {
-        navigate(`/Coordinator/dashboard/${response.user.ref}`);
-      }
+      setIsLoggedin(JSON.stringify(localStorage.getItem("token")));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          userId: response.user.ref,
+          userType: response.user.type,
+        })
+      );
+      navigate(`/`);
     } else {
       alert("email or password no correct");
     }
@@ -59,6 +60,8 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
   useEffect(() => {
     if (isLoggedin) {
       navigate("/");
+    } else {
+      navigate("/login");
     }
   }, []);
 
@@ -134,7 +137,6 @@ export default function SignIn({ setIsLoggedin, isLoggedin }) {
           <Copyright sx={{ mt: 8, mb: 4 }} />
         </Container>
       </ThemeProvider>
-      
     </div>
   );
 }

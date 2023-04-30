@@ -1,58 +1,62 @@
-import "./ApartmentsTable.css";
-import "../../global-styles/datagrid-table-media-queries.css";
+import "./ResidentsTable.css";
+import "../../../global-styles/datagrid-table-media-queries.css";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Utility from "../../../utilities/utility/util";
 
-const ApartmentsTable = ({ apartments }) => {
-  const location = useLocation();
-  const locationObject = location.state;
+const ResidentsTable = ({ residents }) => {
+  const utility = new Utility();
   const [rows, setRows] = useState([]);
-  const userType = JSON.parse(localStorage.getItem("user"))?.userType;
+  const userType = JSON.parse(localStorage.getItem('user'))?.userType
+
   useEffect(() => {
-    const filteredApartments = apartments.map((apartment) => {
+    const filteredResidents = residents.map((resident) => {
       return {
-        id: apartment.apartmentId ? apartment.apartmentId : apartment._id ,
-        apartmentName: apartment.apartmentName,
+        _id: resident._id,
+        id: resident.residentId,
+        residentName: resident.firstName + " " + resident.lastName,
+        birthday: utility.dateFormatter(resident.dateOfBirth),
         budget: `₪ ${
-          apartment.budget > 999
-            ? (apartment.budget / 1000).toFixed(1) + "k"
-            : apartment.budget
+          resident.budget > 999
+            ? (resident.budget / 1000).toFixed(1) + "k"
+            : resident.budget
         }`,
-        address: apartment.address,
-        img: apartment.image,
+        img: resident.image,
       };
     });
-    setRows(filteredApartments);
-  }, [apartments]);
+    setRows(filteredResidents);
+  }, [residents]);
 
   function handleDelete(id) {
     setRows(rows.filter((r) => r.id !== id));
+    console.log(rows.length);
   }
 
   const columnsTitles = [
     {
-      field: "apartmentName",
-      headerName: "Apartment Name",
+      field: "resident",
+      headerName: "Resident",
       width: 230,
       renderCell: (params) => {
         return (
           <div className="cell-with-img">
             <img className="cell-img" src={params.row.img} alt="avatar" />
-            {params.row.apartmentName}
+            {params.row.residentName}
           </div>
         );
       },
     },
     {
+      field: "birthday",
+      headerName: "Birthday",
+      width: 150,
+    },
+
+    {
       field: "budget",
       headerName: "Budget",
-      width: 100,
-    },
-    {
-      field: "address",
-      headerName: "Address",
-      width: 260,
+      width: 130,
     },
     {
       field: "action",
@@ -62,11 +66,7 @@ const ApartmentsTable = ({ apartments }) => {
         return (
           <div className="cellAction">
             <Link
-              to={
-                locationObject?.location
-                  ? `/reports/create-report/${params.row.apartmentName}`
-                  : "/apartments/apartment-info/" + params.row.apartmentName
-              }
+              to={`/apartments/apartment-info/resident/${params.row._id}`}
               style={{ textDecoration: "none" }}
             >
               <button className="viewButton">View</button>
@@ -87,20 +87,19 @@ const ApartmentsTable = ({ apartments }) => {
     <>
       <div className="datatable">
         <div className="data-grid-title">
-          Apartments
+          Residents
           {userType === "Instructor" ? null : (
             <Link
-              to="/apartments/apartment-info/apartment/new-apartment"
-              className="new-apartment-link"
+              to="/apartments/apartment-info/resident/new-resident"
+              className="new-resident-link"
             >
-              Add New Apartment
+              Add New Resident
             </Link>
           )}
         </div>
         <DataGrid
           className="datagrid"
           rows={rows}
-          getRowId={(row) => row.id}
           columns={columnsTitles}
           pageSize={5}
           rowsPerPageOptions={[5]}
@@ -111,4 +110,4 @@ const ApartmentsTable = ({ apartments }) => {
   );
 };
 
-export default ApartmentsTable;
+export default ResidentsTable;

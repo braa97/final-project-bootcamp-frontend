@@ -1,35 +1,33 @@
 import "./Apartments.css";
 import React, { useEffect, useState } from "react";
 import ApiManager from "../../apiManager/apiManager";
+import CoordinatorApiMan from "../../coordinatorApiManager/coordinatorApiMan";
 import LoadingWheel from "../LoadingWheel/LoadingWheel";
 import ApartmentsTable from "../ApartmentsTable/ApartmentsTable";
 // import { useLocation } from "react-router-dom";
 
-const Apartments = ({ coordinatorApartments }) => {
-  // const location = useLocation();
+const Apartments = () => {
   const [apartments, setApartments] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [instructorId, setInstructorId] = useState(
-  //     localStorage.getItem('instructorId')
-  // )
-  const instructorId = localStorage.getItem("instructorId");
+  const user = JSON.parse(localStorage.getItem("user"))
+
   useEffect(() => {
     const apiManager = new ApiManager();
+    const coordinatorApiMan = new CoordinatorApiMan();
 
     let fetchApartments = async () => {
-      let apartments = await apiManager.getApartmentsByInstructorId(
-        instructorId
-      );
+      let apartments;
+      if (user?.userType === "Instructor") {
+        apartments = await apiManager.getApartmentsByInstructorId(user?.userId);
+      } else {
+        apartments = await coordinatorApiMan.getCoordinatorApartments(user?.userId);
+        apartments = apartments.data
+      }
       setApartments(apartments);
       setLoading(false);
     };
-    if (localStorage.getItem("instructorId")) {
-      fetchApartments();
-    } else {
-      setLoading(false);
-      setApartments(coordinatorApartments);
-    }
-  }, [coordinatorApartments, instructorId]);
+    fetchApartments()
+  }, []);
 
   try {
     return (
