@@ -12,40 +12,38 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
         <div className='navbar'>
-            <div className='wrapper'>
-                <Link to='/' style={{ textDecoration: 'none' }}>
-                    <span className='logo'>CareCompanion+</span>
-                </Link>
-                <div className='search'>
-                    <input type='text' placeholder='Search...' />
-                    <SearchOutlinedIcon />
+            <Link to='/' style={{ textDecoration: 'none' }}>
+                <span className='logo'>CareCompanion+</span>
+            </Link>
+            <div className='search'>
+                <input type='text' placeholder='Search...' />
+                <SearchOutlinedIcon />
+            </div>
+            <div className='items'>
+                <div className='item'>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+                        <LanguageOutlinedIcon className='icon' />
+                    </Link>
                 </div>
-                <div className='items'>
-                    <div className='item'>
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <LanguageOutlinedIcon className='icon' />
-                        </Link>
-                    </div>
-                    <div className='item'>
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <DarkModeOutlinedIcon className='icon' />
-                        </Link>
-                    </div>
-                    <div className='item'>
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <NotificationsNoneOutlinedIcon className='icon' />
-                        </Link>
-                        <div className='counter'>1</div>
-                    </div>
-                    <div className='item'>
-                        <Link to='/' style={{ textDecoration: 'none' }}>
-                            <img
-                                src='https://pngimg.com/uploads/man/small/man_PNG6509.png'
-                                alt=''
-                                className='avatar'
-                            />
-                        </Link>
-                    </div>
+                <div className='item'>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+                        <DarkModeOutlinedIcon className='icon' />
+                    </Link>
+                </div>
+                <div className='item'>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+                        <NotificationsNoneOutlinedIcon className='icon' />
+                    </Link>
+                    <div className='counter'>1</div>
+                </div>
+                <div className='item'>
+                    <Link to='/' style={{ textDecoration: 'none' }}>
+                        <img
+                            src='https://pngimg.com/uploads/man/small/man_PNG6509.png'
+                            alt=''
+                            className='avatar'
+                        />
+                    </Link>
                 </div>
             </div>
         </div>

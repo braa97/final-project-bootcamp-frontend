@@ -33,14 +33,10 @@ const Apartments = ({ coordinatorApartments }) => {
 
   try {
     return (
-      <>
-        <div className="apartments-header-label">
-          <label>{apartments.length !== 0 ? "Apartments" : null}</label>
-        </div>
+      <div>
         <div className="loading-wheel">{loading ? <LoadingWheel /> : null}</div>
         <ApartmentsTable apartments={apartments} />
-        {/* <div className='apartments-container'></div> */}
-      </>
+      </div>
     );
   } catch (error) {
     console.log(error);

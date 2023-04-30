@@ -30,10 +30,10 @@ const ApartmentPage = () => {
 
     try {
         return (
-            <>
+            <div>
                 <ApartmentDetails apartment={apartment} />
                 <ResidentsTable residents={residents} />
-            </>
+            </div>
         )
     } catch (error) {
         console.log(error)

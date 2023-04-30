@@ -1,21 +1,7 @@
-// import React, { useEffect, useState } from "react";
 import './ApartmentDetails.css'
 import { Link } from 'react-router-dom'
-import Utility from '../../../utilities/utility/util'
-// import ApiManager from "../../../apiManager/apiManager";
 
-const ApartmenPagetHeader = ({ apartment }) => {
-
-    // const apiManager = new ApiManager()
-    // const [apartment, setApartment] = useState({})
-
-    // useEffect(() => {
-    //     const fetchApartmentData = async() => {
-    //         const response = await apiManager.getApartmentByName(apartmentName)
-    //         setApartment(response)
-    //     }
-    //     fetchApartmentData()
-    // }, [])
+const ApartmentDetails = ({ apartment }) => {
 
     return (
         <div className='apartment-details-component'>
@@ -69,4 +55,4 @@ const ApartmenPagetHeader = ({ apartment }) => {
     )
 }
 
-export default ApartmenPagetHeader
+export default ApartmentDetails
