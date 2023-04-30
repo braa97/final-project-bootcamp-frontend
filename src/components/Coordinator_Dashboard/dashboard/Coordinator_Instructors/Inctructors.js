@@ -4,17 +4,22 @@ import CoordinatorApiMan from "../../../../coordinatorApiManager/coordinatorApiM
 import Grid from "@mui/material/Grid";
 import Instructor from "./instructor";
 import BeautifulButton from "./add_instructor";
-export default function Instructors({ coordinatorId }) {
+
+export default function Instructors() {
+
   const [instructors, setInstructors] = useState([]);
   const apiManager = new CoordinatorApiMan();
+  const coordinatorId = JSON.parse(localStorage.getItem("user")).userId
+
   const fetchInstructors = async function () {
     const response = await apiManager.getInstructors(coordinatorId);
-    const coordinator = await response.json();
-    setInstructors(coordinator.instructors);
+    setInstructors(response.data.instructors);
   };
+
   useEffect(() => {
     fetchInstructors();
   }, []);
+
   const deleteInstructor = async function(instructorId){
     await apiManager.deleteInstructor(instructorId)
     fetchInstructors()

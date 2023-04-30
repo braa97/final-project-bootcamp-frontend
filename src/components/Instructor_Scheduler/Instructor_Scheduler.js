@@ -49,7 +49,7 @@ function SchedulerDemo() {
     const fetchShifts = async function () {
       const apiManager = new ApiManager();
       const response = await apiManager.getInstructorShifts(
-        localStorage.getItem("instructorId")
+        JSON.parse(localStorage.getItem('user')).userId
       );
       const appointments = await Promise.all(
         response.data.map(async (appointment) => {
@@ -73,7 +73,7 @@ function SchedulerDemo() {
     const fetchBirthdays = async function () {
       const apiManager = new ApiManager();
       const response = await apiManager.getResidentsbirthdays(
-        localStorage.getItem("instructorId")
+        JSON.parse(localStorage.getItem('user')).userId
       );
       const birthdayAppointments = response.map((birthday, index) => {
         const startDate = new Date(birthday.startDate);
@@ -100,7 +100,7 @@ function SchedulerDemo() {
     const fetchInspections = async function () {
       const apiManager = new ApiManager();
       const response = await apiManager.getInspections(
-        localStorage.getItem("instructorId")
+        JSON.parse(localStorage.getItem('user')).userId
       );
       const newInspections = response.data.apartments
         .flatMap((apartment) => {

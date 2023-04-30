@@ -1,13 +1,12 @@
+import axios from "axios";
+
 const CoordinatorApiMan = function () {
   const getCallWithFetch = async (url) => {
-    return await fetch(url, {
-      method: "GET",
-
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    return await axios.get(url, {headers});
   };
   const postCallWithFetch = async (url, body) => {
     const response = await fetch(url, {
@@ -98,6 +97,12 @@ const CoordinatorApiMan = function () {
     );
     return newInstructors;
   }
+  const getResidentsByCoordinatorId = async (coordinatorId) => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/residents/${coordinatorId}`
+    );
+    return response;
+  };
 
   return {
     getCoordinatorApartments,
@@ -106,6 +111,7 @@ const CoordinatorApiMan = function () {
     addShift,
     deleteInstructor,
     updateInstructor,
+    getResidentsByCoordinatorId,
   };
 };
 export default CoordinatorApiMan;
