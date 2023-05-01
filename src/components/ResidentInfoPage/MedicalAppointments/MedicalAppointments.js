@@ -4,20 +4,8 @@ import AddMedicalAppointment from '../../Add_Appointment/AddMedicalAppointment'
 import ApiManager from '../../../apiManager/apiManager'
 import SingleMedicalAppointment from '../SingleMedicalAppointment/SingleMedicalAppointment'
 
-const MedicalAppointments = ({ residentId }) => {
+const MedicalAppointments = ({residentId, setMedicalAppointments, medicalAppointments, fetchResidentAppointment }) => {
     const apiManager = new ApiManager()
-    const [medicalAppointments, setMedicalAppointments] = useState([])
-
-    const fetchResidentAppointment = async () => {
-        let response = await apiManager.getResidentMedicalAppointments(
-            residentId
-        )
-        setMedicalAppointments(response.medicalAppointments)
-    }
-
-    useEffect(() => {
-        fetchResidentAppointment()
-    }, [])
 
     const handleAddAppointment = async (typeOfInspection, date) => {
         const newMedicalAppointment = {
@@ -29,7 +17,6 @@ const MedicalAppointments = ({ residentId }) => {
             residentId,
             newMedicalAppointment
         )
-        fetchResidentAppointment()
     }
 
     const handleDeleteAppointment = async (appointmentId) => {

@@ -121,6 +121,7 @@ const ShiftScheduler = () => {
   const [selectedApartment, setSelectedApartment] = useState(null);
   const [instructorsApartments, setInstructorsApartments] = useState([])
   const [selectedDate, setSelectedDate] = useState(dayjs());
+  const [snackbarProps, setSnackbarProps] = useState("");
   const coordinatorId = JSON.parse(localStorage.getItem("user"))?.userId
   const [shift, setShift] = useState({
     date: "",
@@ -243,6 +244,7 @@ const ShiftScheduler = () => {
           </Button>
         </Grid>
       </Grid>
+      {snackbarProps && <Snackbar_Top_Right props={snackbarProps} />}
     </Container>
   );
 };

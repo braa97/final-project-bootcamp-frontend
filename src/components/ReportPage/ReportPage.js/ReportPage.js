@@ -14,6 +14,7 @@ import ApiManager from "../../../apiManager/apiManager";
 import Utility from "../../../utilities/utility/util";
 import Scroll_Paper_Dialog from "../../Helper-Components/Dialog/Scroll_Paper_Dialog";
 import ReportDisplayPage from "../ReportDisplayPage/ReportDisplayPage";
+import CoordinatorApiMan from "../../../coordinatorApiManager/coordinatorApiMan";
 
 const theme = createTheme({
   palette: {
@@ -39,6 +40,8 @@ export default function ReportPage() {
   const utility = new Utility();
   const navigate = useNavigate();
   const apiManager = new ApiManager();
+  const coordinatorApiMan = new CoordinatorApiMan();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [reports, setReports] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedReport, setSelectedReport] = useState(null);
@@ -48,14 +51,19 @@ export default function ReportPage() {
   };
 
   useEffect(() => {
-    const instructorId = JSON.parse(localStorage.getItem('user'))?.userId
-    const fetchReportsFromDb = async (instructorId) => {
-      const response = await apiManager.fetchReportsByInstructorId({
-        instructorId: instructorId,
-      });
-      setReports(response.reports);
+    const fetchReportsFromDb = async () => {
+      let response;
+      if (user.userType === "Instructor") {
+        response = await apiManager.fetchReportsByInstructorId({instructorId: user?.userId});
+        response = response.reports
+      }
+      else {
+        response = await coordinatorApiMan.fetchReportsByCoordinatorId({coordinatorId: user?.userId});
+        response = response.data
+      }
+      setReports(response);
     };
-    fetchReportsFromDb(instructorId);
+    fetchReportsFromDb();
   }, []);
 
   const handleOpenDialog = (report) => {

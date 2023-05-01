@@ -21,6 +21,14 @@ const CoordinatorApiMan = function () {
     return data;
   };
 
+  const ajaxPostCall = async(url, body) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+    return await axios.post(url, body, {headers})
+  }
+
   const deleteCallWithFetch = async (url) => {
     await fetch(url, {
       method: "DELETE",
@@ -119,6 +127,16 @@ const getCoordinatorByCoordinatorID = async function (coordinatorID) {
   return response.data;
 }
 
+const fetchReportsByCoordinatorId = async(coordinatorId) => {
+  try {
+    return await ajaxPostCall(`${process.env.REACT_APP_SERVER_ROUTE}/coordinator/reports`, coordinatorId)
+  }
+  catch(error) {
+    console.log(error);
+    return error
+  }
+}
+
   return {
     getCoordinatorApartments,
     getInstructors,
@@ -129,6 +147,7 @@ const getCoordinatorByCoordinatorID = async function (coordinatorID) {
     getResidentsByCoordinatorId,
     getCoordinatorDataByCoordinatorID,
     getCoordinatorByCoordinatorID,
+    fetchReportsByCoordinatorId,
   };
 };
 export default CoordinatorApiMan;

@@ -21,7 +21,7 @@ export default function Snackbar_Top_Right({ props }) {
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={isSnackbarOpen}
         onClose={closeSnackbar}
         autoHideDuration={3000}

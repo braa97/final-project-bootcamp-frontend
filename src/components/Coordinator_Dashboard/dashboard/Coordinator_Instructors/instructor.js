@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import {  Delete } from "@mui/icons-material";
 import EditButton from './editButton'
+import PhoneIcon from '@mui/icons-material/Phone';
 
 export default function instructor({ instructor, deleteEvent }) {
   return (
@@ -43,8 +44,9 @@ const MyCard = ({ instructor, deleteEvent }) => {
             {instructorData.name}
           </Typography>
         </div>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          {instructorData.email}
+        <Typography variant="body2" sx={{ display: "flex", alignItems: "center", marginTop: "15px" }}>
+          <PhoneIcon sx={{marginRight: "15px"}}/>
+          {instructorData.phoneNumber}
         </Typography>
         <hr style={{ margin: "16px 0" }} />
         <div
