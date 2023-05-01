@@ -3,9 +3,32 @@
 .sidebar {
     border-right: 0.5px solid #5183f8;
     min-height: 100vh;
-    z-index: 2000;
-    position: fixed;
-    margin-top: 30px;
+}
+
+.sidebar .user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    /* margin-bottom: 10px; */
+}
+
+.sidebar .profile-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.sidebar .profile-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sidebar .profile-job {
+    opacity: 0.7;
+    text-align: center;
 }
 
 .sidebar hr {

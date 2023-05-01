@@ -84,7 +84,6 @@ export default function ReportPage() {
             <TableRow>
               <TableCell>Report Name</TableCell>
               <TableCell align="left">Apartment</TableCell>
-              {/* <TableCell align="left">Instructor</TableCell> */}
               <TableCell align="left">Date</TableCell>
             </TableRow>
           </TableHead>

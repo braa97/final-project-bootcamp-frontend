@@ -6,7 +6,7 @@ const InfoWidget = ({ value, title, icon }) => {
     return (
         <div className='resident-info-card-single'>
             <div>
-                <h1 className='value'>{value}</h1>
+                <h5 className='value'>{value}</h5>
                 <span className='title'>{title}</span>
             </div>
             <div>

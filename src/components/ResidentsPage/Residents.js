@@ -31,14 +31,10 @@ const Residents = () => {
     try {
         return (
             <div className='instructor-residents-component'>
-                <div className='residents-header-label'>
-                    <label>{residents.length !== 0 ? 'Residents' : null}</label>
-                </div>
                 <div className='loading-wheel'>
                     {loading ? <LoadingWheel /> : null}
                 </div>
                 <ResidentsTable residents={residents} />
-                <div className='residents-container'></div>
             </div>
         )
     } catch (error) {
