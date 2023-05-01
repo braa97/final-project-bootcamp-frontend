@@ -23,26 +23,26 @@
     background: red;
 }
 
-table {
+.Apartments table {
     border-collapse: collapse;
 }
 
-thead tr {
+.Apartments thead tr {
     border-bottom: 1px solid #f0f0f0;
     border-top: 2px solid #f0f0f0;
 }
 
-thead td {
+.Apartments thead td {
     font-weight: 700;
 }
 
-td {
+.Apartments td {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
     color: #222;
 }
 
-td .status {
+.Apartments td .status {
     display: inline-block;
     height: 20px;
     width: 20px;
@@ -51,17 +51,17 @@ td .status {
 }
 
 
-td input:disabled {
+.Apartments td input:disabled {
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
     color: #222;
 }
 
-td input {
+.Apartments td input {
     font: 1em sans-serif;
 }
 
-tr td:last-child {
+.Apartments tr td:last-child {
     display: flex;
     align-items: center;
 }
