@@ -1,12 +1,12 @@
 
-.coord.main {
+.coord-main {
     height: 100%;
     width: 100%;
     padding: 2rem 1.5rem;
     min-height: calc(100vh - 90px);
 }
 
-.coord.cards {
+.coord-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -15,13 +15,13 @@
     margin-top: 1rem;
 }
 
-.coord.cards img {
+.coord-cards img {
     width: 90px;
     height: 100px;
     border-radius: 50%;
 }
 
-.coord.recent-grid {
+.coord-recent-grid {
     margin-top: 3.5rem;
     display: grid;
     grid-gap: 2rem;
@@ -29,13 +29,13 @@
 }
 
 @media only screen and (max-width: 960px) {
-    .coord.recent-grid {
+    .coord-recent-grid {
         grid-template-columns: 60% 40%;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    .coord.recent-grid {
+    .coord-recent-grid {
         grid-template-columns: 100%;
     }
 }

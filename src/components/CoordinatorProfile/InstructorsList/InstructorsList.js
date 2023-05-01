@@ -6,8 +6,6 @@ import Constants from "../../../utilities/constantValues/constants";
 import TopRightSnackbar from '../../MUI/TopRightSnackbar';
 
 const InstructorsList = ({ instructors }) => {
-  const apiManager = new ApiManager();
-  const [open, setOpen] = React.useState(true);
 
   return (
     <>

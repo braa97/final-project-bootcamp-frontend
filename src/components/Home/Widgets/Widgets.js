@@ -152,7 +152,7 @@ const Widgets = () => {
                     />
                 </div>
                 <div className='icon-placeholder'>
-                    <img src={user} alt='user' />
+                    <img src={users} alt='user' />
                 </div>
             </div>
             <div className='box box3'>

@@ -121,7 +121,7 @@ const ShiftScheduler = () => {
   const [selectedApartment, setSelectedApartment] = useState(null);
   const [instructorsApartments, setInstructorsApartments] = useState([])
   const [selectedDate, setSelectedDate] = useState(dayjs());
-  const coordinatorId = JSON.parse(localStorage.getItem("user")).userId
+  const coordinatorId = JSON.parse(localStorage.getItem("user"))?.userId
   const [shift, setShift] = useState({
     date: "",
     startTime: "",

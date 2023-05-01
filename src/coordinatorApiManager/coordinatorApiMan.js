@@ -56,6 +56,7 @@ const CoordinatorApiMan = function () {
     );
     return instructors;
   };
+
   const addNewInstructorToCoordinator = async function (id, instructor) {
     const response = await addNewInstructor(instructor);
     if (!response) {
@@ -104,6 +105,20 @@ const CoordinatorApiMan = function () {
     return response;
   };
 
+  const getCoordinatorDataByCoordinatorID = async (coordinatorID) => {
+    const response = await getCallWithFetch(
+        `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinators/instructors/${coordinatorID}`
+    )
+    return response.data
+}
+
+const getCoordinatorByCoordinatorID = async function (coordinatorID) {
+  const response = await getCallWithFetch(
+    `${process.env.REACT_APP_SERVER_ROUTE}/coordinator/coordinator/${coordinatorID}`
+  );
+  return response.data;
+}
+
   return {
     getCoordinatorApartments,
     getInstructors,
@@ -112,6 +127,8 @@ const CoordinatorApiMan = function () {
     deleteInstructor,
     updateInstructor,
     getResidentsByCoordinatorId,
+    getCoordinatorDataByCoordinatorID,
+    getCoordinatorByCoordinatorID,
   };
 };
 export default CoordinatorApiMan;

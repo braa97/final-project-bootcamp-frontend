@@ -9,7 +9,7 @@ export default function Instructors() {
 
   const [instructors, setInstructors] = useState([]);
   const apiManager = new CoordinatorApiMan();
-  const coordinatorId = JSON.parse(localStorage.getItem("user")).userId
+  const coordinatorId = JSON.parse(localStorage.getItem("user"))?.userId
 
   const fetchInstructors = async function () {
     const response = await apiManager.getInstructors(coordinatorId);

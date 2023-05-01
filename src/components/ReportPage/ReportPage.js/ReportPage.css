@@ -1,9 +1,5 @@
 .report-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 5% 8%;
+    margin: 0 8%;
 }
 
 .report-page-header {
