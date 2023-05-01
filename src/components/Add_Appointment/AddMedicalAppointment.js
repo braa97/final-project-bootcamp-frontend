@@ -30,7 +30,7 @@ export default function AddMedicalAppointment({ onClickEvent }) {
     }
 
     return (
-        <div>
+        <>
             <Button
                 variant='contained'
                 sx={{ backgroundColor: '#009fbd', color: 'white' }}
@@ -78,6 +78,6 @@ export default function AddMedicalAppointment({ onClickEvent }) {
                     <Button onClick={handleAdd}>Add</Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     )
 }

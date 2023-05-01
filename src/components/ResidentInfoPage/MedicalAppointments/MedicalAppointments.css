@@ -6,6 +6,13 @@
     flex: 2;
 }
 
+.appointments .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
 .appointments .action-btn {
     padding: 0.5rem 0.9rem;
     margin: 2px;

@@ -26,50 +26,19 @@
     gap: 2rem;
     justify-content: space-between;
     align-items: center;
-  
 }
 
 @media screen and (max-width: 1260px) {
-  .resident-info-page .recent-grid {
-    flex-direction: column;
-  }
-  .resident-info-page .recent-grid .contacts {
-    width: 100%;
-  }
-}
-
-/* 
-.resident-info-page h1.value {
-    font-size: 1.875rem;
-    color: black;
-    font-weight: 700;
-}
-
-@media screen and (max-width: 1290px) {
-    .resident-info-page .card {
-        width: 50%;
-        max-width: 50%;
-    }
-}
-
-@media only screen and (max-width: 960px) {
-    .resident-info-page .cards {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
     .resident-info-page .recent-grid {
-        grid-template-columns: 60% 40%;
+        flex-direction: column;
+    }
+    .resident-info-page .recent-grid .contacts {
+        width: 100%;
+    }
+    .resident-info-page .recent-grid .card {
+        height: auto;
+    }
+    .resident-info-page .recent-grid .appointments {
+        width: 100%;
     }
 }
-
-@media only screen and (max-width: 768px) {
-    .resident-info-page .cards {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .resident-info-page .recent-grid {
-        grid-template-columns: 100%;
-    }
-} */
