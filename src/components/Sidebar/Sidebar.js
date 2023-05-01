@@ -11,8 +11,28 @@ import PsychologyOutlinedIcon from '@mui/icons-material/PsychologyOutlined'
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined'
 import { Link } from 'react-router-dom'
 import { demouser } from '../../Assets/index'
+import { useEffect, useState } from 'react'
+import ApiManager from '../../apiManager/apiManager'
 
 const Sidebar = () => {
+    const [instructor, setInstructor] = useState()
+
+    useEffect(() => {
+        const apiManager = new ApiManager()
+        const fetchInstructor = async () => {
+            const fetchedInstructor = await apiManager.getInstructorById(
+                localStorage.getItem('instructorId')
+            )
+            console.log(fetchedInstructor)
+            try {
+                setInstructor(fetchedInstructor)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchInstructor()
+    }, [])
+
     const logout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('instructorId')
@@ -24,14 +44,16 @@ const Sidebar = () => {
             <div className='user-profile'>
                 <Link to='/' style={{ textDecoration: 'none' }}>
                     <img
-                        src={demouser}
+                        src={instructor?.image}
                         alt='User Profile'
                         className='profile-image'
                     />
                 </Link>
                 <div className='profile-details'>
-                    <div className='profile-name'>Avi</div>
-                    <div className='profile-job'>Instructor</div>
+                    <div className='profile-name'>{instructor?.name}</div>
+                    <div className='profile-job'>
+                        {instructor?.apartments ? 'Instructor' : 'Coordinator'}
+                    </div>
                 </div>
             </div>
             <div className='center'>
