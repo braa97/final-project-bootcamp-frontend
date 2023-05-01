@@ -2,12 +2,8 @@ import './Navbar.css'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
-// import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined'
 import { Link } from 'react-router-dom'
-// import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-// import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
-// import {logo} from '../../Assets/index'
 
 const Navbar = () => {
     return (
@@ -36,7 +32,7 @@ const Navbar = () => {
                     </Link>
                     <div className='counter'>1</div>
                 </div>
-                <div className='item'>
+                {/* <div className='item'>
                     <Link to='/' style={{ textDecoration: 'none' }}>
                         <img
                             src='https://pngimg.com/uploads/man/small/man_PNG6509.png'
@@ -44,7 +40,7 @@ const Navbar = () => {
                             className='avatar'
                         />
                     </Link>
-                </div>
+                </div> */}
             </div>
         </div>
     )
