@@ -3,12 +3,13 @@
     flex: 1 0 15%;
     display: flex;
     justify-content: space-between;
-    background: #fff;
     padding: 2rem;
     border-radius: 2px;
     min-width: 280px;
     height: 140px;
     flex-wrap: wrap;
+    border: 2px solid rgb(226, 226, 226, 0.7);
+    border-radius: 10px;
 }
 
 .resident-info-card-single div:last-child .icon {
@@ -16,16 +17,11 @@
     color: var(--main-color);
 }
 
-.resident-info-card-single div:first-child span {
+.resident-info-card-single .value {
+    color: #009fbd;
+    font-size: 16px;
+}
+
+.resident-info-card-single div:first-child .title {
     color: var(--text-grey);
-}
-
-.resident-info-card-single:last-child {
-    background: var(--main-color);
-}
-
-.resident-info-card-single:last-child h1,
-.resident-info-card-single:last-child div:first-child span,
-.resident-info-card-single:last-child div:last-child .icon {
-    color: #fff;
 }

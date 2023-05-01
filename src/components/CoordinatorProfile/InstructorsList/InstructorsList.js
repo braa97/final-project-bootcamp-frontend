@@ -9,19 +9,6 @@ const InstructorsList = ({ instructors }) => {
   const apiManager = new ApiManager();
   const [open, setOpen] = React.useState(true);
 
-  /*const sendMessageToRelative = async(number, name) => {
-   
-    let response = await apiManager.sendMessageToResidentRelativeContact(message);
-    let type = 'error'
-    if (response.data.status === 200) {
-        type = 'success'
-    }
-    setOpen(true);
-    return(
-        <TopRightSnackbar snackbarContent={response.data.message} open={open} setOpen={setOpen} type={type} />
-    )
-  };*/
-
   return (
     <>
       <div className="instructors">
@@ -36,10 +23,10 @@ const InstructorsList = ({ instructors }) => {
                   <img
                     className="instructor-img"
                     src={instructor.image}
+                    alt=''
                   />
                   <div>
                     <h4>{instructor.name}</h4>
-                    {/*<small>{instructor.contactNumber}</small>*/}
                   </div>
                 </div>
                 

@@ -26,7 +26,7 @@ const ResidentInfoPage = () => {
 
     try {
         return (
-            <>
+            <div className='resident-info-page'>
                 <div className='main'>
                     <ProfileCard
                         img={resident.image}
@@ -67,7 +67,7 @@ const ResidentInfoPage = () => {
                         />
                     </div>
                 </div>
-            </>
+            </div>
         )
     } catch (error) {
         console.log(error)
