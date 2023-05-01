@@ -43,29 +43,29 @@
     font-size: 35px;
 }
 
-.card {
+.instructors-card {
     background: #fff;
     border-radius: 5px;
     height: 400px;
 }
 
-.card-body {
+.instructors-card-body {
     background: #fff;
 }
 
-.card-header,
-.card-body {
+.instructors-card-header,
+.instructors-card-body {
     padding: 1rem;
 }
 
-.card-header {
+.instructors-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.card-header button {
+.instructors-card-header button {
     background: var(--main-color);
     border-radius: 10px;
     color: #fff;
@@ -75,6 +75,6 @@
     cursor: pointer;
 }
 
-.message-btn {
+.instructors-message-btn {
     cursor: pointer;
 }

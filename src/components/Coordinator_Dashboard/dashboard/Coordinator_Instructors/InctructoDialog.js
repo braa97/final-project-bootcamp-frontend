@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import CoordinatorApiMan from "../../../../coordinatorApiManager/coordinatorApiMan";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Snackbar_Top_Right from "../../../Helper-Components/Snackbar/Snackbar_Top_Right";
 
 export default function InstructorDialog({
   open,
@@ -54,6 +55,7 @@ export default function InstructorDialog({
   });
 
   const [validationErrors, setValidationErrors] = React.useState({});
+  const [snackbarProps, setSnackbarProps] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -92,14 +94,23 @@ export default function InstructorDialog({
     const apiManager = new CoordinatorApiMan();
     const isValid = validateFormData();
     if (isValid) {
-      toast.success("Instructor added successfully!");
+      setSnackbarProps({ message: "Instructor has been added!", severity: "success" });
       await apiManager.addNewInstructorToCoordinator(coordinatorId, formData);
       fetchInstructors();
       handleClose();
     } else {
-      toast.error("Please correct the form errors!");
+      setSnackbarProps({ message: "Something went wrong!", severity: "error" });
     }
   };
+
+  useEffect(() => {
+    if (snackbarProps) {
+      const timer = setTimeout(() => {
+        setSnackbarProps("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [snackbarProps]);
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -188,6 +199,7 @@ export default function InstructorDialog({
         <Button onClick={handleClose}>Cancel</Button>
         <Button onClick={handleFormSubmit}>Add</Button>
       </DialogActions>
+      {snackbarProps && <Snackbar_Top_Right props={snackbarProps} />}
     </Dialog>
   );
 }

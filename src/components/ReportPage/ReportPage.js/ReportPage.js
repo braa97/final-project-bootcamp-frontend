@@ -15,6 +15,7 @@ import Utility from "../../../utilities/utility/util";
 import Scroll_Paper_Dialog from "../../Helper-Components/Dialog/Scroll_Paper_Dialog";
 import ReportDisplayPage from "../ReportDisplayPage/ReportDisplayPage";
 import CoordinatorApiMan from "../../../coordinatorApiManager/coordinatorApiMan";
+import LoadingWheel from "../../LoadingWheel/LoadingWheel";
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ export default function ReportPage() {
   const [reports, setReports] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedReport, setSelectedReport] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createNewReport = () => {
     navigate("/apartments", { state: { location: "ReportPage" } });
@@ -62,6 +64,7 @@ export default function ReportPage() {
         response = response.data
       }
       setReports(response);
+      setLoading(false)
     };
     fetchReportsFromDb();
   }, []);
@@ -78,6 +81,7 @@ export default function ReportPage() {
 
   return (
     <div className="report-container">
+      {loading ? <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}><LoadingWheel /></div> : null}
       <div className="report-page-header">
         <h1>Reports</h1>
         <ThemeProvider theme={theme}>

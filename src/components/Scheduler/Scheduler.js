@@ -9,6 +9,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import Select from "@mui/material/Select";
+import Snackbar_Top_Right from "../Helper-Components/Snackbar/Snackbar_Top_Right";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {
@@ -158,11 +159,24 @@ const ShiftScheduler = () => {
       selectedApartment,
       shift,
     });
-    if (response) {
-      console.log("successed");
+    if (response.success) {
+      setSnackbarProps({ message: "Shift has been submitted!", severity: "success" });
+    }
+    else {
+      setSnackbarProps({ message: "Something went wrong!", severity: "error" });
     }
     // TODO: Submit shift data to backend
   };
+
+  useEffect(() => {
+    if (snackbarProps) {
+      const timer = setTimeout(() => {
+        setSnackbarProps("");
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [snackbarProps]);
+
   const instructorSet = new Set();
 
   const instructors = instructorsApartments

@@ -25,16 +25,16 @@ const InstructorsList = ({ instructors }) => {
   return (
     <>
       <div className="instructors">
-        <div className="card">
-          <div className="card-header">
+        <div className="instructors-card">
+          <div className="instructors-card-header">
             <h3>Your Instructors</h3>
           </div>
-          <div className="card-body">
+          <div className="instructors-card-body">
             {instructors.map((instructor, i) => (
-              <div className="instructor-container" key={i}>
-                <div className="instructor-info">
+              <div className="instructors-instructor-container" key={i}>
+                <div className="instructors-instructor-info">
                   <img
-                    className="instructor-img"
+                    className="instructors-instructor-img"
                     src={instructor.image}
                   />
                   <div>
@@ -43,11 +43,11 @@ const InstructorsList = ({ instructors }) => {
                   </div>
                 </div>
                 
-                  <div className="contact-icon">
-                    <span className="las la-phone"></span>
+                  <div className="instructors-contact-icon">
+                    <span className="instructors-las instructors-la-phone"></span>
                   </div>
                
-                <MessageIcon className="message-btn" />
+                <MessageIcon className="instructors-message-btn" />
               </div>
             ))}
           </div>
